@@ -11,3 +11,7 @@ class University(models.Model):
     out_state_tuition = models.CharField(max_length=8)
     university_image = models.CharField(max_length=1000)
     location = models.CharField(max_length=100)
+    sports = models.CharField(max_length=200)
+    required_act_score = models.CharField(max_length=2)
+    required_sat_score = models.CharField(max_length=4)
+    weather = models.CharField(max_length=10)
