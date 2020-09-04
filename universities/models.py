@@ -15,3 +15,4 @@ class University(models.Model):
     required_act_score = models.CharField(max_length=2)
     required_sat_score = models.CharField(max_length=4)
     weather = models.CharField(max_length=10)
+    most_popular_major = models.CharField(max_length=25)
