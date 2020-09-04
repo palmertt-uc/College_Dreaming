@@ -16,3 +16,6 @@ class University(models.Model):
     required_sat_score = models.CharField(max_length=4)
     weather = models.CharField(max_length=10)
     most_popular_major = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
