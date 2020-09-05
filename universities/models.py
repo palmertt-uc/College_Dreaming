@@ -9,7 +9,7 @@ class University(models.Model):
     public_or_private = models.CharField(max_length=25)
     in_state_tuition = models.CharField(max_length=8)
     out_state_tuition = models.CharField(max_length=8)
-    university_image = models.CharField(max_length=1000)
+    university_image = models.FileField()
     location = models.CharField(max_length=100)
     sports = models.CharField(max_length=200)
     required_act_score = models.CharField(max_length=2)
