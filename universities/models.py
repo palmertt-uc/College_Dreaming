@@ -19,3 +19,12 @@ class University(models.Model):
 
     def __str__(self):
         return self.name
+
+class NearbyRestaurant(models.Model):
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
+    restaurant_name = models.CharField(max_length=150)
+    restaurant_type = models.CharField(max_length=50)
+    restaurant_url = models.URLField(max_length=250, default='000000')
+
+    def __str__(self):
+        return self.restaurant_name
