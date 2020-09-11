@@ -4,7 +4,7 @@ A Django application for senior design.
 
 ## Description
 
-## Demo Screenshot
+A web application that targets incoming college students and their families.
 
 ## Technologies Used
 
