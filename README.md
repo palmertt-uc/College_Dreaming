@@ -19,7 +19,7 @@ A Django application for senior design.
 
 ## How to Use
 
-- Before cloning/downloading the repository make sure you have:
+- Before cloning the repository make sure you have:
   - Python installed
     - Use [this](https://www.python.org/downloads/) link to download latest version of Python
   - PIP installed (package manaer for Python)
