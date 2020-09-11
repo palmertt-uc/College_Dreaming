@@ -17,12 +17,10 @@ A Django application for senior design.
 
 ## Unique Problems Faced & How They Were Fixed
 
-## How to Use
-
-- Before cloning the repository make sure you have:
-  - Python installed
-    - Use [this](https://www.python.org/downloads/) link to download latest version of Python
-  - PIP installed (package manaer for Python)
-    - Use [this](https://pip.pypa.io/en/stable/installing/) link to access PIP information (including installation)
-  - Django installed
-    - Use [this](https://docs.djangoproject.com/en/3.1/) link to access Django documentation (including initial setup)
+## Useful Terminal Commands
+- Python manage.py runserver
+  - Will start the application on localhost
+- Python manage.py makemigrations
+  - Use this when creating/editing models
+- Python manage.py migrate
+  - Use this after running "Python manage.py makemigrations"
