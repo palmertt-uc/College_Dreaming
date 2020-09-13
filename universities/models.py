@@ -24,6 +24,7 @@ class NearbyRestaurant(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     restaurant_name = models.CharField(max_length=150)
     restaurant_type = models.CharField(max_length=50)
+    restuarant_address = models.CharField(max_length=200, default="123 Address, St, Cincinnati, OH 45209")
     restaurant_url = models.URLField(max_length=250, default='000000')
 
     def __str__(self):
