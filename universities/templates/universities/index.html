@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="static/universities/main.css">
-    <title>Home</title>
-</head>
-<body>
-    <h1 class="header-text">Universities Home (From Templates)</h1>
-</body>
-</html>
+{% extends 'universities/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Hello, this is the home page</h1>
+{% endblock %}
