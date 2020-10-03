@@ -25,7 +25,7 @@ SECRET_KEY = '1o+h**91+@bor@p^!5+t(xl&r$t31_fcxy&^5b*_#6@@vq$%l)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['college-dreaming-env.eba-4mmkhpe7.us-east-2.elasticbeanstalk.com', 'collegedreaming.com', 'www.collegedreaming.com']
+ALLOWED_HOSTS = ['college-dreaming-env.eba-4mmkhpe7.us-east-2.elasticbeanstalk.com', 'collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1']
 
 
 # Application definition
