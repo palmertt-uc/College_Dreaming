@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path, os
+from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -76,8 +77,12 @@ WSGI_APPLICATION = 'college_dreaming.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'collegeDB',
+        'USER': 'admin',
+        'PASSWORD': 'SeniorDesign2020',
+        'HOST': 'collegedreaming.cjoiqlx7cnzx.us-east-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
