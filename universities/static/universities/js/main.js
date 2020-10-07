@@ -5,6 +5,7 @@ const emailContent = document.getElementById('messageContent');
 const subject = document.getElementById('subject');
 const emailRecipient = 'seniordesign908@gmail.com'
 
+// Button For Sending Email
 sendEmail.addEventListener('click', function () {
 
     let mailto_link = 'mailto:' + emailRecipient + '?subject=' + 'Email From '+ emailSender.value + ': ' + subject.value + '&body=' + emailContent.value;
