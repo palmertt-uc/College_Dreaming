@@ -1,0 +1,26 @@
+{% extends 'universities/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Register{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded text-dark register-form">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb4">
+                    Join Today!
+                </legend>
+                {{ form | crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-success btn-lg contact-button" type="submit">Sign Up</button>
+            </div>
+        </form>
+    <div class="border-top pt-3">
+        <small>
+            Already Have An Account? <a href="#" class="ml-2">Sign In</a>
+        </small>
+    </div>
+    </div>
+{% endblock %}

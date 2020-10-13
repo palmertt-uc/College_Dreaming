@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['college-dreaming-env.eba-4mmkhpe7.us-east-2.elasticbeanstalk.c
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
+    'users.apps.UsersConfig',
     'universities.apps.UniversitiesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,3 +130,5 @@ STATIC_ROOT = 'static'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
