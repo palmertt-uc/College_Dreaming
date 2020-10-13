@@ -1,0 +1,10 @@
+{% extends 'universities/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Register{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded text-dark register-form">
+        <h1>{{ user.username }}</h1>
+    </div>
+{% endblock %}
