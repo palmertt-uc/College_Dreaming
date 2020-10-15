@@ -11,7 +11,12 @@
         <hr>
         <h6>About</h6>
         <p>{{ user.profile.bio }}</p>
-        <form method="POST" enctype="multipart/form-data">
+        <hr>
+        <form>
+            <button type="submit" id="update-button" class="btn btn-success btn-md contact-button">Update Profile
+            </button>
+        </form>
+        <form method="POST" enctype="multipart/form-data" id="profile-form" class="d-none">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb4">
@@ -21,8 +26,10 @@
                 {{ profile_update | crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-success btn-lg contact-button" type="submit">Update</button>
+                <button class="btn btn-success btn-lg contact-button" type="submit" id="update">Update</button>
             </div>
         </form>
     </div>
+    {% load static %}
+    <script src="{% static 'users/js/users.js' %}" type="text/javascript"></script>
 {% endblock %}
