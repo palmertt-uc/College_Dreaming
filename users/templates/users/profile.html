@@ -9,11 +9,27 @@
         <p>{{ user.email }}</p>
         <small>Profile Info</small>
         <hr>
+        <h6>Full Name</h6>
+        <p>{{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>GPA</h6>
+                    <p>{{ user.profile.gpa }}</p>
+                </div>
+                <div class="col-sm">
+                    <h6>SAT Score</h6>
+                    <p>{{ user.profile.sat }}</p>
+                </div>
+                <div class="col-sm">
+                    <h6>ACT Score</h6>
+                    <p>{{ user.profile.act }}</p>
+                </div>
+            </div>
         <h6>About</h6>
         <p>{{ user.profile.bio }}</p>
         <hr>
         <form>
-            <button type="submit" id="update-button" class="btn btn-success btn-md contact-button">Update Profile
+            <button type="submit" id="update-button" class="btn btn-success btn-md contact-button">Edit Profile
             </button>
         </form>
         <form method="POST" enctype="multipart/form-data" id="profile-form" class="d-none mt-5">
