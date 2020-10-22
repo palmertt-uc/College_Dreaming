@@ -17,6 +17,9 @@ A web application that targets incoming college students and their families.
 
 ## Unique Problems Faced & How They Were Fixed
 
+- pip install mysqlclient
+  - [https://github.com/PyMySQL/mysqlclient-python#install](https://github.com/PyMySQL/mysqlclient-python#install)
+
 ## Useful Terminal Commands
 - Python manage.py runserver
   - Will start the application on localhost
