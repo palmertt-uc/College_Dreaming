@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
+from .models import Institutions
 
 
 # Create your views here.
@@ -7,8 +8,15 @@ def index(request):
     return render(request, 'universities/index.html')
 
 
-def universities(request):
-    return render(request, 'universities/universities.html')
+class UniversityListView(ListView):
+    model = Institutions
+    template_name = 'universities/universities.html'
+    context_object_name = 'universities'
+    paginate_by = 50
+
+
+class UniversityDetailView(DetailView):
+    model = Institutions
 
 
 def search(request):
