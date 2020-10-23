@@ -4,14 +4,13 @@
 
 {% block body %}
     <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
-        <div class="container">
-            <h1>Universities List</h1>
-            <hr>
-            {% for university in universities %}
-                <h6><a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a></h6>
-            {% endfor %}
-            <hr>
-            <div class="text-center">
+        <h1 class="universities-page-header">Universities List</h1>
+        {% for university in universities %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a></li>
+            </ul>
+        {% endfor %}
+        <div class="text-center mt-3">
             {% if is_paginated %}
                 {% if page_obj.has_previous %}
                     <a class="mb-4" href="?page=1">First</a>
@@ -20,7 +19,7 @@
                 {% for num in page_obj.paginator.page_range %}
                     {% if page_obj.number == num %}
                         <a class="mb-4" href="?page={{ num }}">{{ num }}</a>
-                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                         <a class="mb-4" href="?page={{ num }}">{{ num }}</a>
                     {% endif %}
                 {% endfor %}
@@ -29,7 +28,6 @@
                     <a class="mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
                 {% endif %}
             {% endif %}
-            </div>
         </div>
     </div>
 {% endblock %}
