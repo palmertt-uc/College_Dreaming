@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Institutions
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -13,6 +14,14 @@ class UniversityListView(ListView):
     template_name = 'universities/universities.html'
     context_object_name = 'universities'
     paginate_by = 50
+
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            object_list = self.model.objects.filter(instname__icontains=query)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
 
 
 class UniversityDetailView(DetailView):

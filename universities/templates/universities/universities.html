@@ -4,10 +4,19 @@
 
 {% block body %}
     <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
+        <h1 class="universities-page-header">Search</h1>
+        <form class="mt-2" method="GET">
+            <input name="query" class="form-control" type="text" placeholder="Enter University..." value="{{ request.GET.query }}">
+            <button type="submit" class="btn btn-large btn-success mt-4">Search</button>
+        </form>
+    </div>
+    <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
         <h1 class="universities-page-header">Universities List</h1>
         {% for university in universities %}
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a></li>
+                <li class="list-group-item">
+                    <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
+                </li>
             </ul>
         {% endfor %}
         <div class="text-center mt-3">
