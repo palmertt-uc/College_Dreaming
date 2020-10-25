@@ -30,6 +30,7 @@ class Institutions(models.Model):
     def __str__(self):
         return self.instname
 
+
 class Cities(models.Model):
     cityid = models.AutoField(db_column='CityId', primary_key=True)  # Field name made lowercase.
     city = models.CharField(db_column='City', max_length=100)  # Field name made lowercase.
@@ -39,9 +40,10 @@ class Cities(models.Model):
     class Meta:
         managed = False
         db_table = 'Cities'
-    
+
     def __str__(self):
         return self.city + ", " + self.state
+
 
 class Zipcodes(models.Model):
     zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
