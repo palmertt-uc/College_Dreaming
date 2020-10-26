@@ -4,15 +4,17 @@
 
 {% block body %}
     <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
-        <div class="container">
-            <h1>{{ object.instname }}</h1>
-            <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
-            <hr>
-            {% if object.insturl == NULL %}
-                <h6>Institution URL: N/A</h6>
-                {% else %}
-                <h6>Institution URL: {{ object.insturl }}</h6>
-            {% endif %}
-        </div>
+        <h1>{{ object.instname }}</h1>
+        <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
+        <hr>
+        {% if object.insturl == NULL %}
+            <h6>Institution URL: N/A</h6>
+        {% else %}
+            <h6>Institution URL: {{ object.insturl }}</h6>
+        {% endif %}
+        <hr>
+        <form>
+            <button type="button" class="btn btn-large btn-success">Favorite</button>
+        </form>
     </div>
 {% endblock %}
