@@ -6,15 +6,15 @@
     <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
         <h1>{{ object.instname }}</h1>
         <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
+        <h6>Zipcode: {{ object.zipcodeid.zipcode }}</h6>
+        <h6>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</h6>
         <hr>
-        {% if object.insturl == NULL %}
-            <h6>Institution URL: N/A</h6>
-        {% else %}
-            <h6>Institution URL: {{ object.insturl }}</h6>
-        {% endif %}
+        <h6>Institution Link: {{ object.insturl }}</h6>
+        <h6>Accreditation: {{ object.accredagency }}</h6>
+        <h6>Main Campus: {{ object.maincampus }}</h6>
+        <h6>Number of Campuses: {{ object.numberofbranches }}</h6>
+        <h6>Highest Degree: {{ object.highestdegree }}</h6>
+        <h6>{{ institutions. }}</h6>
         <hr>
-        <form>
-            <button type="button" class="btn btn-large btn-success">Favorite</button>
-        </form>
     </div>
 {% endblock %}

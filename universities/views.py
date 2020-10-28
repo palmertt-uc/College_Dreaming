@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Institutions
+from .models import Institutions, Admissions, Cities, Zipcodes, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
 
 
 # Create your views here.
