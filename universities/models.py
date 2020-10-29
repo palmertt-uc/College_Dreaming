@@ -30,6 +30,26 @@ class Institutions(models.Model):
     def __str__(self):
         return self.instname
 
+    @property
+    def main_campus(self):
+        if ord(self.maincampus) == 1:
+            return 'Yes'
+        else:
+            return 'No'
+
+    @property
+    def highest_degree(self):
+        if self.highestdegree == '0':
+            return 'Highest Degree: Not Reported'
+        elif self.highestdegree == '1':
+            return 'Highest Degree: Associate Degree'
+        elif self.highestdegree == '2':
+            return "Highest Degree: Bachelor's Degree"
+        elif self.highestdegree == '3':
+            return "Highest Degree: Master's Degree"
+        elif self.highestdegree == '4':
+            return 'Highest Degree: Doctorate Degree'
+
 
 class Admissions(models.Model):
     admissionid = models.AutoField(db_column='AdmissionId', primary_key=True)  # Field name made lowercase.
@@ -66,6 +86,27 @@ class Admissions(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Admission'
+
+    @property
+    def admission_rate(self):
+        if self.admission_rate_overall == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.admission_rate_overall)
+
+    @property
+    def average_sat_score(self):
+        if self.sat_scores_average_overall == 0:
+            return 'Not Reported'
+        else:
+            return round(self.sat_scores_average_overall)
+
+    @property
+    def average_act_score(self):
+        if self.act_scores_midpoint_cumulative == 0:
+            return 'Not Reported'
+        else:
+            return round(self.act_scores_midpoint_cumulative)
 
 
 class Cities(models.Model):
@@ -163,6 +204,20 @@ class Costs(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Cost'
+
+    @property
+    def in_state_tuition(self):
+        if self.tuition_in_state == 0:
+            return 'Not Reported'
+        else:
+            return '${:,.2f}'.format(self.tuition_in_state)
+
+    @property
+    def out_state_tuition(self):
+        if self.tuition_out_of_state == 0:
+            return 'Not Reported'
+        else:
+            return '${:,.2f}'.format(self.tuition_out_of_state)
 
 
 class Institutiontypes(models.Model):

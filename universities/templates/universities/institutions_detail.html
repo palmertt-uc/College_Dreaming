@@ -6,15 +6,31 @@
     <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
         <h1>{{ object.instname }}</h1>
         <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
-        <h6>Zipcode: {{ object.zipcodeid.zipcode }}</h6>
-        <h6>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</h6>
+        <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
+        <p>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</p>
         <hr>
-        <h6>Institution Link: {{ object.insturl }}</h6>
-        <h6>Accreditation: {{ object.accredagency }}</h6>
-        <h6>Main Campus: {{ object.maincampus }}</h6>
-        <h6>Number of Campuses: {{ object.numberofbranches }}</h6>
-        <h6>Highest Degree: {{ object.highestdegree }}</h6>
-        <h6>{{ institutions. }}</h6>
+        <h5>Institution Data</h5>
+        <p>Institution Link: {{ object.insturl }}</p>
+        <p>Accreditation: {{ object.accredagency }}</p>
+        <p>Main Campus: {{ object.main_campus }}</p>
+        <p>Number of Campuses: {{ object.numberofbranches }}</p>
+        <p>{{ object.highest_degree }}</p>
         <hr>
+        <h5>Cost Data</h5>
+        {% for cost in costs %}
+            {% if object.institutionid == cost.costsid %}
+                <p>In-State Tuition: {{ cost.in_state_tuition }}</p>
+                <p>Out-of-State Tuition: {{ cost.out_state_tuition }}</p>
+            {% endif %}
+        {% endfor %}
+        <hr>
+        <h5>Admission Data</h5>
+        {% for admission in admissions %}
+            {% if object.institutionid == admission.admissionid %}
+                <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
+                <p>Average SAT Score: {{ admission.average_sat_score }}</p>
+                <p>Average ACT Score: {{ admission.average_act_score }}</p>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}

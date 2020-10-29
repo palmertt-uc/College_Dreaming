@@ -26,6 +26,13 @@ class UniversityListView(ListView):
 class UniversityDetailView(DetailView):
     model = Institutions
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['admissions'] = Admissions.objects.all()
+        context['costs'] = Costs.objects.all()
+        context['institution_type'] = Institutiontypes.objects.all()
+        return context
+
 
 def search(request):
     return render(request, 'universities/search.html')
