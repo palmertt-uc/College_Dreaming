@@ -3,20 +3,26 @@
 {% block title %}{{ object.instname }} - Details{% endblock %}
 
 {% block body %}
-    <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
+    <div class="container about-page-header shadow-lg p-3 mb-3 bg-white rounded text-dark raised-layout-forms">
         <h1>{{ object.instname }}</h1>
         <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
         <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
         <p>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</p>
         <hr>
-        <h5>Institution Data</h5>
+        <h4>Institution Information</h4>
         <p>Institution Link: {{ object.insturl }}</p>
         <p>Accreditation: {{ object.accredagency }}</p>
         <p>Main Campus: {{ object.main_campus }}</p>
         <p>Number of Campuses: {{ object.numberofbranches }}</p>
         <p>{{ object.highest_degree }}</p>
+        <p>{{ object.predominant_degree }}</p>
+        {% for type in institution_type %}
+            {% if object.institutionid == type.institutiontypeid %}
+                <p>Institution Type: {{ type.institution_type }}</p>
+            {% endif %}
+        {% endfor %}
         <hr>
-        <h5>Cost Data</h5>
+        <h4>Cost Information</h4>
         {% for cost in costs %}
             {% if object.institutionid == cost.costsid %}
                 <p>In-State Tuition: {{ cost.in_state_tuition }}</p>
@@ -24,12 +30,24 @@
             {% endif %}
         {% endfor %}
         <hr>
-        <h5>Admission Data</h5>
+        <h4>Admission Information</h4>
         {% for admission in admissions %}
             {% if object.institutionid == admission.admissionid %}
                 <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
                 <p>Average SAT Score: {{ admission.average_sat_score }}</p>
                 <p>Average ACT Score: {{ admission.average_act_score }}</p>
+            {% endif %}
+        {% endfor %}
+        <hr>
+        <h4>Demographic Information</h4>
+        {% for undergraduate in undergraduates %}
+            {% if object.institutionid == undergraduate.undergraduateid %}
+                <p>Caucasian: {{ undergraduate.white_students }}</p>
+                <p>African American: {{ undergraduate.black_students }}</p>
+                <p>Hispanic: {{ undergraduate.hispanic_students }}</p>
+                <p>Pacific Islander: {{ undergraduate.pacific_islander_students }}</p>
+                <p>Multiracial: {{ undergraduate.multiracial_students }}</p>
+                <p>Non-Resident: {{ undergraduate.non_resident_students }}</p>
             {% endif %}
         {% endfor %}
     </div>

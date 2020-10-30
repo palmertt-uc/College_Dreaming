@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Institutions, Admissions, Cities, Zipcodes, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
+from .models import Institutions, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
 
 
 # Create your views here.
@@ -31,6 +31,10 @@ class UniversityDetailView(DetailView):
         context['admissions'] = Admissions.objects.all()
         context['costs'] = Costs.objects.all()
         context['institution_type'] = Institutiontypes.objects.all()
+        context['majors'] = Majors.objects.all()
+        context['completion_rates'] = Completionrates.objects.all()
+        context['programs'] = Programs.objects.all()
+        context['undergraduates'] = Undergraduates.objects.all()
         return context
 
 

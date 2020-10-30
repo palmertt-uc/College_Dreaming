@@ -40,15 +40,28 @@ class Institutions(models.Model):
     @property
     def highest_degree(self):
         if self.highestdegree == '0':
-            return 'Highest Degree: Not Reported'
+            return 'Highest Degree Offered: Not Reported'
         elif self.highestdegree == '1':
-            return 'Highest Degree: Associate Degree'
+            return 'Highest Degree Offered: Associate Degree'
         elif self.highestdegree == '2':
-            return "Highest Degree: Bachelor's Degree"
+            return "Highest Degree Offered: Bachelor's Degree"
         elif self.highestdegree == '3':
-            return "Highest Degree: Master's Degree"
+            return "Highest Degree Offered: Master's Degree"
         elif self.highestdegree == '4':
-            return 'Highest Degree: Doctorate Degree'
+            return 'Highest Degree Offered: Doctorate Degree'
+
+    @property
+    def predominant_degree(self):
+        if self.predominantdegrees == '0':
+            return 'Predominant Degree: Not Reported'
+        elif self.predominantdegrees == '1':
+            return 'Predominant Degree: Associate Degree'
+        elif self.predominantdegrees == '2':
+            return "Predominant Degree: Bachelor's Degree"
+        elif self.predominantdegrees == '3':
+            return "Predominant Degree: Master's Degree"
+        elif self.predominantdegrees == '4':
+            return 'Predominant Degree: Doctorate Degree'
 
 
 class Admissions(models.Model):
@@ -243,6 +256,27 @@ class Institutiontypes(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Institution Type'
+
+    @property
+    def institution_type(self):
+        if ord(self.hbcu) == 1:
+            return 'Historically Black Institution'
+        elif ord(self.pbi) == 1:
+            return 'Predominately Black Institution'
+        elif ord(self.annhi) == 1:
+            return 'Alaskan Native or Native Hawaiian-Serving Institution'
+        elif ord(self.hsi) == 1:
+            return 'Hispanic-Serving Institution'
+        elif ord(self.nanti) == 1:
+            return 'Native American Non-Tribal Institution'
+        elif ord(self.menonly) == 1:
+            return 'Men Only Institution'
+        elif ord(self.womenonly) == 1:
+            return 'Women Only Institution'
+        elif self.relaffil > 0:
+            return 'Religious Institution'
+        else:
+            'Not Reported'
 
 
 class Majors(models.Model):
@@ -516,3 +550,52 @@ class Undergraduates(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Undergraduates'
+
+    @property
+    def white_students(self):
+        if self.demographics_white == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_white)
+
+    @property
+    def black_students(self):
+        if self.demographics_black == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_black)
+
+    @property
+    def hispanic_students(self):
+        if self.demographics_hispanic == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_hispanic)
+
+    @property
+    def asian_students(self):
+        if self.demographics_asian == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_asian)
+
+    @property
+    def pacific_islander_students(self):
+        if self.demographics_nhpi == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_nhpi)
+
+    @property
+    def multiracial_students(self):
+        if self.demographics_multiracial == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_multiracial)
+
+    @property
+    def non_resident_students(self):
+        if self.demographics_non_resident_alien == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.demographics_non_resident_alien)
