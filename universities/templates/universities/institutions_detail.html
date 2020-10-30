@@ -50,5 +50,148 @@
                 <p>Non-Resident: {{ undergraduate.non_resident_students }}</p>
             {% endif %}
         {% endfor %}
+        <hr>
+        <h4>Majors Information</h4>
+        {% for major in majors %}
+            {% if object.institutionid == major.majorid %}
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Business Marketing: {{ major.business_marketing_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Communication: {{ major.communication_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Computer: {{ major.computer_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Language: {{ major.language_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Engineering Technology: {{ major.engineering_technology_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Engineering: {{ major.engineering_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Education: {{ major.education_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Personal Culinary: {{ major.personal_culinary_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Communication Technology: {{ major.communications_technology_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Ethnic/Cultural/Gender: {{ major.ethnic_cultural_gender_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Architecture Culinary: {{ major.architecture_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Resources: {{ major.resources_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Agriculture: {{ major.agriculture_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Family Consumer Science: {{ major.family_consumer_science_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Legal: {{ major.legal_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>English: {{ major.english_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Library: {{ major.library_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Biological: {{ major.biological_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Mathematics: {{ major.mathematics_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Military: {{ major.military_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Multi-Discipline: {{ major.multidiscipline_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Parks/Recreation/Fitness: {{ major.parks_recreation_fitness_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Philosophy/Religion: {{ major.philosophy_religious_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Theology/Religious/Vocation: {{ major.theology_religious_vocation_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Physical Science: {{ major.physical_science_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Science Technology: {{ major.science_technology_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Psychology: {{ major.psychology_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Security/Law Enforcement: {{ major.security_law_enforcement_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>History: {{ major.history_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Social Science: {{ major.social_science_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Construction: {{ major.construction_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Mechanic Repair Technology: {{ major.mechanic_repair_technology_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Precision Production: {{ major.precision_production_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Transportation: {{ major.transportation_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Visual Performing: {{ major.visual_performing_percentage }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>Health: {{ major.health_percentage }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p>Public Administration/Social Service: {{ major.public_administration_social_service_percentage }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}

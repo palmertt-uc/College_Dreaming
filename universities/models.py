@@ -328,6 +328,158 @@ class Majors(models.Model):
     def __str__(self):
         return self.institutionid.instname + ' - Majors'
 
+    @property
+    def history_percentage(self):
+        return '{:.1%}'.format(self.history)
+
+    @property
+    def business_marketing_percentage(self):
+        return '{:.1%}'.format(self.business_marketing)
+
+    @property
+    def health_percentage(self):
+        return '{:.1%}'.format(self.health)
+
+    @property
+    def visual_performing_percentage(self):
+        return '{:.1%}'.format(self.visual_performing)
+
+    @property
+    def transportation_percentage(self):
+        return '{:.1%}'.format(self.transportation)
+
+    @property
+    def precision_production_percentage(self):
+        return '{:.1%}'.format(self.precision_production)
+
+    @property
+    def mechanic_repair_technology_percentage(self):
+        return '{:.1%}'.format(self.mechanic_repair_technology)
+
+    @property
+    def construction_percentage(self):
+        return '{:.1%}'.format(self.construction)
+
+    @property
+    def social_science_percentage(self):
+        return '{:.1%}'.format(self.social_science)
+
+    @property
+    def public_administration_social_service_percentage(self):
+        return '{:.1%}'.format(self.public_administration_social_service)
+
+    @property
+    def security_law_enforcement_percentage(self):
+        return '{:.1%}'.format(self.security_law_enforcement)
+
+    @property
+    def psychology_percentage(self):
+        return '{:.1%}'.format(self.psychology)
+
+    @property
+    def science_technology_percentage(self):
+        return '{:.1%}'.format(self.science_technology)
+
+    @property
+    def physical_science_percentage(self):
+        return '{:.1%}'.format(self.physical_science)
+
+    @property
+    def theology_religious_vocation_percentage(self):
+        return '{:.1%}'.format(self.theology_religious_vocation)
+
+    @property
+    def philosophy_religious_percentage(self):
+        return '{:.1%}'.format(self.philosophy_religious)
+
+    @property
+    def parks_recreation_fitness_percentage(self):
+        return '{:.1%}'.format(self.parks_recreation_fitness)
+
+    @property
+    def multidiscipline_percentage(self):
+        return '{:.1%}'.format(self.multidiscipline)
+
+    @property
+    def military_percentage(self):
+        return '{:.1%}'.format(self.military)
+
+    @property
+    def mathematics_percentage(self):
+        return '{:.1%}'.format(self.mathematics)
+
+    @property
+    def biological_percentage(self):
+        return '{:.1%}'.format(self.biological)
+
+    @property
+    def library_percentage(self):
+        return '{:.1%}'.format(self.library)
+
+    @property
+    def humanities_percentage(self):
+        return '{:.1%}'.format(self.humanities)
+
+    @property
+    def english_percentage(self):
+        return '{:.1%}'.format(self.english)
+
+    @property
+    def legal_percentage(self):
+        return '{:.1%}'.format(self.legal)
+
+    @property
+    def family_consumer_science_percentage(self):
+        return '{:.1%}'.format(self.family_consumer_science)
+
+    @property
+    def agriculture_percentage(self):
+        return '{:.1%}'.format(self.agriculture)
+
+    @property
+    def resources_percentage(self):
+        return '{:.1%}'.format(self.resources)
+
+    @property
+    def architecture_percentage(self):
+        return '{:.1%}'.format(self.architecture)
+
+    @property
+    def ethnic_cultural_gender_percentage(self):
+        return '{:.1%}'.format(self.ethnic_cultural_gender)
+
+    @property
+    def communication_percentage(self):
+        return '{:.1%}'.format(self.communication)
+
+    @property
+    def communications_technology_percentage(self):
+        return '{:.1%}'.format(self.communications_technology)
+
+    @property
+    def computer_percentage(self):
+        return '{:.1%}'.format(self.computer)
+
+    @property
+    def personal_culinary_percentage(self):
+        return '{:.1%}'.format(self.personal_culinary)
+
+    @property
+    def education_percentage(self):
+        return '{:.1%}'.format(self.education)
+
+    @property
+    def engineering_percentage(self):
+        return '{:.1%}'.format(self.engineering)
+
+    @property
+    def engineering_technology_percentage(self):
+        return '{:.1%}'.format(self.engineering_technology)
+
+    @property
+    def language_percentage(self):
+        return '{:.1%}'.format(self.language)
+
 
 class Programs(models.Model):
     programsid = models.AutoField(db_column='ProgramsId', primary_key=True)  # Field name made lowercase.
@@ -554,48 +706,48 @@ class Undergraduates(models.Model):
     @property
     def white_students(self):
         if self.demographics_white == 0:
-            return 'Not Reported'
+            return '0%'
         else:
             return '{:.1%}'.format(self.demographics_white)
 
     @property
     def black_students(self):
         if self.demographics_black == 0:
-            return 'Not Reported'
+            return '0%'
         else:
             return '{:.1%}'.format(self.demographics_black)
 
     @property
     def hispanic_students(self):
         if self.demographics_hispanic == 0:
-            return 'Not Reported'
+            return '0%'
         else:
             return '{:.1%}'.format(self.demographics_hispanic)
 
     @property
     def asian_students(self):
         if self.demographics_asian == 0:
-            return 'Not Reported'
+            return '0%'
         else:
             return '{:.1%}'.format(self.demographics_asian)
 
     @property
     def pacific_islander_students(self):
         if self.demographics_nhpi == 0:
-            return 'Not Reported'
+            return '0%'
         else:
             return '{:.1%}'.format(self.demographics_nhpi)
 
     @property
     def multiracial_students(self):
         if self.demographics_multiracial == 0:
-            return 'Not Reported'
+            return '0%'
         else:
             return '{:.1%}'.format(self.demographics_multiracial)
 
     @property
     def non_resident_students(self):
         if self.demographics_non_resident_alien == 0:
-            return 'Not Reported'
+            return 'Not Reported/0%'
         else:
             return '{:.1%}'.format(self.demographics_non_resident_alien)
