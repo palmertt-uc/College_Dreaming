@@ -2,6 +2,31 @@ from django.db import models
 
 
 # Create your models here.
+class Cities(models.Model):
+    cityid = models.AutoField(db_column='CityId', primary_key=True)  # Field name made lowercase.
+    city = models.CharField(db_column='City', max_length=100)  # Field name made lowercase.
+    state = models.CharField(db_column='State', max_length=2)  # Field name made lowercase.
+    region = models.CharField(db_column='Region', max_length=2)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Cities'
+
+    def __str__(self):
+        return self.city + ", " + self.state
+
+class Zipcodes(models.Model):
+    zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
+    cityid = models.ForeignKey(Cities, models.DO_NOTHING, db_column='CityId')  # Field name made lowercase.
+    zipcode = models.CharField(db_column='ZipCode', max_length=10)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'ZipCodes'
+
+    def __str__(self):
+        return self.zipcode
+
 class Institutions(models.Model):
     institutionid = models.AutoField(db_column='InstitutionId', primary_key=True)  # Field name made lowercase.
     unitid = models.CharField(db_column='UNITID', max_length=20, blank=True, null=True)  # Field name made lowercase.
@@ -21,7 +46,7 @@ class Institutions(models.Model):
     latitude = models.FloatField(db_column='Latitude', blank=True, null=True)  # Field name made lowercase.
     longitude = models.FloatField(db_column='Longitude', blank=True, null=True)  # Field name made lowercase.
     locale = models.CharField(db_column='Locale', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    zipcodeid = models.ForeignKey('Zipcodes', models.DO_NOTHING, db_column='ZipCodeId', blank=True, null=True)  # Field name made lowercase.
+    zipcodeid = models.ForeignKey(Zipcodes, models.DO_NOTHING, db_column='ZipCodeId', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -29,30 +54,3 @@ class Institutions(models.Model):
 
     def __str__(self):
         return self.instname
-
-
-class Cities(models.Model):
-    cityid = models.AutoField(db_column='CityId', primary_key=True)  # Field name made lowercase.
-    city = models.CharField(db_column='City', max_length=100)  # Field name made lowercase.
-    state = models.CharField(db_column='State', max_length=2)  # Field name made lowercase.
-    region = models.CharField(db_column='Region', max_length=2)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Cities'
-
-    def __str__(self):
-        return self.city + ", " + self.state
-
-
-class Zipcodes(models.Model):
-    zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
-    cityid = models.ForeignKey(Cities, models.DO_NOTHING, db_column='CityId')  # Field name made lowercase.
-    zipcode = models.CharField(db_column='ZipCode', max_length=10)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'ZipCodes'
-
-    def __str__(self):
-        return self.zipcode
