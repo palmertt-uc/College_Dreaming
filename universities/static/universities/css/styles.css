@@ -66,6 +66,7 @@
 
 #search-results-list li a:hover {
     text-decoration: none;
+}
 
 .advanced-search-header {
     font-size: 3vmax !important;

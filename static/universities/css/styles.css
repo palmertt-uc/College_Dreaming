@@ -22,6 +22,52 @@
     font-size: 3vmax !important;
 }
 
+#nav-search-bar {
+    position: relative;
+}
+
+#search-results {
+    display: none;
+    color: black;
+    position: absolute;
+    width: auto; 
+    background: white;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    overflow-y: auto;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 2px rgb(141, 141, 141);
+}
+
+#search-results-list{
+    width: auto;
+}
+
+#search-results-list li {
+    width: 100%;
+    padding: 5px;
+}
+
+#search-results-list li:hover {
+    background-color: lightgray;
+}
+
+#search-results-list li a {
+    display: block;
+    width: 100%;
+    color: black;
+    outline: none;
+}
+
+#search-results-list li span{
+    color: darkgray;
+    font-size: medium;
+}
+
+#search-results-list li a:hover {
+    text-decoration: none;
+}
+
 .advanced-search-header {
     font-size: 3vmax !important;
 }
