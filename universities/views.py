@@ -1,11 +1,16 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from .models import Institutions, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
 
 
 # Create your views here.
 def index(request):
     return render(request, 'universities/index.html')
+
+
+class QuizView(TemplateView):
+    model = Institutions
+    template_name = 'universities/quiz.html'
 
 
 class UniversityListView(ListView):

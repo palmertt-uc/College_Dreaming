@@ -3,7 +3,7 @@
 {% block title %}{{ object.instname }} - Details{% endblock %}
 
 {% block body %}
-    <div class="container about-page-header shadow-lg p-3 mb-3 bg-white rounded text-dark raised-layout-forms">
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded mt-4 text-dark raised-layout-forms">
         <h1>{{ object.instname }}</h1>
         <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
         <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
@@ -25,6 +25,11 @@
         <h4>Cost Information</h4>
         {% for cost in costs %}
             {% if object.institutionid == cost.costsid %}
+                <script>
+                    let inStateTuition = "{{ cost.tuition_in_state }}";
+                    let outStateTuition = "{{ cost.tuition_out_of_state }}";
+                </script>
+                <canvas id="myTuitionChart" width="" height=""></canvas>
                 <p>In-State Tuition: {{ cost.in_state_tuition }}</p>
                 <p>Out-of-State Tuition: {{ cost.out_state_tuition }}</p>
             {% endif %}
@@ -33,6 +38,16 @@
         <h4>Admission Information</h4>
         {% for admission in admissions %}
             {% if object.institutionid == admission.admissionid %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <canvas id="myActChart" width="" height=""></canvas>
+                        </div>
+                        <div class="col-sm">
+                            <canvas id="mySatChart" width="" height=""></canvas>
+                        </div>
+                    </div>
+                </div>
                 <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
                 <p>Average SAT Score: {{ admission.average_sat_score }}</p>
                 <p>Average ACT Score: {{ admission.average_act_score }}</p>
@@ -45,6 +60,7 @@
                 <p>Caucasian: {{ undergraduate.white_students }}</p>
                 <p>African American: {{ undergraduate.black_students }}</p>
                 <p>Hispanic: {{ undergraduate.hispanic_students }}</p>
+                <p>Asian: {{ undergraduate.asian_students }}</p>
                 <p>Pacific Islander: {{ undergraduate.pacific_islander_students }}</p>
                 <p>Multiracial: {{ undergraduate.multiracial_students }}</p>
                 <p>Non-Resident: {{ undergraduate.non_resident_students }}</p>
@@ -188,10 +204,14 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p>Public Administration/Social Service: {{ major.public_administration_social_service_percentage }}</p>
+                        <p>Public Administration/Social
+                            Service: {{ major.public_administration_social_service_percentage }}</p>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
+    </div>
+    {% load static %}
+    <script src="{% static 'universities/js/charts.js' %}" type="text/javascript"></script>
 {% endblock %}
