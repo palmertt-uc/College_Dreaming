@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['college-dreaming-env.eba-4mmkhpe7.us-east-2.elasticbeanstalk.c
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'crispy_forms',
     'users.apps.UsersConfig',
     'universities.apps.UniversitiesConfig',

@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from .models import Institutions
+from  .serializers  import InstitutionsSerializer, ZipcodeSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import Institutions, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
-
 
 # Create your views here.
 def index(request):
@@ -53,3 +57,11 @@ def about(request):
 
 def contact(request):
     return render(request, 'universities/contact.html')
+
+
+@api_view(['GET'])
+def institutionsList(request):
+    query = request.GET.get('query')
+    institutions = Institutions.objects.filter(instname__icontains=query)[:5]
+    serializer = InstitutionsSerializer(institutions, many=True)
+    return Response(serializer.data)

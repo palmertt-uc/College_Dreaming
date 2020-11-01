@@ -9,5 +9,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('api/search-universities/', views.institutionsList, name='search-universities'),
     path('quiz/', QuizView.as_view(), name='quiz')
 ]
