@@ -1,0 +1,19 @@
+{% extends 'universities/base.html' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+    <div class="shadow-lg p-3 mb-5 bg-white rounded mr-4 ml-4 mt-5">
+        <h1 class="text-dark text-center">Start Quiz</h1>
+        <hr>
+        <h5 class="text-dark">I am a
+            <select name="student-status" id="student-status">
+                <option value="high-school-student">High School Student</option>
+                <option value="college-transfer-student">College Transfer Student</option>
+                <option value="adult-seeking-degree">Adult Seeking Degree</option>
+                <option value="parent">Parent</option>
+            </select>
+            that is looking
+        </h5>
+    </div>
+{% endblock %}

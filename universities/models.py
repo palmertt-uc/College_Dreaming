@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -30,6 +29,39 @@ class Institutions(models.Model):
 
     def __str__(self):
         return self.instname
+
+    @property
+    def main_campus(self):
+        if ord(self.maincampus) == 1:
+            return 'Yes'
+        else:
+            return 'No'
+
+    @property
+    def highest_degree(self):
+        if self.highestdegree == '0':
+            return 'Highest Degree Offered: Not Reported'
+        elif self.highestdegree == '1':
+            return 'Highest Degree Offered: Associate Degree'
+        elif self.highestdegree == '2':
+            return "Highest Degree Offered: Bachelor's Degree"
+        elif self.highestdegree == '3':
+            return "Highest Degree Offered: Master's Degree"
+        elif self.highestdegree == '4':
+            return 'Highest Degree Offered: Doctorate Degree'
+
+    @property
+    def predominant_degree(self):
+        if self.predominantdegrees == '0':
+            return 'Predominant Degree: Not Reported'
+        elif self.predominantdegrees == '1':
+            return 'Predominant Degree: Associate Degree'
+        elif self.predominantdegrees == '2':
+            return "Predominant Degree: Bachelor's Degree"
+        elif self.predominantdegrees == '3':
+            return "Predominant Degree: Master's Degree"
+        elif self.predominantdegrees == '4':
+            return 'Predominant Degree: Doctorate Degree'
 
 
 class Admissions(models.Model):
@@ -67,6 +99,27 @@ class Admissions(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Admission'
+
+    @property
+    def admission_rate(self):
+        if self.admission_rate_overall == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.admission_rate_overall)
+
+    @property
+    def average_sat_score(self):
+        if self.sat_scores_average_overall == 0:
+            return 'Not Reported'
+        else:
+            return round(self.sat_scores_average_overall)
+
+    @property
+    def average_act_score(self):
+        if self.act_scores_midpoint_cumulative == 0:
+            return 'Not Reported'
+        else:
+            return round(self.act_scores_midpoint_cumulative)
 
 
 class Cities(models.Model):
@@ -165,6 +218,20 @@ class Costs(models.Model):
     def __str__(self):
         return self.institutionid.instname + ' - Cost'
 
+    @property
+    def in_state_tuition(self):
+        if self.tuition_in_state == 0:
+            return 'Not Reported'
+        else:
+            return '${:,.2f}'.format(self.tuition_in_state)
+
+    @property
+    def out_state_tuition(self):
+        if self.tuition_out_of_state == 0:
+            return 'Not Reported'
+        else:
+            return '${:,.2f}'.format(self.tuition_out_of_state)
+
 
 class Institutiontypes(models.Model):
     institutiontypeid = models.AutoField(db_column='InstitutionTypeId', primary_key=True)  # Field name made lowercase.
@@ -189,6 +256,27 @@ class Institutiontypes(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Institution Type'
+
+    @property
+    def institution_type(self):
+        if ord(self.hbcu) == 1:
+            return 'Historically Black Institution'
+        elif ord(self.pbi) == 1:
+            return 'Predominately Black Institution'
+        elif ord(self.annhi) == 1:
+            return 'Alaskan Native or Native Hawaiian-Serving Institution'
+        elif ord(self.hsi) == 1:
+            return 'Hispanic-Serving Institution'
+        elif ord(self.nanti) == 1:
+            return 'Native American Non-Tribal Institution'
+        elif ord(self.menonly) == 1:
+            return 'Men Only Institution'
+        elif ord(self.womenonly) == 1:
+            return 'Women Only Institution'
+        elif self.relaffil > 0:
+            return 'Religious Institution'
+        else:
+            'Not Reported'
 
 
 class Majors(models.Model):
@@ -239,6 +327,158 @@ class Majors(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Majors'
+
+    @property
+    def history_percentage(self):
+        return '{:.1%}'.format(self.history)
+
+    @property
+    def business_marketing_percentage(self):
+        return '{:.1%}'.format(self.business_marketing)
+
+    @property
+    def health_percentage(self):
+        return '{:.1%}'.format(self.health)
+
+    @property
+    def visual_performing_percentage(self):
+        return '{:.1%}'.format(self.visual_performing)
+
+    @property
+    def transportation_percentage(self):
+        return '{:.1%}'.format(self.transportation)
+
+    @property
+    def precision_production_percentage(self):
+        return '{:.1%}'.format(self.precision_production)
+
+    @property
+    def mechanic_repair_technology_percentage(self):
+        return '{:.1%}'.format(self.mechanic_repair_technology)
+
+    @property
+    def construction_percentage(self):
+        return '{:.1%}'.format(self.construction)
+
+    @property
+    def social_science_percentage(self):
+        return '{:.1%}'.format(self.social_science)
+
+    @property
+    def public_administration_social_service_percentage(self):
+        return '{:.1%}'.format(self.public_administration_social_service)
+
+    @property
+    def security_law_enforcement_percentage(self):
+        return '{:.1%}'.format(self.security_law_enforcement)
+
+    @property
+    def psychology_percentage(self):
+        return '{:.1%}'.format(self.psychology)
+
+    @property
+    def science_technology_percentage(self):
+        return '{:.1%}'.format(self.science_technology)
+
+    @property
+    def physical_science_percentage(self):
+        return '{:.1%}'.format(self.physical_science)
+
+    @property
+    def theology_religious_vocation_percentage(self):
+        return '{:.1%}'.format(self.theology_religious_vocation)
+
+    @property
+    def philosophy_religious_percentage(self):
+        return '{:.1%}'.format(self.philosophy_religious)
+
+    @property
+    def parks_recreation_fitness_percentage(self):
+        return '{:.1%}'.format(self.parks_recreation_fitness)
+
+    @property
+    def multidiscipline_percentage(self):
+        return '{:.1%}'.format(self.multidiscipline)
+
+    @property
+    def military_percentage(self):
+        return '{:.1%}'.format(self.military)
+
+    @property
+    def mathematics_percentage(self):
+        return '{:.1%}'.format(self.mathematics)
+
+    @property
+    def biological_percentage(self):
+        return '{:.1%}'.format(self.biological)
+
+    @property
+    def library_percentage(self):
+        return '{:.1%}'.format(self.library)
+
+    @property
+    def humanities_percentage(self):
+        return '{:.1%}'.format(self.humanities)
+
+    @property
+    def english_percentage(self):
+        return '{:.1%}'.format(self.english)
+
+    @property
+    def legal_percentage(self):
+        return '{:.1%}'.format(self.legal)
+
+    @property
+    def family_consumer_science_percentage(self):
+        return '{:.1%}'.format(self.family_consumer_science)
+
+    @property
+    def agriculture_percentage(self):
+        return '{:.1%}'.format(self.agriculture)
+
+    @property
+    def resources_percentage(self):
+        return '{:.1%}'.format(self.resources)
+
+    @property
+    def architecture_percentage(self):
+        return '{:.1%}'.format(self.architecture)
+
+    @property
+    def ethnic_cultural_gender_percentage(self):
+        return '{:.1%}'.format(self.ethnic_cultural_gender)
+
+    @property
+    def communication_percentage(self):
+        return '{:.1%}'.format(self.communication)
+
+    @property
+    def communications_technology_percentage(self):
+        return '{:.1%}'.format(self.communications_technology)
+
+    @property
+    def computer_percentage(self):
+        return '{:.1%}'.format(self.computer)
+
+    @property
+    def personal_culinary_percentage(self):
+        return '{:.1%}'.format(self.personal_culinary)
+
+    @property
+    def education_percentage(self):
+        return '{:.1%}'.format(self.education)
+
+    @property
+    def engineering_percentage(self):
+        return '{:.1%}'.format(self.engineering)
+
+    @property
+    def engineering_technology_percentage(self):
+        return '{:.1%}'.format(self.engineering_technology)
+
+    @property
+    def language_percentage(self):
+        return '{:.1%}'.format(self.language)
 
 
 class Programs(models.Model):
@@ -462,3 +702,52 @@ class Undergraduates(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Undergraduates'
+
+    @property
+    def white_students(self):
+        if self.demographics_white == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_white)
+
+    @property
+    def black_students(self):
+        if self.demographics_black == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_black)
+
+    @property
+    def hispanic_students(self):
+        if self.demographics_hispanic == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_hispanic)
+
+    @property
+    def asian_students(self):
+        if self.demographics_asian == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_asian)
+
+    @property
+    def pacific_islander_students(self):
+        if self.demographics_nhpi == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_nhpi)
+
+    @property
+    def multiracial_students(self):
+        if self.demographics_multiracial == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_multiracial)
+
+    @property
+    def non_resident_students(self):
+        if self.demographics_non_resident_alien == 0:
+            return 'Not Reported/0%'
+        else:
+            return '{:.1%}'.format(self.demographics_non_resident_alien)

@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Institutions, Cities, Zipcodes, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
+from .models import Institutions, Cities, Zipcodes, Admissions, Completionrates, Costs, Institutiontypes, Majors, \
+    Programs, Undergraduates
+
+
+class RelationInstitutions(admin.ModelAdmin):
+    raw_id_fields = ('zipcodeid',)
+
 
 # Register your models here.
-admin.site.register(Institutions)
+admin.site.register(Institutions, RelationInstitutions)
 admin.site.register(Cities)
 admin.site.register(Zipcodes)
 admin.site.register(Admissions)
