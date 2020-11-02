@@ -38,13 +38,17 @@
         <h4>Admission Information</h4>
         {% for admission in admissions %}
             {% if object.institutionid == admission.admissionid %}
-                <div class="container">
+                <script>
+                    let actScore = "{{ admission.act_scores_midpoint_cumulative }}";
+                    let satScore = "{{ admission.sat_scores_average_overall }}";
+                </script>
+                <div>
                     <div class="row">
                         <div class="col-sm">
-                            <canvas id="myActChart" width="" height=""></canvas>
+                            <canvas id="myActChart" class="col-lg-12"></canvas>
                         </div>
                         <div class="col-sm">
-                            <canvas id="mySatChart" width="" height=""></canvas>
+                            <canvas id="mySatChart" class="col-lg-12"></canvas>
                         </div>
                     </div>
                 </div>
