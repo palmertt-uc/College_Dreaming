@@ -115,7 +115,30 @@
                     let businessMarketing = "{{ major.business_marketing }}";
                     let history = "{{ major.history }}";
                 </script>
-                <canvas id="majorsChart"></canvas>
+                <div class="row">
+                    <div class="col-sm">
+                        <canvas id="engineering&Technology" class="col-lg-12" height="100px" width="100px"></canvas>
+                    </div>
+                    <div class="col-sm">
+                        <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px" width="100px"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
+                    </div>
+                    <div class="col-sm">
+                        <canvas id="science&Math" class="col-lg-12" height="100px" width="100px"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
+                    </div>
+                    <div class="col-sm">
+                        <canvas id="socialSciences" class="col-lg-12" height="100px" width="100px"></canvas>
+                    </div>
+                </div>
             {% endif %}
         {% endfor %}
     </div>

@@ -3,17 +3,389 @@ let act = document.getElementById('myActChart');
 let sat = document.getElementById('mySatChart');
 let admission = document.getElementById('myAdmissionChart');
 let demographics = document.getElementById('demographicChart');
-let majors = document.getElementById('majorsChart');
+let litLanguageSocialScience = document.getElementById('litLanguageSocialScience');
+let engineeringAndTechnology = document.getElementById('engineering&Technology');
+let business = document.getElementById('business');
+let scienceAndMath = document.getElementById('science&Math');
+let arts = document.getElementById('arts');
+let social = document.getElementById('socialSciences');
+
+let socialSciencesChart = new Chart(social, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Social Science (' + (socialScience * 100).toFixed(2) + '%)',
+            data: [(socialScience * 100).toFixed(2)],
+             backgroundColor: ['rgba(51, 0, 235, 0.53)']
+        },
+        {
+            label: 'Public Administration (' + (publicAdministration * 100).toFixed(2) + '%)',
+            data: [(publicAdministration * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+
+        },
+        {
+            label: 'Ethnic Cultural/Gender Studies (' + (ethnicCulturalGender * 100).toFixed(2) + '%)',
+            data: [(ethnicCulturalGender * 100).toFixed(2)],
+            backgroundColor: ['rgba(117, 11, 11, 0.79)']
+        },
+        {
+            label: 'Psychology (' + (psychology * 100).toFixed(2) + '%)',
+            data: [(psychology * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 223, 0, 0.53)']
+        },
+        {
+            label: 'Education (' + (education * 100).toFixed(2) + '%)',
+            data: [(education * 100).toFixed(2)],
+            backgroundColor: ['rgba(117, 11, 111, 0.79)']
+        },
+        {
+            label: 'Legal (' + (legal * 100).toFixed(2) + '%)',
+            data: [(legal * 100).toFixed(2)],
+            backgroundColor: ['rgba(166, 149, 17, 0.79)']
+        },
+        {
+            label: 'Humanities (' + (humanities * 100).toFixed(2) + '%)',
+            data: [(humanities * 100).toFixed(2)],
+            backgroundColor: ['rgba(231, 107, 24, 0.79)']
+        },
+        {
+            label: 'Security & Law Enforcement (' + (securityLawEnforcement * 100).toFixed(2) + '%)',
+            data: [(securityLawEnforcement * 100).toFixed(2)],
+            backgroundColor: ['rgba(28, 24, 231, 0.79)']
+        },
+        ]
+    },
+    options: {
+        title: {
+          display: true,
+          text: 'Social Sciences (%)'
+        },
+        legend: {
+            display: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
+    }
+});
+
+let artsChart = new Chart(arts, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Architecture (' + (architecture * 100).toFixed(2) + '%)',
+            data: [(architecture * 100).toFixed(2)],
+             backgroundColor: ['rgba(182, 84, 84, 0.79)']
+        },
+        {
+            label: 'Visual Performing (' + (visualPerforming * 100).toFixed(2) + '%)',
+            data: [(visualPerforming * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+
+        },
+        {
+            label: 'Personal Culinary (' + (personalCulinary * 100).toFixed(2) + '%)',
+            data: [(personalCulinary * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 0, 0.53)']
+        },
+        {
+            label: 'Multi Discipline (' + (multiDiscipline * 100).toFixed(2) + '%)',
+            data: [(multiDiscipline * 100).toFixed(2)],
+            backgroundColor: ['rgba(27, 17, 166, 0.79)']
+        },
+        {
+            label: 'Military (' + (military * 100).toFixed(2) + '%)',
+            data: [(military * 100).toFixed(2)],
+            backgroundColor: ['rgba(166, 17, 146, 0.79)']
+        },
+        {
+            label: 'Parks & Recreation & Fitness (' + (parksRecreationFitness * 100).toFixed(2) + '%)',
+            data: [(parksRecreationFitness * 100).toFixed(2)],
+            backgroundColor: ['rgba(166, 149, 17, 0.79)']
+        },
+        ]
+    },
+    options: {
+        title: {
+          display: true,
+          text: 'Arts & Other (%)'
+        },
+        legend: {
+            display: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
+    }
+});
+
+let scienceAndMathChart = new Chart(scienceAndMath, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Health (' + (health * 100).toFixed(2) + '%)',
+            data: [(health * 100).toFixed(2)],
+             backgroundColor: ['rgba(182, 84, 84, 0.79)']
+        },
+        {
+            label: 'Mathematics (' + (mathematics * 100).toFixed(2) + '%)',
+            data: [(mathematics * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+
+        },
+        {
+            label: 'Biology (' + (biological * 100).toFixed(2) + '%)',
+            data: [(biological * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 0, 0.53)']
+        },
+        {
+            label: 'Family Consumer Science (' + (familyConsumerScience * 100).toFixed(2) + '%)',
+            data: [(familyConsumerScience * 100).toFixed(2)],
+            backgroundColor: ['rgba(28, 24, 231, 0.79)']
+        },
+        {
+            label: 'Physical Science (' + (physicalScience * 100).toFixed(2) + '%)',
+            data: [(physicalScience * 100).toFixed(2)],
+            backgroundColor: ['rgba(0, 235, 51, 0.53)']
+        },
+        {
+            label: 'Agriculture (' + (agriculture * 100).toFixed(2) + '%)',
+            data: [(agriculture * 100).toFixed(2)],
+            backgroundColor: ['rgba(17, 166, 129, 0.79)']
+        },
+        ]
+    },
+    options: {
+        title: {
+          display: true,
+          text: 'Science & Math (%)'
+        },
+        legend: {
+            display: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
+    }
+});
+
+let businessChart = new Chart(business, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Business Marketing (' + (businessMarketing * 100).toFixed(2) + '%)',
+            data: [(businessMarketing * 100).toFixed(2)],
+             backgroundColor: ['rgba(90, 182, 84, 0.79)']
+        },
+        {
+            label: 'Resources (' + (resources * 100).toFixed(2) + '%)',
+            data: [(resources * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+
+        },
+        {
+            label: 'Transportation (' + (transportation * 100).toFixed(2) + '%)',
+            data: [(transportation * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 0, 0.53)']
+        },
+        {
+            label: 'Construction Management (' + (construction * 100).toFixed(2) + '%)',
+            data: [(construction * 100).toFixed(2)],
+            backgroundColor: ['rgba(28, 24, 231, 0.79)']
+        },
+        ]
+    },
+    options: {
+        title: {
+          display: true,
+          text: 'Business-Related (%)'
+        },
+        legend: {
+            display: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
+    }
+});
+
+let engineeringTechChart = new Chart(engineeringAndTechnology, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Engineering (' + (engineering * 100).toFixed(2) + '%)',
+            data: [(engineering * 100).toFixed(2)],
+             backgroundColor: ['rgba(51, 0, 235, 0.53)']
+        },
+        {
+            label: 'Engineering Technology (' + (engineeringTechnology * 100).toFixed(2) + '%)',
+            data: [(engineeringTechnology * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+
+        },
+        {
+            label: 'Communications Technology (' + (communicationsTechnology * 100).toFixed(2) + '%)',
+            data: [(communicationsTechnology * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 0, 0.53)']
+        },
+        {
+            label: 'Mechanic Repair Technology (' + (mechanicRepairTechnology * 100).toFixed(2) + '%)',
+            data: [(mechanicRepairTechnology * 100).toFixed(2)],
+            backgroundColor: ['rgba(0, 235, 51, 0.53)']
+        },
+        {
+            label: 'Science Technology (' + (scienceTechnology * 100).toFixed(2) + '%)',
+            data: [(scienceTechnology * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 223, 0, 0.53)']
+        },
+        {
+            label: 'Computer Science (' + (computer * 100).toFixed(2) + '%)',
+            data: [(computer * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 141, 0, 0.65)']
+        },
+        {
+            label: 'Precision Production (' + (precisionProduction * 100).toFixed(2) + '%)',
+            data: [(precisionProduction * 100).toFixed(2)],
+            backgroundColor: ['rgba(11, 20, 117, 0.79)']
+        },
+        ]
+    },
+    options: {
+        title: {
+          display: true,
+          text: 'Engineering & Technology (%)'
+        },
+        legend: {
+            display: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
+    }
+});
+
+let litLanguageChart = new Chart(litLanguageSocialScience, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [
+        {
+            label: 'Religious Philosophy (' + (philosophyReligious * 100).toFixed(2) + '%)',
+            data: [(philosophyReligious * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 0, 0, 0.53)']
+        },
+        {
+            label: 'Theology Religious Vocation (' + (theologyReligiousVocation * 100).toFixed(2) + '%)',
+            data: [(theologyReligiousVocation * 100).toFixed(2)],
+            backgroundColor: ['rgba(0, 235, 51, 0.53)']
+        },
+        {
+            label: 'Library (' + (library * 100).toFixed(2) + '%)',
+            data: [(library * 100).toFixed(2)],
+            backgroundColor: ['rgba(235, 141, 0, 0.65)']
+        },
+        {
+            label: 'History (' + (history * 100).toFixed(2) + '%)',
+            data: [(history * 100).toFixed(2)],
+            backgroundColor: ['rgba(11, 20, 117, 0.79)']
+        },
+        {
+            label: 'English (' + (english * 100).toFixed(2) + '%)',
+            data: [(english * 100).toFixed(2)],
+            backgroundColor: ['rgba(69, 117, 11, 0.79)']
+        },
+        {
+            label: 'Communication (' + (communication * 100).toFixed(2) + '%)',
+            data: [(communication * 100).toFixed(2)],
+            backgroundColor: ['rgba(11, 117, 110, 0.79)']
+        },
+        {
+            label: 'Language (' + (language * 100).toFixed(2) + '%)',
+            data: [(language * 100).toFixed(2)],
+            backgroundColor: ['rgba(67, 117, 11, 0.79)']
+        },
+        ]
+    },
+    options: {
+        title: {
+          display: true,
+          text: 'Literature & Language (%)'
+        },
+        legend: {
+            display: true
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
+    }
+});
 
 let demographicChart = new Chart(demographics, {
     type: 'pie',
     data: {
-        labels: ['Caucasian (' + (caucasian * 100) + '%)', 'African American (' + (africanAmerican * 100) + '%)', 'Hispanic (' + (hispanic * 100) + '%)', 'Asian (' + (asian * 100) + '%)',
-            'Pacific Islander (' + (pacificIslander * 100) + '%)', 'Multi-Racial (' + (multiRacial * 100) + '%)', 'Non-Resident (' + (nonResident * 100) + '%)',
-            'American Indian/Alaskan native (' + (aian * 100) + '%)'],
+        labels: ['Caucasian (' + (caucasian * 100).toFixed(2) + '%)', 'African American (' + (africanAmerican * 100).toFixed(2) + '%)', 'Hispanic (' + (hispanic * 100).toFixed(2) + '%)', 'Asian (' + (asian * 100).toFixed(2) + '%)',
+            'Pacific Islander (' + (pacificIslander * 100).toFixed(2) + '%)', 'Multi-Racial (' + (multiRacial * 100).toFixed(2) + '%)', 'Non-Resident (' + (nonResident * 100).toFixed(2) + '%)',
+            'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)'],
         datasets: [{
             label: 'Demographic Percentages (%)',
-            data: [caucasian * 100, africanAmerican * 100, hispanic * 100, asian * 100, pacificIslander * 100, multiRacial * 100, nonResident * 100, aian * 100],
+            data: [(caucasian * 100).toFixed(2), (africanAmerican * 100).toFixed(2),
+                (hispanic * 100).toFixed(2), (asian * 100).toFixed(2),
+                (pacificIslander * 100).toFixed(2), (multiRacial * 100).toFixed(2),
+                (nonResident * 100).toFixed(2), (aian * 100).toFixed(2)],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
