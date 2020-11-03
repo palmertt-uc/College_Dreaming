@@ -58,17 +58,18 @@
         <h4>Demographic Percentages (%)</h4>
         {% for undergraduate in undergraduates %}
             {% if object.institutionid == undergraduate.undergraduateid %}
-                <script>
-                    let caucasian = "{{ undergraduate.demographics_white }}";
-                    let africanAmerican = "{{ undergraduate.demographics_black }}";
-                    let hispanic = "{{ undergraduate.demographics_hispanic }}";
-                    let pacificIslander = "{{ undergraduate.demographics_nhpi }}";
-                    let multiRacial = "{{ undergraduate.demographics_multiracial }}";
-                    let nonResident = "{{ undergraduate.demographics_non_resident_alien }}";
-                    let asian = "{{ undergraduate.demographics_asian }}"
-                    let aian = "{{ undergraduate.demographics_ai_an }}";
-                </script>
-                <canvas id="demographicChart" class="col-lg-12"></canvas>
+                    <script>
+                        let caucasian = "{{ undergraduate.demographics_white }}";
+                        let africanAmerican = "{{ undergraduate.demographics_black }}";
+                        let hispanic = "{{ undergraduate.demographics_hispanic }}";
+                        let pacificIslander = "{{ undergraduate.demographics_nhpi }}";
+                        let multiRacial = "{{ undergraduate.demographics_multiracial }}";
+                        let nonResident = "{{ undergraduate.demographics_non_resident_alien }}";
+                        let asian = "{{ undergraduate.demographics_asian }}"
+                        let aian = "{{ undergraduate.demographics_ai_an }}";
+                    </script>
+                    <p>Enrollment Degree Seeking: {{ undergraduate.undergraduate_students }}</p>
+                    <canvas id="demographicChart" class="col-lg-12"></canvas>
             {% endif %}
         {% endfor %}
         <hr>

@@ -704,6 +704,10 @@ class Undergraduates(models.Model):
         return self.institutionid.instname + ' - Undergraduates'
 
     @property
+    def undergraduate_students(self):
+        return '{:,.0f}'.format(self.enrollment_degree_seeking)
+
+    @property
     def american_indian_alaskan_native(self):
         if self.demographics_ai_an == 0:
             return '0%'
