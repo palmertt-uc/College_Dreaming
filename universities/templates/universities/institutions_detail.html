@@ -29,18 +29,18 @@
                     let inStateTuition = "{{ cost.tuition_in_state }}";
                     let outStateTuition = "{{ cost.tuition_out_of_state }}";
                 </script>
-                <canvas id="myTuitionChart" width="" height=""></canvas>
-                <p>In-State Tuition: {{ cost.in_state_tuition }}</p>
-                <p>Out-of-State Tuition: {{ cost.out_state_tuition }}</p>
+                <canvas id="myTuitionChart"></canvas>
             {% endif %}
         {% endfor %}
         <hr>
         <h4>Admission Information</h4>
         {% for admission in admissions %}
             {% if object.institutionid == admission.admissionid %}
+                <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
                 <script>
                     let actScore = "{{ admission.act_scores_midpoint_cumulative }}";
                     let satScore = "{{ admission.sat_scores_average_overall }}";
+                    let admissionRate = "{{ admission.admission_rate_overall }}";
                 </script>
                 <div>
                     <div class="row">
@@ -52,166 +52,70 @@
                         </div>
                     </div>
                 </div>
-                <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
-                <p>Average SAT Score: {{ admission.average_sat_score }}</p>
-                <p>Average ACT Score: {{ admission.average_act_score }}</p>
             {% endif %}
         {% endfor %}
         <hr>
-        <h4>Demographic Information</h4>
+        <h4>Demographic Percentages (%)</h4>
         {% for undergraduate in undergraduates %}
             {% if object.institutionid == undergraduate.undergraduateid %}
-                <p>Caucasian: {{ undergraduate.white_students }}</p>
-                <p>African American: {{ undergraduate.black_students }}</p>
-                <p>Hispanic: {{ undergraduate.hispanic_students }}</p>
-                <p>Asian: {{ undergraduate.asian_students }}</p>
-                <p>Pacific Islander: {{ undergraduate.pacific_islander_students }}</p>
-                <p>Multiracial: {{ undergraduate.multiracial_students }}</p>
-                <p>Non-Resident: {{ undergraduate.non_resident_students }}</p>
+                <script>
+                    let caucasian = "{{ undergraduate.demographics_white }}";
+                    let africanAmerican = "{{ undergraduate.demographics_black }}";
+                    let hispanic = "{{ undergraduate.demographics_hispanic }}";
+                    let pacificIslander = "{{ undergraduate.demographics_nhpi }}";
+                    let multiRacial = "{{ undergraduate.demographics_multiracial }}";
+                    let nonResident = "{{ undergraduate.demographics_non_resident_alien }}";
+                    let asian = "{{ undergraduate.demographics_asian }}"
+                    let aian = "{{ undergraduate.demographics_ai_an }}";
+                </script>
+                <canvas id="demographicChart" class="col-lg-12"></canvas>
             {% endif %}
         {% endfor %}
         <hr>
-        <h4>Majors Information</h4>
+        <h4>Major Percentages (%)</h4>
         {% for major in majors %}
             {% if object.institutionid == major.majorid %}
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Business Marketing: {{ major.business_marketing_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Communication: {{ major.communication_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Computer: {{ major.computer_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Language: {{ major.language_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Engineering Technology: {{ major.engineering_technology_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Engineering: {{ major.engineering_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Education: {{ major.education_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Personal Culinary: {{ major.personal_culinary_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Communication Technology: {{ major.communications_technology_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Ethnic/Cultural/Gender: {{ major.ethnic_cultural_gender_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Architecture Culinary: {{ major.architecture_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Resources: {{ major.resources_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Agriculture: {{ major.agriculture_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Family Consumer Science: {{ major.family_consumer_science_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Legal: {{ major.legal_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>English: {{ major.english_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Library: {{ major.library_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Biological: {{ major.biological_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Mathematics: {{ major.mathematics_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Military: {{ major.military_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Multi-Discipline: {{ major.multidiscipline_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Parks/Recreation/Fitness: {{ major.parks_recreation_fitness_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Philosophy/Religion: {{ major.philosophy_religious_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Theology/Religious/Vocation: {{ major.theology_religious_vocation_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Physical Science: {{ major.physical_science_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Science Technology: {{ major.science_technology_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Psychology: {{ major.psychology_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Security/Law Enforcement: {{ major.security_law_enforcement_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>History: {{ major.history_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Social Science: {{ major.social_science_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Construction: {{ major.construction_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Mechanic Repair Technology: {{ major.mechanic_repair_technology_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Precision Production: {{ major.precision_production_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Transportation: {{ major.transportation_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Visual Performing: {{ major.visual_performing_percentage }}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Health: {{ major.health_percentage }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>Public Administration/Social
-                            Service: {{ major.public_administration_social_service_percentage }}</p>
-                    </div>
-                </div>
+                <script>
+                    let agriculture = "{{ major.agriculture }}";
+                    let resources = "{{ major.resources }}";
+                    let architecture = "{{ major.architecture }}";
+                    let ethnicCulturalGender = "{{ major.ethnic_cultural_gender }}";
+                    let communication = "{{ major.communication }}";
+                    let communicationsTechnology = "{{ major.communications_technology }}";
+                    let computer = "{{ major.computer }}";
+                    let personalCulinary = "{{ major.personal_culinary }}";
+                    let education = "{{ major.education }}";
+                    let engineering = "{{ major.engineering }}";
+                    let engineeringTechnology = "{{ major.engineering_technology }}";
+                    let language = "{{ major.language }}";
+                    let familyConsumerScience = "{{ major.family_consumer_science }}";
+                    let legal = "{{ major.legal }}";
+                    let english = "{{ major.english }}";
+                    let humanities = "{{ major.humanities }}";
+                    let library = "{{ major.library }}";
+                    let biological = "{{ major.biological }}";
+                    let mathematics = "{{ major.mathematics }}";
+                    let military = "{{ major.military }}";
+                    let multiDiscipline = "{{ major.multidiscipline }}";
+                    let parksRecreationFitness = "{{ major.parks_recreation_fitness }}";
+                    let philosophyReligious = "{{ major.philosophy_religious }}";
+                    let theologyReligiousVocation = "{{ major.theology_religious_vocation }}";
+                    let physicalScience = "{{ major.physical_science }}";
+                    let scienceTechnology = "{{ major.science_technology }}";
+                    let psychology = "{{ major.psychology }}";
+                    let securityLawEnforcement = "{{ major.security_law_enforcement }}";
+                    let publicAdministration = "{{ major.public_administration_social_service }}";
+                    let socialScience = "{{ major.social_science }}";
+                    let construction = "{{ major.construction }}";
+                    let mechanicRepairTechnology = "{{ major.mechanic_repair_technology }}";
+                    let precisionProduction = "{{ major.precision_production }}";
+                    let transportation = "{{ major.transportation }}";
+                    let visualPerforming = "{{ major.visual_performing }}";
+                    let health = "{{ major.health }}";
+                    let businessMarketing = "{{ major.business_marketing }}";
+                    let history = "{{ major.history }}";
+                </script>
+                <canvas id="majorsChart"></canvas>
             {% endif %}
         {% endfor %}
     </div>

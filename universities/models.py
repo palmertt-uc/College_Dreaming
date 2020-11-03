@@ -15,6 +15,7 @@ class Cities(models.Model):
     def __str__(self):
         return self.city + ", " + self.state
 
+
 class Zipcodes(models.Model):
     zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
     cityid = models.ForeignKey(Cities, models.DO_NOTHING, db_column='CityId')  # Field name made lowercase.
@@ -26,6 +27,7 @@ class Zipcodes(models.Model):
 
     def __str__(self):
         return self.zipcode
+
 
 class Institutions(models.Model):
     institutionid = models.AutoField(db_column='InstitutionId', primary_key=True)  # Field name made lowercase.
@@ -700,6 +702,13 @@ class Undergraduates(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Undergraduates'
+
+    @property
+    def american_indian_alaskan_native(self):
+        if self.demographics_ai_an == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_ai_an)
 
     @property
     def white_students(self):
