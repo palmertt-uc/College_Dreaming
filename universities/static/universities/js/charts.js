@@ -375,39 +375,50 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
 });
 
 let demographicChart = new Chart(demographics, {
-    type: 'pie',
+    type: 'bar',
     data: {
-        labels: ['Caucasian (' + (caucasian * 100).toFixed(2) + '%)', 'African American (' + (africanAmerican * 100).toFixed(2) + '%)', 'Hispanic (' + (hispanic * 100).toFixed(2) + '%)', 'Asian (' + (asian * 100).toFixed(2) + '%)',
-            'Pacific Islander (' + (pacificIslander * 100).toFixed(2) + '%)', 'Multi-Racial (' + (multiRacial * 100).toFixed(2) + '%)', 'Non-Resident (' + (nonResident * 100).toFixed(2) + '%)',
-            'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)'],
+        labels: [],
         datasets: [{
-            label: 'Demographic Percentages (%)',
-            data: [(caucasian * 100).toFixed(2), (africanAmerican * 100).toFixed(2),
-                (hispanic * 100).toFixed(2), (asian * 100).toFixed(2),
-                (pacificIslander * 100).toFixed(2), (multiRacial * 100).toFixed(2),
-                (nonResident * 100).toFixed(2), (aian * 100).toFixed(2)],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(176, 85, 90, 0.2)',
-                'rgba(120, 45, 200, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(25, 102, 255, 1)',
-                'rgba(190, 98, 78, 1)'
-            ],
-            borderWidth: 1
-        }]
+            label: 'Caucasian (' + (caucasian * 100).toFixed(2) + '%)',
+            data: [(caucasian * 100).toFixed(2)],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',]
+        },
+        {
+            label: 'African American (' + (africanAmerican * 100).toFixed(2) + '%)',
+            data: [(africanAmerican * 100).toFixed(2)],
+            backgroundColor: ['rgba(54, 162, 235, 0.2)']
+        },
+        {
+            label: 'Hispanic (' + (hispanic * 100).toFixed(2) + '%)',
+            data: [(hispanic * 100).toFixed(2)],
+            backgroundColor: ['rgba(255, 206, 86, 0.2)']
+        },
+        {
+            label: 'Asian (' + (asian * 100).toFixed(2) + '%)',
+            data: [(asian * 100).toFixed(2)],
+            backgroundColor: ['rgba(75, 192, 192, 0.2)']
+        },
+        {
+            label: 'Pacific Islander (' + (pacificIslander * 100).toFixed(2) + '%)',
+            data: [(pacificIslander * 100).toFixed(2)],
+            backgroundColor: ['rgba(153, 102, 255, 0.2)']
+        },
+        {
+            label: 'Multi-Racial (' + (multiRacial * 100).toFixed(2) + '%)',
+            data: [(multiRacial * 100).toFixed(2)],
+            backgroundColor: ['rgba(255, 159, 64, 0.2)']
+        },
+        {
+            label: 'Non-Resident (' + (nonResident * 100).toFixed(2) + '%)',
+            data: [(nonResident * 100).toFixed(2)],
+            backgroundColor: ['rgba(176, 85, 90, 0.2)']
+        },
+        {
+            label: 'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)',
+            data: [(aian * 100).toFixed(2)],
+            backgroundColor: ['rgba(120, 45, 200, 0.2)']
+        },
+        ]
     },
     options: {
         legend : {
@@ -417,6 +428,17 @@ let demographicChart = new Chart(demographics, {
           display: false,
           text: 'Demographic Percentages (%)'
         },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                stacked: true
+            }],
+            xAxes: [{
+                stacked: true
+            }],
+        }
     }
 });
 
