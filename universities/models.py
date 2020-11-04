@@ -53,9 +53,17 @@ class Institutions(models.Model):
     class Meta:
         managed = False
         db_table = 'Institutions'
+        ordering = ['maincampus']
 
     def __str__(self):
         return self.instname
+
+    @property
+    def institution_url(self):
+        if self.insturl == 'NULL':
+            return 'Not Reported'
+        else:
+            return self.insturl
 
     @property
     def main_campus(self):
