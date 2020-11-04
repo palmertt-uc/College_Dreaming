@@ -705,6 +705,8 @@ class Undergraduates(models.Model):
 
     @property
     def undergraduate_students(self):
+        if self.enrollment_degree_seeking == 0:
+            return 'Not Reported'
         return '{:,.0f}'.format(self.enrollment_degree_seeking)
 
     @property

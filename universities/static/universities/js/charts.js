@@ -374,6 +374,11 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
     }
 });
 
+function otherDemographic() {
+    let total = (caucasian * 100) + (africanAmerican * 100) + (hispanic * 100) + (asian * 100) + (pacificIslander * 100) + (multiRacial * 100) + (nonResident * 100) + (aian * 100);
+    return (100 - total).toFixed(2);
+}
+
 let demographicChart = new Chart(demographics, {
     type: 'bar',
     data: {
@@ -418,6 +423,11 @@ let demographicChart = new Chart(demographics, {
             data: [(aian * 100).toFixed(2)],
             backgroundColor: ['rgba(120, 45, 200, 0.2)']
         },
+            {
+            label: 'Other (' + otherDemographic() + '%)',
+            data: [otherDemographic()],
+            backgroundColor: ['rgba(120, 45, 200, 0.2)']
+        },
         ]
     },
     options: {
@@ -431,7 +441,8 @@ let demographicChart = new Chart(demographics, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 100,
                 },
                 stacked: true
             }],
