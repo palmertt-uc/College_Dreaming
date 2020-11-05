@@ -15,6 +15,7 @@ class Cities(models.Model):
     def __str__(self):
         return self.city + ", " + self.state
 
+
 class Zipcodes(models.Model):
     zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
     cityid = models.ForeignKey(Cities, models.DO_NOTHING, db_column='CityId')  # Field name made lowercase.
@@ -26,6 +27,7 @@ class Zipcodes(models.Model):
 
     def __str__(self):
         return self.zipcode
+
 
 class Institutions(models.Model):
     institutionid = models.AutoField(db_column='InstitutionId', primary_key=True)  # Field name made lowercase.
@@ -51,9 +53,17 @@ class Institutions(models.Model):
     class Meta:
         managed = False
         db_table = 'Institutions'
+        ordering = ['maincampus']
 
     def __str__(self):
         return self.instname
+
+    @property
+    def institution_url(self):
+        if self.insturl == 'NULL':
+            return 'Not Reported'
+        else:
+            return self.insturl
 
     @property
     def main_campus(self):
@@ -179,6 +189,13 @@ class Completionrates(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Completion Rate'
+
+    @property
+    def total_4year_completion_rate(self):
+        if self.completion_rate_4yr_150nt == 0:
+            return 'Not Reported'
+        else:
+            return '{:.1%}'.format(self.completion_rate_4yr_150nt)
 
 
 class Costs(models.Model):
@@ -700,6 +717,27 @@ class Undergraduates(models.Model):
 
     def __str__(self):
         return self.institutionid.instname + ' - Undergraduates'
+
+    @property
+    def check_demographics_equals_zero(self):
+        if self.demographics_nhpi == 0 and self.demographics_asian == 0 and self.demographics_non_resident_alien == 0 \
+                and self.demographics_multiracial == 0 and self.demographics_ai_an == 0 and \
+                self.demographics_black == 0 and self.demographics_hispanic == 0 \
+                and self.demographics_white == 0:
+            return 0
+
+    @property
+    def undergraduate_students(self):
+        if self.enrollment_degree_seeking == 0:
+            return 'Not Reported'
+        return '{:,.0f}'.format(self.enrollment_degree_seeking)
+
+    @property
+    def american_indian_alaskan_native(self):
+        if self.demographics_ai_an == 0:
+            return '0%'
+        else:
+            return '{:.1%}'.format(self.demographics_ai_an)
 
     @property
     def white_students(self):
