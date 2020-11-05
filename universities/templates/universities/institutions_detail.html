@@ -25,7 +25,7 @@
         <h4>Tuition Information</h4>
         {% for cost in costs %}
             {% if object.institutionid == cost.costsid %}
-                {% if cost.tuition_in_state == 0 and cost.tuition_out_of_state == 0 %}
+                {% if cost.tuition_in_state == 0 or cost.tuition_in_state is None and cost.tuition_out_of_state == 0 or cost.tuition_out_of_state is None %}
                     <p>Tuition: Not Reported</p>
                 {% else %}
                     <script>
@@ -40,7 +40,7 @@
         <h4>Admission Information</h4>
         {% for admission in admissions %}
             {% if object.institutionid == admission.admissionid %}
-                {% if admission.admission_rate_overall == 0 %}
+                {% if admission.admission_rate_overall == 0 or admission.admission_rate_overall is None %}
                     <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
                 {% else %}
                     <script>
@@ -66,7 +66,7 @@
         {% for undergraduate in undergraduates %}
             {% if object.institutionid == undergraduate.undergraduateid %}
                 <p>Enrollment Degree Seeking: {{ undergraduate.undergraduate_students }}</p>
-                {% if undergraduate.check_demographics_equals_zero == 0 %}
+                {% if undergraduate.check_demographics_equals_zero == 0 and undergraduate.check_demographics_is_none == 0 %}
                     <p>Demographic Percentages: Not Reported</p>
                 {% else %}
                     <script>
@@ -127,28 +127,38 @@
                     let businessMarketing = "{{ major.business_marketing }}";
                     let history = "{{ major.history }}";
                 </script>
-                <div class="row">
-                    <div class="col-sm">
-                        <canvas id="engineering&Technology" class="col-lg-12" height="100px" width="100px"></canvas>
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseMajors"
+                            aria-expanded="false" aria-controls="collapseMajors">
+                        Major Percentages
+                    </button>
+                </p>
+                <div class="collapse" id="collapseMajors">
+                    <div class="row">
+                        <div class="col-sm">
+                            <canvas id="engineering&Technology" class="col-lg-12" height="100px" width="100px"></canvas>
+                        </div>
+                        <div class="col-sm">
+                            <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px"
+                                    width="100px"></canvas>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px" width="100px"></canvas>
+                    <div class="row">
+                        <div class="col-sm">
+                            <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
+                        </div>
+                        <div class="col-sm">
+                            <canvas id="science&Math" class="col-lg-12" height="100px" width="100px"></canvas>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
-                    </div>
-                    <div class="col-sm">
-                        <canvas id="science&Math" class="col-lg-12" height="100px" width="100px"></canvas>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
-                    </div>
-                    <div class="col-sm">
-                        <canvas id="socialSciences" class="col-lg-12" height="100px" width="100px"></canvas>
+                    <div class="row">
+                        <div class="col-sm">
+                            <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
+                        </div>
+                        <div class="col-sm">
+                            <canvas id="socialSciences" class="col-lg-12" height="100px" width="100px"></canvas>
+                        </div>
                     </div>
                 </div>
             {% endif %}

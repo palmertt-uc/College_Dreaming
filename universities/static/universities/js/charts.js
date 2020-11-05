@@ -569,12 +569,12 @@ let demographicChart = new Chart(demographics, {
         {
             label: 'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)',
             data: [(aian * 100).toFixed(2)],
-            backgroundColor: ['rgba(120, 45, 200, 0.2)']
+            backgroundColor: ['rgba(46, 0, 0, 0.26)']
         },
             {
             label: 'Other (' + otherDemographic() + '%)',
             data: [otherDemographic()],
-            backgroundColor: ['rgba(120, 45, 200, 0.2)']
+            backgroundColor: ['rgba(0, 27, 204, 0.2)']
         },
         ]
     },

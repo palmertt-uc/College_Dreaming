@@ -37,18 +37,27 @@ class Institutions(models.Model):
     instname = models.CharField(db_column='InstName', max_length=200)  # Field name made lowercase.
     accredagency = models.CharField(db_column='AccredAgency', max_length=200)  # Field name made lowercase.
     insturl = models.CharField(db_column='InstURL', max_length=200, blank=True, null=True)  # Field name made lowercase.
-    pricecalcurl = models.CharField(db_column='PriceCalcURL', max_length=200, blank=True, null=True)  # Field name made lowercase.
-    statefips = models.CharField(db_column='StateFIPS', max_length=30, blank=True, null=True)  # Field name made lowercase.
-    maincampus = models.TextField(db_column='MainCampus', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    numberofbranches = models.CharField(db_column='NumberOfBranches', max_length=2, blank=True, null=True)  # Field name made lowercase.
-    predominantdegrees = models.CharField(db_column='PredominantDegrees', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    highestdegree = models.CharField(db_column='HighestDegree', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    ownership = models.CharField(db_column='Ownership', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    distanceonly = models.TextField(db_column='DistanceOnly', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    pricecalcurl = models.CharField(db_column='PriceCalcURL', max_length=200, blank=True,
+                                    null=True)  # Field name made lowercase.
+    statefips = models.CharField(db_column='StateFIPS', max_length=30, blank=True,
+                                 null=True)  # Field name made lowercase.
+    maincampus = models.TextField(db_column='MainCampus', blank=True,
+                                  null=True)  # Field name made lowercase. This field type is a guess.
+    numberofbranches = models.CharField(db_column='NumberOfBranches', max_length=2, blank=True,
+                                        null=True)  # Field name made lowercase.
+    predominantdegrees = models.CharField(db_column='PredominantDegrees', max_length=1, blank=True,
+                                          null=True)  # Field name made lowercase.
+    highestdegree = models.CharField(db_column='HighestDegree', max_length=1, blank=True,
+                                     null=True)  # Field name made lowercase.
+    ownership = models.CharField(db_column='Ownership', max_length=1, blank=True,
+                                 null=True)  # Field name made lowercase.
+    distanceonly = models.TextField(db_column='DistanceOnly', blank=True,
+                                    null=True)  # Field name made lowercase. This field type is a guess.
     latitude = models.FloatField(db_column='Latitude', blank=True, null=True)  # Field name made lowercase.
     longitude = models.FloatField(db_column='Longitude', blank=True, null=True)  # Field name made lowercase.
     locale = models.CharField(db_column='Locale', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    zipcodeid = models.ForeignKey(Zipcodes, models.DO_NOTHING, db_column='ZipCodeId', blank=True, null=True)  # Field name made lowercase.
+    zipcodeid = models.ForeignKey(Zipcodes, models.DO_NOTHING, db_column='ZipCodeId', blank=True,
+                                  null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -101,7 +110,8 @@ class Institutions(models.Model):
 
 class Admissions(models.Model):
     admissionid = models.AutoField(db_column='AdmissionId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     admission_rate_overall = models.FloatField(blank=True, null=True)
     admission_rate_by_ope_id = models.FloatField(blank=True, null=True)
     sat_scores_25th_percentile_critical_reading = models.FloatField(blank=True, null=True)
@@ -159,7 +169,8 @@ class Admissions(models.Model):
 
 class Completionrates(models.Model):
     completionrateid = models.AutoField(db_column='CompletionRateId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     completion_rate_4yr_150_white = models.FloatField(blank=True, null=True)
     completion_rate_4yr_150_black = models.FloatField(blank=True, null=True)
     completion_rate_4yr_150_hispanic = models.FloatField(blank=True, null=True)
@@ -200,7 +211,8 @@ class Completionrates(models.Model):
 
 class Costs(models.Model):
     costsid = models.AutoField(db_column='CostsId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     avg_net_price_public = models.FloatField(blank=True, null=True)
     avg_net_price_private = models.FloatField(blank=True, null=True)
     net_price_public_by_income_level_0_to_30000 = models.FloatField(blank=True, null=True)
@@ -250,19 +262,29 @@ class Costs(models.Model):
 
 class Institutiontypes(models.Model):
     institutiontypeid = models.AutoField(db_column='InstitutionTypeId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     ccbasic = models.IntegerField(db_column='CCBASIC', blank=True, null=True)  # Field name made lowercase.
     ccugprof = models.IntegerField(db_column='CCUGPROF', blank=True, null=True)  # Field name made lowercase.
     ccsizset = models.IntegerField(db_column='CCSIZSET', blank=True, null=True)  # Field name made lowercase.
-    hbcu = models.TextField(db_column='HBCU', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    pbi = models.TextField(db_column='PBI', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    annhi = models.TextField(db_column='ANNHI', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    tribal = models.TextField(db_column='TRIBAL', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    aanapii = models.TextField(db_column='AANAPII', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    hsi = models.TextField(db_column='HSI', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    nanti = models.TextField(db_column='NANTI', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    menonly = models.TextField(db_column='MENONLY', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    womenonly = models.TextField(db_column='WOMENONLY', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    hbcu = models.TextField(db_column='HBCU', blank=True,
+                            null=True)  # Field name made lowercase. This field type is a guess.
+    pbi = models.TextField(db_column='PBI', blank=True,
+                           null=True)  # Field name made lowercase. This field type is a guess.
+    annhi = models.TextField(db_column='ANNHI', blank=True,
+                             null=True)  # Field name made lowercase. This field type is a guess.
+    tribal = models.TextField(db_column='TRIBAL', blank=True,
+                              null=True)  # Field name made lowercase. This field type is a guess.
+    aanapii = models.TextField(db_column='AANAPII', blank=True,
+                               null=True)  # Field name made lowercase. This field type is a guess.
+    hsi = models.TextField(db_column='HSI', blank=True,
+                           null=True)  # Field name made lowercase. This field type is a guess.
+    nanti = models.TextField(db_column='NANTI', blank=True,
+                             null=True)  # Field name made lowercase. This field type is a guess.
+    menonly = models.TextField(db_column='MENONLY', blank=True,
+                               null=True)  # Field name made lowercase. This field type is a guess.
+    womenonly = models.TextField(db_column='WOMENONLY', blank=True,
+                                 null=True)  # Field name made lowercase. This field type is a guess.
     relaffil = models.IntegerField(db_column='RELAFFIL', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -296,7 +318,8 @@ class Institutiontypes(models.Model):
 
 class Majors(models.Model):
     majorid = models.AutoField(db_column='MajorId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey(Institutions, models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey(Institutions, models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     agriculture = models.FloatField(blank=True, null=True)
     resources = models.FloatField(blank=True, null=True)
     architecture = models.FloatField(blank=True, null=True)
@@ -498,7 +521,8 @@ class Majors(models.Model):
 
 class Programs(models.Model):
     programsid = models.AutoField(db_column='ProgramsId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey(Institutions, models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey(Institutions, models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     program_certificate_lt_1_yr_agriculture = models.IntegerField(blank=True, null=True)
     program_certificate_lt_2_yr_agriculture = models.IntegerField(blank=True, null=True)
     program_assoc_agriculture = models.IntegerField(blank=True, null=True)
@@ -700,7 +724,8 @@ class Programs(models.Model):
 
 class Undergraduates(models.Model):
     undergraduateid = models.AutoField(db_column='UndergraduateId', primary_key=True)  # Field name made lowercase.
-    institutionid = models.ForeignKey(Institutions, models.DO_NOTHING, db_column='InstitutionId')  # Field name made lowercase.
+    institutionid = models.ForeignKey(Institutions, models.DO_NOTHING,
+                                      db_column='InstitutionId')  # Field name made lowercase.
     enrollment_degree_seeking = models.FloatField(blank=True, null=True)
     demographics_white = models.FloatField(blank=True, null=True)
     demographics_black = models.FloatField(blank=True, null=True)
@@ -724,6 +749,14 @@ class Undergraduates(models.Model):
                 and self.demographics_multiracial == 0 and self.demographics_ai_an == 0 and \
                 self.demographics_black == 0 and self.demographics_hispanic == 0 \
                 and self.demographics_white == 0:
+            return 0
+
+    @property
+    def check_demographics_is_none(self):
+        if self.demographics_nhpi is None or self.demographics_asian is None or self.demographics_non_resident_alien is None \
+                or self.demographics_multiracial is None or self.demographics_ai_an is None or \
+                self.demographics_black is None or self.demographics_hispanic is None \
+                or self.demographics_white is None:
             return 0
 
     @property
