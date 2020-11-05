@@ -10,6 +10,150 @@ let scienceAndMath = document.getElementById('science&Math');
 let arts = document.getElementById('arts');
 let social = document.getElementById('socialSciences');
 
+new Chart(document.getElementById("nonResidentCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (nonResidentCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (nonResidentCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "Multi-Racial Graduation Rate",
+        backgroundColor: ["rgba(255, 61, 223, 0.52)", "rgba(61, 255, 81, 0.52)"],
+        data: [(nonResidentCompletionRate * 100).toFixed(2), 100 - (nonResidentCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Multi-Racial Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("multiRacialCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (multiRacialCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (multiRacialCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "Multi-Racial Graduation Rate",
+        backgroundColor: ["rgba(214, 0, 0, 0.52)", "rgba(28, 31, 160, 0.4)"],
+        data: [(multiRacialCompletionRate * 100).toFixed(2), 100 - (multiRacialCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Multi-Racial Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("pacificIslanderCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (pacificIslanderCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (pacificIslanderCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "Pacific Islander Graduation Rate",
+        backgroundColor: ["rgba(42, 160, 28, 0.4)", "rgba(28, 86, 160, 0.4)"],
+        data: [(pacificIslanderCompletionRate * 100).toFixed(2), 100 - (pacificIslanderCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Pacific Islander Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("aianCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (aianCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (aianCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "American Indian / Alaskan Native Graduation Rate",
+        backgroundColor: ["rgba(160, 116, 28, 0.5)", "rgba(160, 28, 97, 0.5)"],
+        data: [(aianCompletionRate * 100).toFixed(2), 100 - (aianCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'American Indian / Alaskan Native Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("asianCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (asianCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (asianCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "Asian Graduation Rate",
+        backgroundColor: ["rgba(28, 160, 42, 0.79)", "rgba(160, 28, 28, 0.64)"],
+        data: [(asianCompletionRate * 100).toFixed(2), 100 - (asianCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Asian Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("hispanicCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (hispanicCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (hispanicCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "Hispanic Graduation Rate",
+        backgroundColor: ["rgba(103, 228, 184, 0.79)", "rgba(226, 228, 103, 0.79)"],
+        data: [(hispanicCompletionRate * 100).toFixed(2), 100 - (hispanicCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Hispanic Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("whiteCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (whiteCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (whiteCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "Caucasian Graduation Rate",
+        backgroundColor: ["rgba(100, 114, 196, 0.79)", "rgba(196, 100, 100, 0.79)"],
+        data: [(whiteCompletionRate * 100).toFixed(2), 100 - (whiteCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Caucasian Graduate Rate (%)'
+      }
+    }
+});
+
+new Chart(document.getElementById("blackCompletionRate"), {
+    type: 'pie',
+    data: {
+      labels: ["Graduated (" + (blackCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (blackCompletionRate * 100)).toFixed(2) + "%)"],
+      datasets: [{
+        label: "African American Graduation Rate",
+        backgroundColor: ["rgba(196, 170, 100, 0.79)", "rgba(159, 100, 196, 0.79)"],
+        data: [(blackCompletionRate * 100).toFixed(2), 100 - (blackCompletionRate * 100).toFixed(2)]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'African American Graduate Rate (%)'
+      }
+    }
+});
+
 let socialSciencesChart = new Chart(social, {
     type: 'bar',
     data: {
@@ -376,7 +520,11 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
 
 function otherDemographic() {
     let total = (caucasian * 100) + (africanAmerican * 100) + (hispanic * 100) + (asian * 100) + (pacificIslander * 100) + (multiRacial * 100) + (nonResident * 100) + (aian * 100);
-    return (100 - total).toFixed(2);
+    if ((100 - total).toFixed(2) < 0) {
+        return 0;
+    }else {
+        return (100 - total).toFixed(2);
+    }
 }
 
 let demographicChart = new Chart(demographics, {
