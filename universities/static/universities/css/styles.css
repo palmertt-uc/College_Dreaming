@@ -30,7 +30,7 @@
     display: none;
     color: black;
     position: absolute;
-    width: auto; 
+    width: auto;
     background: white;
     /* border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; */
@@ -39,7 +39,7 @@
     box-shadow: 2px 2px 2px rgb(141, 141, 141);
 }
 
-#search-results-list{
+#search-results-list {
     width: auto;
 }
 
@@ -59,7 +59,7 @@
     outline: none;
 }
 
-#search-results-list li span{
+#search-results-list li span {
     color: darkgray;
     font-size: medium;
 }
@@ -74,39 +74,48 @@
 
 /* All Slider CSS is used in search.html */
 .slidecontainer {
-  width: 100%;
+    width: 100%;
 }
 
 .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: .9em;
-  border-radius: .3em;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+    -webkit-appearance: none;
+    width: 100%;
+    height: .9em;
+    border-radius: .3em;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
 
 .slider:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background: #4CAF50;
-  cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background: #4CAF50;
-  cursor: pointer;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 575px) {
+    #rc-imageselect, .g-recaptcha {
+        transform: scale(0.77);
+        -webkit-transform: scale(0.77);
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+    }
 }
