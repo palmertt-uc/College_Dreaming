@@ -4,7 +4,8 @@
 
 {% block body %}
     <div class="container shadow-lg p-3 mb-5 bg-white rounded mt-4 text-dark raised-layout-forms">
-        <img src="https://logo.clearbit.com/{{ object.insturl }}" alt="Institution Logo Image" class="float-right" style="width: 15%; height: 15%">
+        <img src="https://logo.clearbit.com/{{ object.insturl }}" alt="Institution Logo Image" class="float-right"
+             style="width: 15%; height: 15%">
         <h1>{{ object.instname }}</h1>
         <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
         <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
