@@ -26,8 +26,9 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Leqht8ZAAAAAN_gy2jLmvdg4-V3C5q7WOeUz9Hg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['college-dreaming-env.eba-4mmkhpe7.us-east-2.elasticbeanstalk.com', 'collegedreaming.com',
-                 'www.collegedreaming.com', '127.0.0.1', 'college-dreaming-application-env.eba-ygpnvbdy.us-east-2.elasticbeanstalk.com', '172.31.18.169']
+ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
+                 'college-dreaming-application-env.eba-ygpnvbdy.us-east-2.elasticbeanstalk.com',
+                 '172.31.18.169']
 
 # Application definition
 
