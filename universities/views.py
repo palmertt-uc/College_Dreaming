@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import Institutions, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
 
+
 # Create your views here.
 def index(request):
     return render(request, 'universities/index.html')
