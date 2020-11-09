@@ -89,7 +89,7 @@ new Chart(document.getElementById("asianCompletionRate"), {
       datasets: [{
         label: "Asian Graduation Rate",
         backgroundColor: ["rgba(28, 160, 42, 0.79)", "rgba(160, 28, 28, 0.64)"],
-        data: [(asianCompletionRate * 100).toFixed(2), 100 - (asianCompletionRate * 100).toFixed(2)]
+        data: [(asianCompletionRate * 100).toFixed(2), (100 - (asianCompletionRate * 100)).toFixed(2)]
       }]
     },
     options: {
@@ -161,7 +161,7 @@ let socialSciencesChart = new Chart(social, {
         datasets: [{
             label: 'Social Science (' + (socialScience * 100).toFixed(2) + '%)',
             data: [(socialScience * 100).toFixed(2)],
-             backgroundColor: ['rgba(51, 0, 235, 0.53)']
+            backgroundColor: ['rgba(51, 0, 235, 0.53)']
         },
         {
             label: 'Public Administration (' + (publicAdministration * 100).toFixed(2) + '%)',
@@ -202,6 +202,11 @@ let socialSciencesChart = new Chart(social, {
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         title: {
           display: true,
           text: 'Social Sciences (%)'
@@ -261,6 +266,11 @@ let artsChart = new Chart(arts, {
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         title: {
           display: true,
           text: 'Arts & Other (%)'
@@ -320,6 +330,11 @@ let scienceAndMathChart = new Chart(scienceAndMath, {
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         title: {
           display: true,
           text: 'Science & Math (%)'
@@ -369,6 +384,11 @@ let businessChart = new Chart(business, {
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         title: {
           display: true,
           text: 'Business-Related (%)'
@@ -433,6 +453,11 @@ let engineeringTechChart = new Chart(engineeringAndTechnology, {
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         title: {
           display: true,
           text: 'Engineering & Technology (%)'
@@ -497,6 +522,11 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         title: {
           display: true,
           text: 'Literature & Language (%)'
@@ -569,16 +599,21 @@ let demographicChart = new Chart(demographics, {
         {
             label: 'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)',
             data: [(aian * 100).toFixed(2)],
-            backgroundColor: ['rgba(120, 45, 200, 0.2)']
+            backgroundColor: ['rgba(46, 0, 0, 0.26)']
         },
             {
             label: 'Other (' + otherDemographic() + '%)',
             data: [otherDemographic()],
-            backgroundColor: ['rgba(120, 45, 200, 0.2)']
+            backgroundColor: ['rgba(0, 27, 204, 0.2)']
         },
         ]
     },
     options: {
+        tooltips: {
+            callbacks: {
+                title: () => {}
+            },
+        },
         legend : {
             position: 'left',
         },
