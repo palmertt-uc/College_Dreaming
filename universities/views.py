@@ -43,6 +43,9 @@ class UniversityListView(ListView):
             if query and state:
                 object_list = self.model.objects.filter(Q(instname__icontains=query) &
                                                         Q(zipcodeid__cityid__state__exact=state))
+            elif query and city:
+                object_list = self.model.objects.filter(Q(instname__icontains=query) &
+                                                        Q(zipcodeid__cityid__city__iexact=city))
         elif state:
             object_list = self.model.objects.filter(zipcodeid__cityid__state__exact=state)
             if state and city:
