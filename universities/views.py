@@ -8,10 +8,6 @@ from .models import Institutions, Admissions, Completionrates, Costs, Institutio
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'universities/index.html')
-
-
 class QuizView(ListView):
     model = Institutions
     template_name = 'universities/quiz.html'

@@ -3,8 +3,7 @@ from . import views
 from .views import UniversityListView, UniversityDetailView, QuizView
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('universities/', UniversityListView.as_view(), name='universities'),
+    path('', UniversityListView.as_view(), name='home'),
     path('universities/<int:pk>/', UniversityDetailView.as_view(), name='university-detail'),
     path('search/', views.search, name='search'),
     path('about/', views.about, name='about'),
