@@ -18,11 +18,11 @@
 		});
 	});
 	$(".prefContainer").click(function() {
-		if($(this).attr("data-isPref") == "true"){
-			$(this).animate({backgroundColor: '#FFFFFF'}, 250);
+		if($(this).attr("data-isPref") === "true"){
+			$(this).css({backgroundColor: '#6c757d'}, 250);
 			$(this).attr("data-isPref", "false");
 		}else{
-			$(this).animate({backgroundColor: '#FFE066'}, 250);
+			$(this).css({backgroundColor: '#FFE066'}, 250);
 			$(this).attr("data-isPref", "true");
 		}
 	});

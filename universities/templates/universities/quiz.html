@@ -2,25 +2,24 @@
 
 {% block title %}Quiz{% endblock %}
 
-
 {% block body %}
 {% load static %}
-		<link rel="stylesheet" href="/static/universities/css/quiz.css">
+		<link rel="stylesheet" href="{% static 'universities/css/quiz.css' %}">
 		<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Work+Sans:wght@500;600&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://{{ 'cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' }}">
+		<script src="https://{{ 'ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' }}"></script>
 		<script
-			  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+			  src="https://{{ 'code.jquery.com/ui/1.12.1/jquery-ui.js' }}"
 			  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
 			  crossorigin="anonymous"></script>
-		<script src="/static/universities/js/quiz.js"></script>
+		<script src="{% static 'universities/js/quiz.js' %}"></script>
         <main>
 			<div id="quizStarter" class="quizPage">
-				<img id="quiz" src="/static/images/banner_quiz.png"/>
+				<img id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
 				<div id="info">
-				We've searched thousands of colleges - so that you don't have to.</br> Our quick, easy, and - most importantly - free quiz let's you find the colleges that best meet your needs. </br>
-				You're more than just GPA and SAT scores. </br>That's why we go above and beyond to find an institution that'll fit your needs
+				We've searched thousands of colleges - so that you don't have to.<br> Our quick, easy, and - most importantly - free quiz let's you find the colleges that best meet your needs. <br>
+				You're more than just GPA and SAT scores. <br>That's why we go above and beyond to find an institution that'll fit your needs
 				inside - and outside - of the classroom.
 				</div>
 			</div>
@@ -34,7 +33,7 @@
 			</div>
 				<div id="form">
 						<label for="relationship">I am the &nbsp</label>
-						<select type="text" id="relationship">
+						<select id="relationship">
 							<option value="1">Student</option>
 							<option value="2">Student's Parent</option>
 							<option value="3">Other</option>
@@ -42,13 +41,13 @@
 						<label for="zipcode">&nbsp and currently live in the zip code of &nbsp </label>
 						<input id="zipcode" type="text" max="5" /> .
 						<label for="income"> &nbsp My annual household income is &nbsp </label>
-						<select type="text" id="income">
+						<select id="income">
 							<option value="1">less than $40,000</option>
 							<option value="2">between $40,000 - $100,000</option>
 							<option value="3">more than $100,000</option>
 						</select>
 						<label for="debtConcern"> &nbsp and I am &nbsp </label>
-						<select type="text" id="debtConcern">
+						<select id="debtConcern">
 							<option value="1">very concerned</option>
 							<option value="2">concerned</option>
 							<option value="3">not concerned</option>
@@ -67,27 +66,27 @@
 				</div>
 				<div id="preferences">
 					<div class="prefContainer" data-isPref="false">
-						<img src="/static/images/crime_stock.png" class="imgPref left" />
+						<img src="{% static 'universities/images/crime_stock.png' %}" class="imgPref left" alt="crime stock"/>
 						<div class="prefText">a low crime rate</div>
 					</div>
 					<div class="prefContainer" data-isPref="false">
-						<img src="/static/images/restaurants_stock.png" class="imgPref left" />
+						<img src="{% static 'universities/images/restaurants_stock.png' %}" class="imgPref left" alt="restaurant stock"/>
 						<div class="prefText">a variety of restaurants</div>
 					</div>
 					<div class="prefContainer" data-isPref="false">
-						<img src="/static/images/outdoors_stock.png" class="imgPref right" />
+						<img src="{% static 'universities/images/outdoors_stock.png' %}" class="imgPref right" alt="outdoors stock"/>
 						<div class="prefText">access to the outdoors</div>
 					</div>
 					<div class="prefContainer" data-isPref="false">
-						<img src="/static/images/walkability_stock.png" class="imgPref left" />
+						<img src="{% static 'universities/images/walkability_stock.png' %}" class="imgPref left" alt="walkability stock"/>
 						<div class="prefText">an easily walkable commute</div>
 					</div>
 					<div class="prefContainer" data-isPref="false">
-						<img src="/static/images/instate_stock.png" class="imgPref left" />
+						<img src="{% static 'universities/images/instate_stock.png' %}" class="imgPref left" alt="instate stock"/>
 						<div class="prefText">a campus in my home state</div>
 					</div>
 					<div class="prefContainer" data-isPref="false">
-						<img src="/static/images/diversity_stock.png" class="imgPref right" />
+						<img src="{% static 'universities/images/diversity_stock.png' %}" class="imgPref right" alt="diversity stock"/>
 						<div class="prefText">strong diversity</div>
 					</div>
 				</div>
