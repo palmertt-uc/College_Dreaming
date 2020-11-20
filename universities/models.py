@@ -2,6 +2,44 @@ from django.db import models
 
 
 # Create your models here.
+class Earnings(models.Model):
+    earningid = models.AutoField(db_column='EarningId', primary_key=True)  # Field name made lowercase.
+    opeid = models.CharField(db_column='OPEID', max_length=15)  # Field name made lowercase.
+    degree_level = models.CharField(db_column='Degree_Level', max_length=2, blank=True, null=True)  # Field name made lowercase.
+    oneyear50pct = models.FloatField(db_column='OneYear50Pct', blank=True, null=True)  # Field name made lowercase.
+    fiveyear50pct = models.FloatField(db_column='FiveYear50Pct', blank=True, null=True)  # Field name made lowercase.
+    tenyear50pct = models.FloatField(db_column='TenYear50Pct', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Earnings'
+
+
+class Crime(models.Model):
+    crimeid = models.AutoField(db_column='CrimeId', primary_key=True)  # Field name made lowercase.
+    msa = models.CharField(db_column='MSA', max_length=150)  # Field name made lowercase.
+    violentcrimes = models.FloatField(db_column='ViolentCrimes', blank=True, null=True)  # Field name made lowercase.
+    propertycrimes = models.FloatField(db_column='PropertyCrimes', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Crime'
+
+
+class Climate(models.Model):
+    climateid = models.AutoField(db_column='ClimateId', primary_key=True)  # Field name made lowercase.
+    longitude = models.FloatField(db_column='Longitude')  # Field name made lowercase.
+    latitude = models.FloatField(db_column='Latitude')  # Field name made lowercase.
+    mintemp = models.FloatField(db_column='MinTemp')  # Field name made lowercase.
+    avgtemp = models.FloatField(db_column='AvgTemp')  # Field name made lowercase.
+    maxtemp = models.FloatField(db_column='MaxTemp')  # Field name made lowercase.
+    zipcode = models.CharField(db_column='ZipCode', max_length=10, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Climate'
+
+
 class Cities(models.Model):
     cityid = models.AutoField(db_column='CityId', primary_key=True)  # Field name made lowercase.
     city = models.CharField(db_column='City', max_length=100)  # Field name made lowercase.

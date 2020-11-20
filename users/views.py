@@ -5,6 +5,11 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
+def favorites_list(request):
+    return render(request, 'users/favorites.html')
+
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
