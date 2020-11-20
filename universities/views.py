@@ -10,7 +10,9 @@ from .models import Institutions, Admissions, Completionrates, Costs, Institutio
 # Create your views here.
 class QuizView(ListView):
     model = Institutions
+    context_object_name = 'universities'
     template_name = 'universities/quiz.html'
+    paginate_by = 50
 
     def get_context_data(self, **kwargs):
         quiz_context = super().get_context_data(**kwargs)
