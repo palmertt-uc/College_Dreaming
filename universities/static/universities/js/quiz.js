@@ -31,4 +31,11 @@
             $(this).attr("data-isPref", "true");
         }
     });
+    $().click(function () {
+        if($("#preferencesStarter").css("display") != "none"){
+            $("#preferencesStarter").fadeOut("slow", function () {
+                $("#formStarter").fadeIn(2000);
+            });
+        }
+    })
 });
