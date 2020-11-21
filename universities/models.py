@@ -14,6 +14,9 @@ class Earnings(models.Model):
         managed = False
         db_table = 'Earnings'
 
+    def __str__(self):
+        return "Earning: " + str(self.earningid)
+
 
 class Crime(models.Model):
     crimeid = models.AutoField(db_column='CrimeId', primary_key=True)  # Field name made lowercase.
@@ -24,6 +27,9 @@ class Crime(models.Model):
     class Meta:
         managed = False
         db_table = 'Crime'
+
+    def __str__(self):
+        return "Crime: " + self.msa
 
 
 class Climate(models.Model):
@@ -38,6 +44,9 @@ class Climate(models.Model):
     class Meta:
         managed = False
         db_table = 'Climate'
+
+    def __str__(self):
+        return "Climate Zipcode: " + self.zipcode
 
 
 class Cities(models.Model):

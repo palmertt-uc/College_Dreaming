@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Institutions, Cities, Zipcodes, Admissions, Completionrates, Costs, Institutiontypes, Majors, \
-    Programs, Undergraduates
+    Programs, Undergraduates, Earnings, Crime, Climate
 
 
 class RelationInstitutions(admin.ModelAdmin):
@@ -18,3 +18,6 @@ admin.site.register(Institutiontypes)
 admin.site.register(Majors)
 admin.site.register(Programs)
 admin.site.register(Undergraduates)
+admin.site.register(Earnings)
+admin.site.register(Crime)
+admin.site.register(Climate)
