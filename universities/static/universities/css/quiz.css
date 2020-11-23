@@ -1,3 +1,7 @@
+main {
+     margin-top: 10px;
+ }
+
 .quizNav {
     background-color: #f15152;
     color: white;
@@ -8,6 +12,14 @@
     cursor: pointer;
     margin-top: 70vh;
 }
+
+.right {
+     float: right;
+ }
+
+.left {
+     float: left;
+ }
 
 .starterHeader {
     text-align: center;
