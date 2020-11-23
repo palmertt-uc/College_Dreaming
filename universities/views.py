@@ -22,28 +22,69 @@ class QuizView(ListView):
         state = self.request.GET.get('state')
         diversity = self.request.GET.get('diversity')
         submitted = self.request.GET.get('submitted')
-        if(crime == None):
+        concact = False
+        queryValue = ''
+        if crime == None or crime == '':
             crime = ''
-        if(restaurants == None):
-            restaurants = ''
-        if(outdoors == None):
-            outdoors = ''
-        if(commute == None):
-            commute = ''
-        if(state == None):
-            state = ''
-        if(diversity == None):
-            diversity = None
+        else:
+            queryValue = crime
+            concact = True
 
-        query = str(crime) + str(restaurants) + str(outdoors) + str(commute) + str(state) + str(diversity)
+        if restaurants == None or restaurants == '':
+            restaurants = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + restaurants
+            else:
+                queryValue = restaurants
+                concact = True
+
+        if outdoors == None or outdoors == '':
+            outdoors = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + outdoors
+            else:
+                queryValue = outdoors
+                concact = True
+
+        if commute == None or commute == '':
+            commute = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + commute
+            else:
+                queryValue = commute
+                concact = True
+
+        if state == None or state == '':
+            state = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + state
+            else:
+                queryValue = state
+                concact = True
+
+        if diversity == None or diversity == '':
+            diversity = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + diversity
+            else:
+                queryValue = diversity
+                concact = True
+
+        if queryValue != '':
+            queryValue = 'WHERE ' + queryValue
 
         return Institutions.objects.raw('SELECT Institutions.* FROM Institutions'
         + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
-        + 'LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
-        + 'LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
-        + 'LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
-        + 'LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
-        + 'WHERE ' + query)
+        + ' LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
+        + ' LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
+        + ' LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
+        + ' LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
+        + ' ' + queryValue)
 
 
 class UniversityListView(ListView):

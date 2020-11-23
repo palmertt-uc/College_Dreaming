@@ -51,8 +51,8 @@
             let id = $(this).attr("id");
             $("#inpSubmitted").attr("value", "true");
             if(id === "contCrime"){
-                $(this).attr("data-isPref", " ViolentCrime <= 300");
-                $("#inpCrime").attr("value", " ViolentCrime <= 300");
+                $(this).attr("data-isPref", " ViolentCrimes <= 300");
+                $("#inpCrime").attr("value", " ViolentCrimes <= 300");
             }else if(id === "contRestaurants"){
                 $(this).attr("data-isPref", " RestaurantRanking <= 50");
                 $("#inpRestaurants").attr("value", " RestaurantRanking <= 50");
