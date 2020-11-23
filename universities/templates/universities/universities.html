@@ -1,4 +1,5 @@
 {% extends 'universities/base.html' %}
+{% load my_tags %}
 
 {% block title %}Home{% endblock %}
 
@@ -94,19 +95,19 @@
         <div class="text-center mt-3">
             {% if is_paginated %}
                 {% if page_obj.has_previous %}
-                    <a class="mb-4" href="?page=1">First</a>
-                    <a class="mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    <a class="mb-4" href="?{% url_replace page=1 %}">First</a>
+                    <a class="mb-4" href="?{% url_replace page=objects.previous_page_number %}">Previous</a>
                 {% endif %}
                 {% for num in page_obj.paginator.page_range %}
                     {% if page_obj.number == num %}
-                        <a class="mb-4" href="?page={{ num }}">{{ num }}</a>
+                        <a class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
                     {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a class="mb-4" href="?page={{ num }}">{{ num }}</a>
+                        <a class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
                     {% endif %}
                 {% endfor %}
                 {% if page_obj.has_next %}
-                    <a class="mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-                    <a class="mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    <a class="mb-4" href="?{% url_replace page=page_obj.next_page_number %}">Next</a>
+                    <a class="mb-4" href="?{% url_replace page=page_obj.paginator.num_pages %}">Last</a>
                 {% endif %}
             {% endif %}
         </div>
