@@ -24,7 +24,6 @@
     });
     $(".prefContainer").click(function () {
         if ($(this).attr("data-isPref") != "") {
-        alert("if");
             $(this).css({backgroundColor: '#6c757d'}, 250);
             let id = $(this).attr("id");
             if(id === "contCrime"){

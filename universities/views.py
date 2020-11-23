@@ -11,6 +11,8 @@ from .models import Institutions, Admissions, Completionrates, Costs, Institutio
 class QuizView(ListView):
     model = Institutions
     template_name = 'universities/quiz.html'
+    context_object_name = 'universities'
+    paginate_by = 50
 
     def get_queryset(self):
         crime = self.request.GET.get('crime')
@@ -19,9 +21,21 @@ class QuizView(ListView):
         commute = self.request.GET.get('commute')
         state = self.request.GET.get('state')
         diversity = self.request.GET.get('diversity')
-        submit = self.request.GET.get('submit')
+        submitted = self.request.GET.get('submitted')
+        if(crime == None):
+            crime = ''
+        if(restaurants == None):
+            restaurants = ''
+        if(outdoors == None):
+            outdoors = ''
+        if(commute == None):
+            commute = ''
+        if(state == None):
+            state = ''
+        if(diversity == None):
+            diversity = None
 
-        query = crime + restaurants + outdoors + commute + state + diversity
+        query = str(crime) + str(restaurants) + str(outdoors) + str(commute) + str(state) + str(diversity)
 
         return Institutions.objects.raw('SELECT Institutions.* FROM Institutions'
         + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
