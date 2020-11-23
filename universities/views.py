@@ -12,16 +12,24 @@ class QuizView(ListView):
     model = Institutions
     template_name = 'universities/quiz.html'
 
-    def get_context_data(self, **kwargs):
-        quiz_context = super().get_context_data(**kwargs)
-        quiz_context['admissions'] = Admissions.objects.all()
-        quiz_context['completion_rates'] = Completionrates.objects.all()
-        quiz_context['costs'] = Costs.objects.all()
-        quiz_context['institution_types'] = Institutiontypes.objects.all()
-        quiz_context['majors'] = Majors.objects.all()
-        quiz_context['programs'] = Programs.objects.all()
-        quiz_context['undergraduates'] = Undergraduates.objects.all()
-        return quiz_context
+    def get_queryset(self):
+        crime = self.request.GET.get('crime')
+        restaurants = self.request.GET.get('restaurants')
+        outdoors = self.request.GET.get('outdoors')
+        commute = self.request.GET.get('commute')
+        state = self.request.GET.get('state')
+        diversity = self.request.GET.get('diversity')
+        submit = self.request.GET.get('submit')
+
+        query = crime + restaurants + outdoors + commute + state + diversity
+
+        return Institutions.objects.raw('SELECT Institutions.* FROM Institutions'
+        + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
+        + 'LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
+        + 'LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
+        + 'LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
+        + 'LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
+        + 'WHERE ' + query)
 
 
 class UniversityListView(ListView):
@@ -80,9 +88,13 @@ def about(request):
 def contact(request):
     return render(request, 'universities/contact.html')
 
+def universities(request):
+    return render(request, 'universities/universities.html')
+
 
 @api_view(['GET'])
 def institutionsList(request):
+    print('cincinnati')
     query = request.GET.get('query')
     institutions = Institutions.objects.filter(instname__icontains=query)[:5]
     serializer = InstitutionsSerializer(institutions, many=True)

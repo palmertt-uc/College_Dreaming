@@ -50,6 +50,7 @@
         } else {
             $(this).css({backgroundColor: '#FFE066'}, 250);
             let id = $(this).attr("id");
+            $("#inpSubmitted").attr("value", "true");
             if(id === "contCrime"){
                 $(this).attr("data-isPref", " ViolentCrime <= 300");
                 $("#inpCrime").attr("value", " ViolentCrime <= 300");
