@@ -10,20 +10,81 @@ from .models import Institutions, Admissions, Completionrates, Costs, Institutio
 # Create your views here.
 class QuizView(ListView):
     model = Institutions
-    context_object_name = 'universities'
     template_name = 'universities/quiz.html'
+    context_object_name = 'universities'
     paginate_by = 50
 
-    def get_context_data(self, **kwargs):
-        quiz_context = super().get_context_data(**kwargs)
-        quiz_context['admissions'] = Admissions.objects.all()
-        quiz_context['completion_rates'] = Completionrates.objects.all()
-        quiz_context['costs'] = Costs.objects.all()
-        quiz_context['institution_types'] = Institutiontypes.objects.all()
-        quiz_context['majors'] = Majors.objects.all()
-        quiz_context['programs'] = Programs.objects.all()
-        quiz_context['undergraduates'] = Undergraduates.objects.all()
-        return quiz_context
+    def get_queryset(self):
+        crime = self.request.GET.get('crime')
+        restaurants = self.request.GET.get('restaurants')
+        outdoors = self.request.GET.get('outdoors')
+        commute = self.request.GET.get('commute')
+        state = self.request.GET.get('state')
+        diversity = self.request.GET.get('diversity')
+        submitted = self.request.GET.get('submitted')
+        concact = False
+        queryValue = ''
+        if crime == None or crime == '':
+            crime = ''
+        else:
+            queryValue = crime
+            concact = True
+
+        if restaurants == None or restaurants == '':
+            restaurants = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + restaurants
+            else:
+                queryValue = restaurants
+                concact = True
+
+        if outdoors == None or outdoors == '':
+            outdoors = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + outdoors
+            else:
+                queryValue = outdoors
+                concact = True
+
+        if commute == None or commute == '':
+            commute = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + commute
+            else:
+                queryValue = commute
+                concact = True
+
+        if state == None or state == '':
+            state = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + state
+            else:
+                queryValue = state
+                concact = True
+
+        if diversity == None or diversity == '':
+            diversity = ''
+        else:
+            if concact:
+                queryValue = queryValue + ' AND ' + diversity
+            else:
+                queryValue = diversity
+                concact = True
+
+        if queryValue != '':
+            queryValue = 'WHERE ' + queryValue
+
+        return Institutions.objects.raw('SELECT Institutions.* FROM Institutions'
+        + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
+        + ' LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
+        + ' LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
+        + ' LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
+        + ' LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
+        + ' ' + queryValue)
 
 
 class UniversityListView(ListView):
@@ -82,9 +143,13 @@ def about(request):
 def contact(request):
     return render(request, 'universities/contact.html')
 
+def universities(request):
+    return render(request, 'universities/universities.html')
+
 
 @api_view(['GET'])
 def institutionsList(request):
+    print('cincinnati')
     query = request.GET.get('query')
     institutions = Institutions.objects.filter(instname__icontains=query)[:5]
     serializer = InstitutionsSerializer(institutions, many=True)

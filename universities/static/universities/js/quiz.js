@@ -23,19 +23,59 @@
         });
     });
     $(".prefContainer").click(function () {
-        if ($(this).attr("data-isPref") === "true") {
+        if ($(this).attr("data-isPref") != "") {
             $(this).css({backgroundColor: '#6c757d'}, 250);
-            $(this).attr("data-isPref", "false");
+            let id = $(this).attr("id");
+            if(id === "contCrime"){
+                $(this).attr("data-isPref", "");
+                $("#inpCrime").attr("value", "");
+            }else if(id === "contRestaurants"){
+                $(this).attr("data-isPref", "");
+                $("#inpRestaurants").attr("value", "");
+            }else if(id === "contOutdoors"){
+                $(this).attr("data-isPref", "");
+                $("#inpOutdoors").attr("value", "");
+            }else if(id === "contCommute"){
+                $(this).attr("data-isPref", "");
+                $("#inpCommute").attr("value", "");
+            }else if(id === "contState"){
+                $(this).attr("data-isPref", "");
+                $("#inpState").attr("value", "");
+            }else if(id === "contDiversity"){
+                $(this).attr("data-isPref", "");
+                $("#inpDiversity").attr("value", "");
+            }
+
         } else {
             $(this).css({backgroundColor: '#FFE066'}, 250);
-            $(this).attr("data-isPref", "true");
+            let id = $(this).attr("id");
+            $("#inpSubmitted").attr("value", "true");
+            if(id === "contCrime"){
+                $(this).attr("data-isPref", " ViolentCrimes <= 300");
+                $("#inpCrime").attr("value", " ViolentCrimes <= 300");
+            }else if(id === "contRestaurants"){
+                $(this).attr("data-isPref", " RestaurantRanking <= 50");
+                $("#inpRestaurants").attr("value", " RestaurantRanking <= 50");
+            }else if(id === "contOutdoors"){
+                $(this).attr("data-isPref", " AvgTemp >= 60");
+                $("#inpOutdoors").attr("value", " AvgTemp >= 60");
+            }else if(id === "contCommute"){
+                $(this).attr("data-isPref", "");
+                $("#inpCommute").attr("value", "");
+            }else if(id === "contState"){
+                $(this).attr("data-isPref", "");
+                $("#inpState").attr("value", "");
+            }else if(id === "contDiversity"){
+                $(this).attr("data-isPref", " demographics_white <= .7");
+                $("#inpState").attr("value", " demographics_white <= .7");
+            }
         }
     });
-    $().click(function () {
+    $("#preferencesStarterPrev").click(function () {
         if($("#preferencesStarter").css("display") != "none"){
             $("#preferencesStarter").fadeOut("slow", function () {
                 $("#formStarter").fadeIn(2000);
             });
         }
-    })
+    });
 });
