@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
 # Application definition
 
 INSTALLED_APPS = [
+    'django_filters',
     'rest_framework',
     'crispy_forms',
     'users.apps.UsersConfig',
