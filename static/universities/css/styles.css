@@ -118,10 +118,32 @@
         transform-origin: 0 0;
         -webkit-transform-origin: 0 0;
     }
-}
 
-@media screen and (max-width: 575px) {
     .small-screen {
         padding-top: 1em;
     }
+
+    #tuition-chart {
+        height: 250px;
+    }
+
+    #act-chart, #sat-chart {
+        height: 250px;
+    }
+
+    #demographic-chart {
+        height: 375px;
+    }
+
+    #literature-language-social-science-chart, #engineering-technology-chart, #business-chart,
+    #science-math-chart, #arts-chart, #social-sciences-chart {
+        height: 400px;
+    }
 }
+
+#literature-language-social-science-chart, #engineering-technology-chart, #business-chart,
+#science-math-chart, #arts-chart, #social-sciences-chart {
+    height: 400px;
+    width: 100%;
+}
+

@@ -202,6 +202,7 @@ let socialSciencesChart = new Chart(social, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
@@ -266,6 +267,7 @@ let artsChart = new Chart(arts, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
@@ -330,6 +332,7 @@ let scienceAndMathChart = new Chart(scienceAndMath, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
@@ -384,6 +387,7 @@ let businessChart = new Chart(business, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
@@ -453,6 +457,7 @@ let engineeringTechChart = new Chart(engineeringAndTechnology, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
@@ -522,6 +527,7 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
@@ -609,13 +615,11 @@ let demographicChart = new Chart(demographics, {
         ]
     },
     options: {
+        maintainAspectRatio: false,
         tooltips: {
             callbacks: {
                 title: () => {}
             },
-        },
-        legend : {
-            position: 'left',
         },
         title: {
           display: false,
@@ -639,7 +643,7 @@ let demographicChart = new Chart(demographics, {
 let myTuitionChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['In-State Tuition ($' + (parseInt(inStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')', 'Out-of-State Tuition ($' + (parseInt(outStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')'],
+        labels: ['In-State ($' + (parseInt(inStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')', 'Out-of-State ($' + (parseInt(outStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')'],
         datasets: [{
             label: 'Tuition in USD ($)',
             data: [parseInt(inStateTuition), parseInt(outStateTuition)],
@@ -655,6 +659,7 @@ let myTuitionChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         title: {
           display: true,
           text: 'Tuition in USD ($)'
@@ -689,6 +694,7 @@ let myActChart = new Chart(act, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         title: {
           display: true,
           text: 'Average ACT Score (out of 36)'
@@ -725,6 +731,7 @@ let mySatChart = new Chart(sat, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         title: {
           display: true,
           text: 'Average SAT Score (out of 1600)'

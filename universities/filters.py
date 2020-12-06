@@ -14,7 +14,6 @@ class InstitutionFilter(django_filters.FilterSet):
                      ('OR', 'OR'), ('PA', 'PA'), ('RI', 'RI'), ('SC', 'SC'), ('SD', 'SD'), ('TN', 'TN'),
                      ('TX', 'TX'), ('UT', 'UT'), ('VT', 'VT'), ('VA', 'VA'), ('WA', 'WA'), ('WV', 'WV'),
                      ('WI', 'WI'), ('WY', 'WY')]
-
     institution_name = django_filters.CharFilter(field_name='instname', lookup_expr='icontains',
                                                  label='Institution Name',
                                                  widget=TextInput(attrs={'placeholder': 'Enter Name...'}))
