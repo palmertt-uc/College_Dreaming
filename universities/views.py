@@ -130,9 +130,6 @@ def about(request):
 def contact(request):
     return render(request, 'universities/contact.html')
 
-def universities(request):
-    return render(request, 'universities/universities.html')
-
 
 @api_view(['GET'])
 def institutionsList(request):
