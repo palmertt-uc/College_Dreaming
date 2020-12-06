@@ -4,13 +4,14 @@ A Django application for senior design.
 
 ## Description
 
-A web application that targets incoming college students and their families.
+A web application that targets college students, adults seeking a degree, and high school students and their families.
 
 ## Technologies Used
 
 - HTML
 - CSS
 - JavaScript
+- JQuery
 - Python
   - Django Framework (including Django template engine)
 - SQL
@@ -19,6 +20,8 @@ A web application that targets incoming college students and their families.
 
 - pip install mysqlclient
   - [https://github.com/PyMySQL/mysqlclient-python#install](https://github.com/PyMySQL/mysqlclient-python#install)
+- Chart.js being too responsive
+  - Charts were extremely small on mobile screens, in order to fix this you must set "maintainAspectRatio" to false in your chart's options, wrap your charts in a div and then use media queries to set the new div's pixel dimensions.
 
 ## Useful Terminal Commands
 - Python manage.py runserver
