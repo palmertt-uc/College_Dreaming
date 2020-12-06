@@ -29,4 +29,6 @@ A web application that targets college students, adults seeking a degree, and hi
 - Python manage.py makemigrations
   - Use this when creating/editing models
 - Python manage.py migrate
-  - Use this after running "Python manage.py makemigrations"
+  - Use this after running "Python manage.py makemigrations
+- Python collectstatic
+  - Use this to collect all static files in one folder, allowing your web hosting service to serve static files
