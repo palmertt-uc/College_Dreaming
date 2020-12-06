@@ -1,9 +1,13 @@
 asgiref==3.2.10
 Django==3.1.2
+django-bootstrap-form==3.4
 django-crispy-forms==1.9.2
+django-fav==0.3
 django-filter==2.4.0
+django-recaptcha==2.0.6
 djangorestframework==3.12.1
 Markdown==3.3.3
 mysqlclient==2.0.1
+python-decouple==3.3
 pytz==2020.1
 sqlparse==0.4.1
