@@ -5,69 +5,71 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
-        <h1 class="universities-page-header text-center">College Dreaming</h1>
-        <hr>
-        <h1 class="universities-page-header">Filter Options</h1>
-        <button class="btn btn-sm btn-success" type="button" data-toggle="collapse"
-                data-target="#collapseFilterOption"
-                aria-expanded="false" aria-controls="collapseFilterOption">
-            Options
-        </button>
-        <div class="collapse" id="collapseFilterOption">
-            <form class="mt-2" method="GET">
-                <div class="row">
-                    <div class="col-sm">
-                        {{ institution_filter.form.institution_name|as_crispy_field }}
+    <body id="home-page">
+        <div class="test container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
+            <h1 class="universities-page-header text-center">College Dreaming</h1>
+            <hr>
+            <h1 class="universities-page-header">Filter Options</h1>
+            <button class="btn btn-sm btn-success" type="button" data-toggle="collapse"
+                    data-target="#collapseFilterOption"
+                    aria-expanded="false" aria-controls="collapseFilterOption">
+                Options
+            </button>
+            <div class="collapse" id="collapseFilterOption">
+                <form class="mt-2" method="GET">
+                    <div class="row">
+                        <div class="col-sm">
+                            {{ institution_filter.form.institution_name|as_crispy_field }}
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        {{ institution_filter.form.institution_city|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-sm">
+                            {{ institution_filter.form.institution_city|as_crispy_field }}
+                        </div>
+                        <div class="col-sm">
+                            {{ institution_filter.form.institution_state|as_crispy_field }}
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        {{ institution_filter.form.institution_state|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-sm">
+                            {{ institution_filter.form.act_average|as_crispy_field }}
+                        </div>
+                        <div class="col-sm">
+                            {{ institution_filter.form.sat_average|as_crispy_field }}
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        {{ institution_filter.form.act_average|as_crispy_field }}
-                    </div>
-                    <div class="col-sm">
-                        {{ institution_filter.form.sat_average|as_crispy_field }}
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-success mt-4">Search</button>
-            </form>
+                    <button type="submit" class="btn btn-success mt-4">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
-        <h1 class="universities-page-header">Academic Institutions</h1>
-        {% for university in object_list %}
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
-                </li>
-            </ul>
-        {% endfor %}
-        <div class="text-center mt-3">
-            {% if is_paginated %}
-                {% if page_obj.has_previous %}
-                    <a class="mb-4" href="?{% url_replace page=1 %}">First</a>
-                    <a class="mb-4" href="?{% url_replace page=objects.previous_page_number %}">Previous</a>
-                {% endif %}
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <a class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+        <div class="test container about-page-header shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
+            <h1 class="universities-page-header">Academic Institutions</h1>
+            {% for university in object_list %}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-transparent">
+                        <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="text-center mt-3">
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="mb-4" href="?{% url_replace page=1 %}">First</a>
+                        <a class="mb-4" href="?{% url_replace page=objects.previous_page_number %}">Previous</a>
                     {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <a class="mb-4" href="?{% url_replace page=page_obj.next_page_number %}">Next</a>
-                    <a class="mb-4" href="?{% url_replace page=page_obj.paginator.num_pages %}">Last</a>
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a class="mb-4" href="?{% url_replace page=page_obj.next_page_number %}">Next</a>
+                        <a class="mb-4" href="?{% url_replace page=page_obj.paginator.num_pages %}">Last</a>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
+            </div>
         </div>
-    </div>
+    </body>
 {% endblock %}
