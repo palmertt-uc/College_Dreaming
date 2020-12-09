@@ -160,6 +160,10 @@
     margin-left: .5em !important;
 }
 
+#institution-links {
+    letter-spacing: 0.05em !important;
+}
+
 .navbar-brand {
     letter-spacing: 0.10em !important;
 }

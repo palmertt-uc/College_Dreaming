@@ -47,7 +47,7 @@
             {% for university in object_list %}
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item bg-transparent">
-                        <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
+                        <a id="institution-links" href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
                     </li>
                 </ul>
             {% endfor %}
