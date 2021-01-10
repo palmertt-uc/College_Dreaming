@@ -14,7 +14,7 @@
 
 .raised-layout-forms {
     margin-top: 3em;
-    width: 75%;
+    width: 85%;
     height: 75%;
 }
 
@@ -147,7 +147,7 @@
     width: 100%;
 }
 
-#home-page, #details-page {
+.general-layout {
     background: #0F2027 !important;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027) !important;  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
