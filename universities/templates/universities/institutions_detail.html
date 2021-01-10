@@ -3,238 +3,240 @@
 {% block title %}{{ object.instname }} - Details{% endblock %}
 
 {% block body %}
-    <div class="container shadow-lg p-3 mb-5 bg-white rounded mt-4 text-dark raised-layout-forms">
-        <img src="https://logo.clearbit.com/{{ object.insturl }}" alt="Institution Logo Image" class="float-right"
-             style="width: 15%; height: 15%">
-        <h1>{{ object.instname }}</h1>
-        <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
-        <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
-        <p>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</p>
-        {% if user.is_authenticated %}
-            <button type="button" class="btn btn-primary">Favorite</button>
-        {% endif %}
-        <hr>
-        <h4>Institution Information</h4>
-        <p>Institution Link: {{ object.institution_url }}</p>
-        <p>Accreditation: {{ object.accredagency }}</p>
-        <p>Main Campus: {{ object.main_campus }}</p>
-        <p>Number of Campuses: {{ object.numberofbranches }}</p>
-        <p>{{ object.highest_degree }}</p>
-        <p>{{ object.predominant_degree }}</p>
-        {% for type in institution_type %}
-            {% if object.institutionid == type.institutiontypeid %}
-                <p>Institution Type: {{ type.institution_type }}</p>
+    <body>
+        <div class="container shadow-lg p-3 mb-5 bg-white rounded mt-4 text-dark raised-layout-forms">
+            <img src="https://logo.clearbit.com/{{ object.insturl }}" alt="Institution Logo Image" class="float-right"
+                 style="width: 10%; height: 10%">
+            <h1>{{ object.instname }}</h1>
+            <h5>{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
+            <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
+            <p>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</p>
+            {% if user.is_authenticated %}
+                <button type="button" class="btn btn-primary">Favorite</button>
             {% endif %}
-        {% endfor %}
-        <hr>
-        <h4>Tuition Information</h4>
-        {% for cost in costs %}
-            {% if object.institutionid == cost.costsid %}
-                {% if cost.tuition_in_state == 0 or cost.tuition_in_state is None and cost.tuition_out_of_state == 0 or cost.tuition_out_of_state is None %}
-                    <p>Tuition: Not Reported</p>
-                {% else %}
+            <hr>
+            <h4>Institution Information</h4>
+            <p>Institution Link: {{ object.institution_url }}</p>
+            <p>Accreditation: {{ object.accredagency }}</p>
+            <p>Main Campus: {{ object.main_campus }}</p>
+            <p>Number of Campuses: {{ object.numberofbranches }}</p>
+            <p>{{ object.highest_degree }}</p>
+            <p>{{ object.predominant_degree }}</p>
+            {% for type in institution_type %}
+                {% if object.institutionid == type.institutiontypeid %}
+                    <p>Institution Type: {{ type.institution_type }}</p>
+                {% endif %}
+            {% endfor %}
+            <hr>
+            <h4>Tuition Information</h4>
+            {% for cost in costs %}
+                {% if object.institutionid == cost.costsid %}
+                    {% if cost.tuition_in_state == 0 or cost.tuition_in_state is None and cost.tuition_out_of_state == 0 or cost.tuition_out_of_state is None %}
+                        <p>Tuition: Not Reported</p>
+                    {% else %}
+                        <script>
+                            let inStateTuition = "{{ cost.tuition_in_state }}";
+                            let outStateTuition = "{{ cost.tuition_out_of_state }}";
+                        </script>
+                        <div id="tuition-chart">
+                            <canvas id="myTuitionChart" height="250px" width="250px"></canvas>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <hr>
+            <h4>Admission Information</h4>
+            {% for admission in admissions %}
+                {% if object.institutionid == admission.admissionid %}
+                    {% if admission.admission_rate_overall == 0 or admission.admission_rate_overall is None %}
+                        <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
+                    {% else %}
+                        <script>
+                            let actScore = "{{ admission.act_scores_midpoint_cumulative }}";
+                            let satScore = "{{ admission.sat_scores_average_overall }}";
+                            let admissionRate = "{{ admission.admission_rate_overall }}";
+                        </script>
+                        <div>
+                            <div class="row">
+                                <div class="col-sm" id="act-chart">
+                                    <canvas id="myActChart" class="col-lg-12"></canvas>
+                                </div>
+                                <div class="col-sm" id="sat-chart">
+                                    <canvas id="mySatChart" class="col-lg-12"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <hr>
+            <h4>Demographic Percentages (%)</h4>
+            {% for undergraduate in undergraduates %}
+                {% if object.institutionid == undergraduate.undergraduateid %}
+                    <p>Enrollment Degree Seeking: {{ undergraduate.undergraduate_students }}</p>
+                    {% if undergraduate.check_demographics_equals_zero == 0 and undergraduate.check_demographics_is_none == 0 %}
+                        <p>Demographic Percentages: Not Reported</p>
+                    {% else %}
+                        <script>
+                            let caucasian = "{{ undergraduate.demographics_white }}";
+                            let africanAmerican = "{{ undergraduate.demographics_black }}";
+                            let hispanic = "{{ undergraduate.demographics_hispanic }}";
+                            let pacificIslander = "{{ undergraduate.demographics_nhpi }}";
+                            let multiRacial = "{{ undergraduate.demographics_multiracial }}";
+                            let nonResident = "{{ undergraduate.demographics_non_resident_alien }}";
+                            let asian = "{{ undergraduate.demographics_asian }}"
+                            let aian = "{{ undergraduate.demographics_ai_an }}";
+                        </script>
+                        <div id="demographic-chart">
+                            <canvas id="demographicChart" class="col-lg-12"></canvas>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <hr>
+            <h4>Major Percentages (%)</h4>
+            {% for major in majors %}
+                {% if object.institutionid == major.majorid %}
                     <script>
-                        let inStateTuition = "{{ cost.tuition_in_state }}";
-                        let outStateTuition = "{{ cost.tuition_out_of_state }}";
+                        let agriculture = "{{ major.agriculture }}";
+                        let resources = "{{ major.resources }}";
+                        let architecture = "{{ major.architecture }}";
+                        let ethnicCulturalGender = "{{ major.ethnic_cultural_gender }}";
+                        let communication = "{{ major.communication }}";
+                        let communicationsTechnology = "{{ major.communications_technology }}";
+                        let computer = "{{ major.computer }}";
+                        let personalCulinary = "{{ major.personal_culinary }}";
+                        let education = "{{ major.education }}";
+                        let engineering = "{{ major.engineering }}";
+                        let engineeringTechnology = "{{ major.engineering_technology }}";
+                        let language = "{{ major.language }}";
+                        let familyConsumerScience = "{{ major.family_consumer_science }}";
+                        let legal = "{{ major.legal }}";
+                        let english = "{{ major.english }}";
+                        let humanities = "{{ major.humanities }}";
+                        let library = "{{ major.library }}";
+                        let biological = "{{ major.biological }}";
+                        let mathematics = "{{ major.mathematics }}";
+                        let military = "{{ major.military }}";
+                        let multiDiscipline = "{{ major.multidiscipline }}";
+                        let parksRecreationFitness = "{{ major.parks_recreation_fitness }}";
+                        let philosophyReligious = "{{ major.philosophy_religious }}";
+                        let theologyReligiousVocation = "{{ major.theology_religious_vocation }}";
+                        let physicalScience = "{{ major.physical_science }}";
+                        let scienceTechnology = "{{ major.science_technology }}";
+                        let psychology = "{{ major.psychology }}";
+                        let securityLawEnforcement = "{{ major.security_law_enforcement }}";
+                        let publicAdministration = "{{ major.public_administration_social_service }}";
+                        let socialScience = "{{ major.social_science }}";
+                        let construction = "{{ major.construction }}";
+                        let mechanicRepairTechnology = "{{ major.mechanic_repair_technology }}";
+                        let precisionProduction = "{{ major.precision_production }}";
+                        let transportation = "{{ major.transportation }}";
+                        let visualPerforming = "{{ major.visual_performing }}";
+                        let health = "{{ major.health }}";
+                        let businessMarketing = "{{ major.business_marketing }}";
+                        let history = "{{ major.history }}";
                     </script>
-                    <div id="tuition-chart">
-                        <canvas id="myTuitionChart" height="250px" width="250px"></canvas>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseMajors"
+                                aria-expanded="false" aria-controls="collapseMajors">
+                            Major Percentages
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseMajors">
+                        <div class="row" id="first-majors-row">
+                            <div class="col-sm" id="engineering-technology-chart">
+                                <canvas id="engineering&Technology" class="col-lg-12" height="100px" width="100px"></canvas>
+                            </div>
+                            <div class="col-sm" id="literature-language-social-science-chart">
+                                <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px"
+                                        width="100px"></canvas>
+                            </div>
+                        </div>
+                        <div class="row" id="second-majors-row">
+                            <div class="col-sm" id="business-chart">
+                                <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
+                            </div>
+                            <div class="col-sm" id="science-math-chart">
+                                <canvas id="science&Math" class="col-lg-12" height="100px" width="100px"></canvas>
+                            </div>
+                        </div>
+                        <div class="row" id="third-majors-row">
+                            <div class="col-sm" id="arts-chart">
+                                <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
+                            </div>
+                            <div class="col-sm" id="social-sciences-chart">
+                                <canvas id="socialSciences" class="col-lg-12" height="100px" width="100px"></canvas>
+                            </div>
+                        </div>
                     </div>
                 {% endif %}
-            {% endif %}
-        {% endfor %}
-        <hr>
-        <h4>Admission Information</h4>
-        {% for admission in admissions %}
-            {% if object.institutionid == admission.admissionid %}
-                {% if admission.admission_rate_overall == 0 or admission.admission_rate_overall is None %}
-                    <p>Overall Admissions Rate: {{ admission.admission_rate }}</p>
-                {% else %}
+            {% endfor %}
+            <hr>
+            <h4>Completion Rates</h4>
+            {% for completion in completion_rates %}
+                {% if object.institutionid == completion.completionrateid %}
                     <script>
-                        let actScore = "{{ admission.act_scores_midpoint_cumulative }}";
-                        let satScore = "{{ admission.sat_scores_average_overall }}";
-                        let admissionRate = "{{ admission.admission_rate_overall }}";
+                        let whiteCompletionRate = "{{ completion.completion_rate_4yr_150_white }}";
+                        let blackCompletionRate = "{{ completion.completion_rate_4yr_150_black }}";
+                        let hispanicCompletionRate = "{{ completion.completion_rate_4yr_150_hispanic }}";
+                        let asianCompletionRate = "{{ completion.completion_rate_4yr_150_asian }}";
+                        let aianCompletionRate = "{{ completion.completion_rate_4yr_150_aian }}";
+                        let pacificIslanderCompletionRate = "{{ completion.completion_rate_4yr_150_nhpi }}";
+                        let multiRacialCompletionRate = "{{ completion.completion_rate_4yr_150_2ormore }}";
+                        let nonResidentCompletionRate = "{{ completion.completion_rate_4yr_150_nonresident_alien }}"
+                        let otherCompletionRate = "{{ completion.completion_rate_4yr_150_race_unknown }}";
                     </script>
-                    <div>
+                    <p>Average Graduation Rate: {{ completion.total_4year_completion_rate }}</p>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                data-target="#collapseGradRates"
+                                aria-expanded="false" aria-controls="collapseGradRates">
+                            Graduation Rates
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseGradRates">
                         <div class="row">
-                            <div class="col-sm" id="act-chart">
-                                <canvas id="myActChart" class="col-lg-12"></canvas>
+                            <div class="col-sm">
+                                <canvas id="whiteCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
                             </div>
-                            <div class="col-sm" id="sat-chart">
-                                <canvas id="mySatChart" class="col-lg-12"></canvas>
+                            <div class="col-sm">
+                                <canvas id="blackCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <canvas id="hispanicCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
+                            </div>
+                            <div class="col-sm">
+                                <canvas id="asianCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <canvas id="aianCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
+                            </div>
+                            <div class="col-sm">
+                                <canvas id="pacificIslanderCompletionRate" class="col-lg-12" height="50px"
+                                        width="50px"></canvas>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <canvas id="multiRacialCompletionRate" class="col-lg-12" height="50px"
+                                        width="50px"></canvas>
+                            </div>
+                            <div class="col-sm">
+                                <canvas id="nonResidentCompletionRate" class="col-lg-12" height="50px"
+                                        width="50px"></canvas>
                             </div>
                         </div>
                     </div>
                 {% endif %}
-            {% endif %}
-        {% endfor %}
-        <hr>
-        <h4>Demographic Percentages (%)</h4>
-        {% for undergraduate in undergraduates %}
-            {% if object.institutionid == undergraduate.undergraduateid %}
-                <p>Enrollment Degree Seeking: {{ undergraduate.undergraduate_students }}</p>
-                {% if undergraduate.check_demographics_equals_zero == 0 and undergraduate.check_demographics_is_none == 0 %}
-                    <p>Demographic Percentages: Not Reported</p>
-                {% else %}
-                    <script>
-                        let caucasian = "{{ undergraduate.demographics_white }}";
-                        let africanAmerican = "{{ undergraduate.demographics_black }}";
-                        let hispanic = "{{ undergraduate.demographics_hispanic }}";
-                        let pacificIslander = "{{ undergraduate.demographics_nhpi }}";
-                        let multiRacial = "{{ undergraduate.demographics_multiracial }}";
-                        let nonResident = "{{ undergraduate.demographics_non_resident_alien }}";
-                        let asian = "{{ undergraduate.demographics_asian }}"
-                        let aian = "{{ undergraduate.demographics_ai_an }}";
-                    </script>
-                    <div id="demographic-chart">
-                        <canvas id="demographicChart" class="col-lg-12"></canvas>
-                    </div>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        <hr>
-        <h4>Major Percentages (%)</h4>
-        {% for major in majors %}
-            {% if object.institutionid == major.majorid %}
-                <script>
-                    let agriculture = "{{ major.agriculture }}";
-                    let resources = "{{ major.resources }}";
-                    let architecture = "{{ major.architecture }}";
-                    let ethnicCulturalGender = "{{ major.ethnic_cultural_gender }}";
-                    let communication = "{{ major.communication }}";
-                    let communicationsTechnology = "{{ major.communications_technology }}";
-                    let computer = "{{ major.computer }}";
-                    let personalCulinary = "{{ major.personal_culinary }}";
-                    let education = "{{ major.education }}";
-                    let engineering = "{{ major.engineering }}";
-                    let engineeringTechnology = "{{ major.engineering_technology }}";
-                    let language = "{{ major.language }}";
-                    let familyConsumerScience = "{{ major.family_consumer_science }}";
-                    let legal = "{{ major.legal }}";
-                    let english = "{{ major.english }}";
-                    let humanities = "{{ major.humanities }}";
-                    let library = "{{ major.library }}";
-                    let biological = "{{ major.biological }}";
-                    let mathematics = "{{ major.mathematics }}";
-                    let military = "{{ major.military }}";
-                    let multiDiscipline = "{{ major.multidiscipline }}";
-                    let parksRecreationFitness = "{{ major.parks_recreation_fitness }}";
-                    let philosophyReligious = "{{ major.philosophy_religious }}";
-                    let theologyReligiousVocation = "{{ major.theology_religious_vocation }}";
-                    let physicalScience = "{{ major.physical_science }}";
-                    let scienceTechnology = "{{ major.science_technology }}";
-                    let psychology = "{{ major.psychology }}";
-                    let securityLawEnforcement = "{{ major.security_law_enforcement }}";
-                    let publicAdministration = "{{ major.public_administration_social_service }}";
-                    let socialScience = "{{ major.social_science }}";
-                    let construction = "{{ major.construction }}";
-                    let mechanicRepairTechnology = "{{ major.mechanic_repair_technology }}";
-                    let precisionProduction = "{{ major.precision_production }}";
-                    let transportation = "{{ major.transportation }}";
-                    let visualPerforming = "{{ major.visual_performing }}";
-                    let health = "{{ major.health }}";
-                    let businessMarketing = "{{ major.business_marketing }}";
-                    let history = "{{ major.history }}";
-                </script>
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseMajors"
-                            aria-expanded="false" aria-controls="collapseMajors">
-                        Major Percentages
-                    </button>
-                </p>
-                <div class="collapse" id="collapseMajors">
-                    <div class="row" id="first-majors-row">
-                        <div class="col-sm" id="engineering-technology-chart">
-                            <canvas id="engineering&Technology" class="col-lg-12" height="100px" width="100px"></canvas>
-                        </div>
-                        <div class="col-sm" id="literature-language-social-science-chart">
-                            <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px"
-                                    width="100px"></canvas>
-                        </div>
-                    </div>
-                    <div class="row" id="second-majors-row">
-                        <div class="col-sm" id="business-chart">
-                            <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
-                        </div>
-                        <div class="col-sm" id="science-math-chart">
-                            <canvas id="science&Math" class="col-lg-12" height="100px" width="100px"></canvas>
-                        </div>
-                    </div>
-                    <div class="row" id="third-majors-row">
-                        <div class="col-sm" id="arts-chart">
-                            <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
-                        </div>
-                        <div class="col-sm" id="social-sciences-chart">
-                            <canvas id="socialSciences" class="col-lg-12" height="100px" width="100px"></canvas>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-        <hr>
-        <h4>Completion Rates</h4>
-        {% for completion in completion_rates %}
-            {% if object.institutionid == completion.completionrateid %}
-                <script>
-                    let whiteCompletionRate = "{{ completion.completion_rate_4yr_150_white }}";
-                    let blackCompletionRate = "{{ completion.completion_rate_4yr_150_black }}";
-                    let hispanicCompletionRate = "{{ completion.completion_rate_4yr_150_hispanic }}";
-                    let asianCompletionRate = "{{ completion.completion_rate_4yr_150_asian }}";
-                    let aianCompletionRate = "{{ completion.completion_rate_4yr_150_aian }}";
-                    let pacificIslanderCompletionRate = "{{ completion.completion_rate_4yr_150_nhpi }}";
-                    let multiRacialCompletionRate = "{{ completion.completion_rate_4yr_150_2ormore }}";
-                    let nonResidentCompletionRate = "{{ completion.completion_rate_4yr_150_nonresident_alien }}"
-                    let otherCompletionRate = "{{ completion.completion_rate_4yr_150_race_unknown }}";
-                </script>
-                <p>Average Graduation Rate: {{ completion.total_4year_completion_rate }}</p>
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseGradRates"
-                            aria-expanded="false" aria-controls="collapseGradRates">
-                        Graduation Rates
-                    </button>
-                </p>
-                <div class="collapse" id="collapseGradRates">
-                    <div class="row">
-                        <div class="col-sm">
-                            <canvas id="whiteCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
-                        </div>
-                        <div class="col-sm">
-                            <canvas id="blackCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <canvas id="hispanicCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
-                        </div>
-                        <div class="col-sm">
-                            <canvas id="asianCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <canvas id="aianCompletionRate" class="col-lg-12" height="50px" width="50px"></canvas>
-                        </div>
-                        <div class="col-sm">
-                            <canvas id="pacificIslanderCompletionRate" class="col-lg-12" height="50px"
-                                    width="50px"></canvas>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <canvas id="multiRacialCompletionRate" class="col-lg-12" height="50px"
-                                    width="50px"></canvas>
-                        </div>
-                        <div class="col-sm">
-                            <canvas id="nonResidentCompletionRate" class="col-lg-12" height="50px"
-                                    width="50px"></canvas>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    </body>
     {% load static %}
     <script src="{% static 'universities/js/charts.js' %}" type="text/javascript"></script>
 {% endblock %}

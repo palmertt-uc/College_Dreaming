@@ -12,9 +12,9 @@
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'universities/css/styles.css' %}">
 </head>
-<body class="bg-secondary text-light">
+<body class="bg-secondary text-light general-layout">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent pt-4">
     <div class="navbar-brand hidden-xs collapse">College Dreaming</div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" id="home-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'quiz' %}">Quiz</a>
@@ -38,7 +38,7 @@
                 <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
         </ul>
-        <form class="ml-auto">
+        <form class="ml-auto" autocomplete="off">
             <input class="form-control mr-sm-2" id="nav-search-bar" onkeyup="searchColleges()" type="search"
                    placeholder="Search University..." aria-label="Search">
             <div id="search-results">
