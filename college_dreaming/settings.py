@@ -24,7 +24,7 @@ SECRET_KEY = '1o+h**91+@bor@p^!5+t(xl&r$t31_fcxy&^5b*_#6@@vq$%l)'
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Leqht8ZAAAAAN_gy2jLmvdg4-V3C5q7WOeUz9Hg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
                  'college-dreaming-application-env.eba-ygpnvbdy.us-east-2.elasticbeanstalk.com',
