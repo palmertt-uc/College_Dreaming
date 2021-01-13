@@ -108,6 +108,12 @@ class UniversityDetailView(DetailView):
     model = Institutions
 
     def get_context_data(self, **kwargs):
+        university = get_object_or_404(Institutions, pk=self.kwargs.get('pk'))
+        favorited = bool
+
+        if university.favorite.filter(id=self.request.user.id).exists():
+            favorited = True
+
         context = super().get_context_data(**kwargs)
         context['admissions'] = Admissions.objects.all()
         context['costs'] = Costs.objects.all()
@@ -116,6 +122,7 @@ class UniversityDetailView(DetailView):
         context['completion_rates'] = Completionrates.objects.all()
         context['programs'] = Programs.objects.all()
         context['undergraduates'] = Undergraduates.objects.all()
+        context['favorite'] = favorited
         return context
 
 

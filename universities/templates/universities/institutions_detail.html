@@ -12,7 +12,11 @@
             <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
             <p>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</p>
             {% if user.is_authenticated %}
-                <a href="{% url 'favourite_add' institutions.institutionid %}" class="btn btn-primary">Favorite</a>
+                {% if favorite %}
+                    <a href="{% url 'favourite_add' institutions.institutionid %}" class="btn btn-primary">Remove Favorite</a>
+                {% else %}
+                    <a href="{% url 'favourite_add' institutions.institutionid %}" class="btn btn-primary">Favorite</a>
+                {% endif %}
             {% else %}
                 <a href="{% url 'register' %}" class="btn btn-primary">Favorite</a>
             {% endif %}
