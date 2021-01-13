@@ -1,13 +1,26 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from universities.models import Institutions
 
 
 # Create your views here.
+@ login_required
+def favourite_add(request, pk):
+    university = get_object_or_404(Institutions, pk=pk)
+    if university.favorite.filter(id=request.user.id).exists():
+        university.favorite.remove(request.user)
+    else:
+        university.favorite.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
 @login_required
 def favorites_list(request):
-    return render(request, 'users/favorites.html')
+    saved = Institutions.manager.filter(favorite=request.user)
+    return render(request, 'users/favorites.html', {'saved': saved})
 
 
 def register(request):

@@ -4,7 +4,14 @@
 
 {% block body %}
     <div class="container shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
-        <h1 class="text-center">No Favorites Found...</h1>
-        <hr>
+        <h1 class="text-center">Favorites</h1>
+        {% for university in saved %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h5>{{ university.instname }}</h5>
+                    <p>{{ university.zipcodeid.cityid.city }}, {{ university.zipcodeid.cityid.state }}</p>
+                </li>
+            </ul>
+        {% endfor %}
     </div>
 {% endblock %}
