@@ -80,10 +80,6 @@ class Zipcodes(models.Model):
 
 
 class Institutions(models.Model):
-    class NewManager(models.Manager):
-        def get_queryset(self):
-            return super().get_queryset()
-
     institutionid = models.AutoField(db_column='InstitutionId', primary_key=True)  # Field name made lowercase.
     unitid = models.CharField(db_column='UNITID', max_length=20, blank=True, null=True)  # Field name made lowercase.
     opeid = models.CharField(db_column='OPEID', max_length=20, blank=True, null=True)  # Field name made lowercase.
@@ -105,7 +101,6 @@ class Institutions(models.Model):
     zipcodeid = models.ForeignKey('Zipcodes', models.DO_NOTHING, db_column='ZipCodeId', blank=True, null=True)  # Field name made lowercase.
     climateid = models.ForeignKey(Climate, models.DO_NOTHING, db_column='ClimateId', blank=True, null=True)  # Field name made lowercase.
     favorite = models.ManyToManyField(User, related_name='favorite', blank=True)
-    manager = NewManager()
 
     class Meta:
         managed = False

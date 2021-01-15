@@ -19,7 +19,7 @@ def favourite_add(request, pk):
 
 @login_required
 def favorites_list(request):
-    saved = Institutions.manager.filter(favorite=request.user)
+    saved = Institutions.objects.filter(favorite=request.user)
     return render(request, 'users/favorites.html', {'saved': saved})
 
 
