@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -99,6 +100,7 @@ class Institutions(models.Model):
     locale = models.CharField(db_column='Locale', max_length=10, blank=True, null=True)  # Field name made lowercase.
     zipcodeid = models.ForeignKey('Zipcodes', models.DO_NOTHING, db_column='ZipCodeId', blank=True, null=True)  # Field name made lowercase.
     climateid = models.ForeignKey(Climate, models.DO_NOTHING, db_column='ClimateId', blank=True, null=True)  # Field name made lowercase.
+    favorite = models.ManyToManyField(User, related_name='favorite', blank=True)
 
     class Meta:
         managed = False
