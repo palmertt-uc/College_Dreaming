@@ -1,13 +1,44 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from universities.models import Institutions
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 # Create your views here.
-@ login_required
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/change_password.html', {
+        'form': form
+    })
+
+
+@login_required
+def delete_user(request):
+    if request.method == 'POST':
+        user = User.objects.get(username=request.user)
+        user.is_active = False
+        user.save()
+        return redirect('login')
+    return render(request, 'users/delete.html')
+
+
+@login_required
 def favourite_add(request, pk):
     university = get_object_or_404(Institutions, pk=pk)
     if university.favorite.filter(id=request.user.id).exists():
