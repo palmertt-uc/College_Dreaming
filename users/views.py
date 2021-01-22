@@ -48,12 +48,6 @@ def favourite_add(request, pk):
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
-@login_required
-def favorites_list(request):
-    saved = Institutions.objects.filter(favorite=request.user)
-    return render(request, 'users/favorites.html', {'saved': saved})
-
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -70,6 +64,8 @@ def register(request):
 
 @login_required
 def profile(request):
+    saved = Institutions.objects.filter(favorite=request.user)
+
     if request.method == 'POST':
         user_update = UserUpdateForm(request.POST, instance=request.user)
         profile_update = ProfileUpdateForm(request.POST, instance=request.user.profile)
@@ -85,7 +81,9 @@ def profile(request):
 
     context = {
         'user_update': user_update,
-        'profile_update': profile_update
+        'profile_update': profile_update,
+        'saved': saved
     }
 
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile.html', {'saved': saved, 'user_update': user_update,
+                                                  'profile_update': profile_update})

@@ -4,32 +4,38 @@
 {% block title %}Profile{% endblock %}
 {% load crispy_forms_tags %}
 {% block body %}
-    <div class="container shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
-        <h1>{{ user.username }}</h1>
-        <p>{{ user.email }}</p>
-        <small>Profile Info</small>
-        <hr>
-        <h6>Full Name</h6>
-        <p>{{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-sm">
-                <h6>GPA</h6>
-                <p>{{ user.profile.gpa }}</p>
+            <div class="col-md-4 col-sm">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded profile-card">
+                    <h2 class="text-center">{{ user.username }}</h2>
+                    <hr class="profile-line">
+                    <p>Email - &nbsp {{ user.email }}</p>
+                    <p>Full Name - &nbsp {{ user.profile.first_name }}
+                        {{ user.profile.last_name }}</p>
+                    <p>GPA - &nbsp {{ user.profile.gpa }} </p>
+                    <p>SAT - &nbsp {{ user.profile.sat }}</p>
+                    <p>ACT - &nbsp {{ user.profile.act }}</p>
+                </div>
             </div>
-            <div class="col-sm">
-                <h6>SAT Score</h6>
-                <p>{{ user.profile.sat }}</p>
-            </div>
-            <div class="col-sm">
-                <h6>ACT Score</h6>
-                <p>{{ user.profile.act }}</p>
+            <div class="col-md-8 col-sm">
+                <div class="shadow-lg p-3 mb-4 bg-white rounded profile-card">
+                    <h2>About</h2>
+                    <hr class="profile-line">
+                    <p>{{ user.profile.bio }}</p>
+                    <h2>Favorites</h2>
+                    <hr class="profile-line">
+                    {% for university in saved %}
+                        <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
+                        <p>{{ university.zipcodeid.cityid.city }}, {{ university.zipcodeid.cityid.state }}</p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-        <h6>About</h6>
-        <p>{{ user.profile.bio }}</p>
-        <hr>
-        <div class="accordion" id="update-profile">
-            <div class="card">
+    </div>
+    <div class="container p-3 mb-5 rounded">
+        <div class="accordion">
+            <div class="card" style="background-color: rgba(0, 0, 0, 0.7) !important;">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
@@ -39,8 +45,8 @@
                     </h2>
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                     data-parent="#update-profile">
-                    <div class="card-body">
+                     data-parent="#update-profile" style="background-color: rgba(0, 0, 0, 0.7) !important;">
+                    <div class="card-body" style="background-color: rgba(0, 0, 0, 0.7) !important;">
                         <form method="POST" enctype="multipart/form-data" id="profile-form" class="mt-5">
                             {% csrf_token %}
                             <fieldset class="form-group">
@@ -79,11 +85,11 @@
                                 </div>
                             </fieldset>
                             <div class="form-group">
-                                <button class="btn btn-success btn-sm contact-button" type="submit" id="update">Update
+                                <button class="btn btn-primary contact-button" type="submit" id="update">Update
                                 </button>
                             </div>
                             <hr>
-                            <a href="{% url 'delete_user' %}" class="btn btn-danger btn-sm">Delete Profile</a>
+                            <a href="{% url 'delete_user' %}" class="btn btn-danger">Delete Profile</a>
                         </form>
                     </div>
                 </div>
