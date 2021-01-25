@@ -14,16 +14,16 @@
                     <p>Full Name - &nbsp {{ user.profile.first_name }}
                         {{ user.profile.last_name }}</p>
                     <p>GPA - &nbsp {{ user.profile.gpa }} </p>
-                    <p>SAT - &nbsp {{ user.profile.sat }}</p>
-                    <p>ACT - &nbsp {{ user.profile.act }}</p>
+                    <p>SAT Score - &nbsp {{ user.profile.sat }}</p>
+                    <p>ACT Score - &nbsp {{ user.profile.act }}</p>
                 </div>
             </div>
             <div class="col-md-8 col-sm">
                 <div class="shadow-lg p-3 mb-4 bg-white rounded profile-card">
-                    <h2>About</h2>
+                    <h2>About You</h2>
                     <hr class="profile-line">
                     <p>{{ user.profile.bio }}</p>
-                    <h2>Favorites</h2>
+                    <h2>Your Favorite Universities</h2>
                     <hr class="profile-line">
                     {% for university in saved %}
                         <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
