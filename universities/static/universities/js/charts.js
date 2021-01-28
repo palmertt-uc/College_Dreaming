@@ -9,6 +9,7 @@ let business = document.getElementById('business');
 let scienceAndMath = document.getElementById('science&Math');
 let arts = document.getElementById('arts');
 let social = document.getElementById('socialSciences');
+Chart.defaults.global.defaultFontColor = '#fff';
 
 new Chart(document.getElementById("nonResidentCompletionRate"), {
     type: 'pie',
@@ -220,10 +221,16 @@ let socialSciencesChart = new Chart(social, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -285,10 +292,16 @@ let artsChart = new Chart(arts, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -350,10 +363,16 @@ let scienceAndMathChart = new Chart(scienceAndMath, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -405,10 +424,16 @@ let businessChart = new Chart(business, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -475,10 +500,16 @@ let engineeringTechChart = new Chart(engineeringAndTechnology, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -545,10 +576,16 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -631,10 +668,16 @@ let demographicChart = new Chart(demographics, {
                     beginAtZero: true,
                     max: 100,
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                color: '#383838'
+            }
             }],
         }
     }
@@ -671,9 +714,12 @@ let myTuitionChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
-                }
-            }]
-        }
+                },
+                gridLines: {
+                color: '#383838'
+            }
+            }],
+        },
     }
 });
 
@@ -708,7 +754,10 @@ let myActChart = new Chart(act, {
                     beginAtZero: true,
                     max : 40,
                     min : 0
-                }
+                },
+                gridLines: {
+                color: '#383838'
+            }
             }]
         }
     }
@@ -745,7 +794,10 @@ let mySatChart = new Chart(sat, {
                     beginAtZero: true,
                     max : 1600,
                     min : 0
-                }
+                },
+                gridLines: {
+                color: '#383838'
+            }
             }]
         }
     }
