@@ -31,8 +31,7 @@ def change_password(request):
 @login_required
 def delete_user(request):
     if request.method == 'POST':
-        user = User.objects.get(username=request.user)
-        user.is_active = False
+        user = User.objects.get(username=request.user).delete()
         user.save()
         return redirect('login')
     return render(request, 'users/delete.html')

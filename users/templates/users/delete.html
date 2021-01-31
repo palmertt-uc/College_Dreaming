@@ -9,7 +9,7 @@
             <form method="POST" action="{% url 'delete_user' %}">
                 {% csrf_token %}
                 <h2 class="text-center">Delete Account</h2>
-                <small>*Note that your account will be deactivated for 20 days before fully deleted.</small>
+                <small>*Note that you can not reverse this action!</small>
                 <hr class="profile-line">
                 <div class="text-center">
                     <button type="submit" role="button" class="btn btn-danger">Delete Account</button>

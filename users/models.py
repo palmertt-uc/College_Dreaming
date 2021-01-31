@@ -12,5 +12,8 @@ class Profile(models.Model):
     sat = models.CharField(max_length=4, blank=True, default='')
     bio = models.TextField(max_length=1000, blank=True, default='')
 
+    class Meta:
+        ordering = ['user__username']
+
     def __str__(self):
         return self.user.username + ' Profile'
