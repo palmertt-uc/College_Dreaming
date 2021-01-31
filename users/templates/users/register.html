@@ -4,7 +4,7 @@
 {% block title %}Register{% endblock %}
 {% load crispy_forms_tags %}
 {% block body %}
-    <div class="container shadow-lg p-3 mb-5 bg-white rounded text-dark raised-layout-forms">
+    <div class="container shadow-lg p-3 mb-5 mt-5 rounded text-white profile-card">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -18,7 +18,7 @@
                 <div class="g-recaptcha" data-sitekey="6Leqht8ZAAAAAHz6VcS_ZwftW6ReT9dZSYMihdHx"
                 data-callback="recaptcha_callback"></div>
                 <br/>
-                <button class="btn btn-success btn-lg contact-button register-button" type="submit" disabled>Create Account</button>
+                <button class="btn btn-primary btn-lg contact-button register-button" type="submit" disabled>Create Account</button>
             </div>
         </form>
     <div class="border-top pt-3">

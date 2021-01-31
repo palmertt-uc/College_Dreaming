@@ -4,6 +4,12 @@ from django.forms import TextInput
 from .models import Institutions
 
 
+class UserFilter(django_filters.FilterSet):
+    profile_search = django_filters.CharFilter(field_name='user__username', lookup_expr='icontains',
+                                               label='Username',
+                                               widget=TextInput(attrs={'placeholder': 'Enter Username...'}))
+
+
 class InstitutionFilter(django_filters.FilterSet):
     STATE_CHOICES = [('AL', 'AL'), ('AK', 'AK'), ('AZ', 'AZ'), ('AR', 'AR'), ('CA', 'CA'), ('CO', 'CO'),
                      ('CT', 'CT'), ('DE', 'DE'), ('FL', 'FL'), ('GA', 'GA'), ('HI', 'HI'), ('ID', 'ID'),

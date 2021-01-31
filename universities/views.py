@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Q
 from .serializers import InstitutionsSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.views.generic import ListView, DetailView
 from .models import Institutions, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
-from .filters import InstitutionFilter
+from .filters import InstitutionFilter, UserFilter
+from users.models import Profile
 
 
 # Create your views here.
@@ -80,12 +80,12 @@ class QuizView(ListView):
             queryValue = 'WHERE ' + queryValue
 
         return Institutions.objects.raw('SELECT Institutions.* FROM Institutions'
-        + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
-        + ' LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
-        + ' LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
-        + ' LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
-        + ' LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
-        + ' ' + queryValue)
+                                        + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
+                                        + ' LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
+                                        + ' LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
+                                        + ' LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
+                                        + ' LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
+                                        + ' ' + queryValue)
 
 
 class UniversityListView(ListView):
@@ -145,3 +145,23 @@ def institutionsList(request):
     institutions = Institutions.objects.filter(instname__icontains=query)[:5]
     serializer = InstitutionsSerializer(institutions, many=True)
     return Response(serializer.data)
+
+
+class UsersListView(ListView):
+    model = Profile
+    template_name = 'universities/user_list.html'
+    context_object_name = 'profile'
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_filter'] = UserFilter(self.request.GET, queryset=self.get_queryset())
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return UserFilter(self.request.GET, queryset=queryset).qs
+
+
+class UserDetailView(DetailView):
+    model = Profile

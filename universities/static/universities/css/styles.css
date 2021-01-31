@@ -185,3 +185,11 @@
   transition-timing-function: cubic-bezier(.19, 1, .22, 1);
   transform: scaleX(1);
 }
+
+.profile-card {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.profile-line {
+    border-color: white;
+}
