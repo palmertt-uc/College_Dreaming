@@ -1,27 +1,62 @@
 ﻿$(document).ready(function () {
-    $("#quiz").click(function () {
-        $("#quizStarter").fadeOut("slow", function () {
-            $("#quizStarterInterm").fadeIn(3000, function () {
-                $("#quizStarterInterm").fadeOut(1000, function () {
-                    $("#formStarter").fadeIn("slow");
+    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo"]
+    let currentIndex = 0;
+
+    let contGroups = {
+        "costs": ["contLowCosts", "contMedCosts", "contHighCosts"]
+    };
+
+    let groupAttr = {
+        "contLowCosts": ["src", "low cost stock", "I'm not worried about costs"],
+        "contMedCosts": ["\\universities\\static\\universities\\images\\nightlife_stock.png", "medium cost stock", "I'm worried about costs"],
+        "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
+
+    }
+
+    /*
+    For navigating to the next quiz page
+    */
+
+    $(".next").click(function() {
+        $(pages[currentIndex]).fadeOut("slow", function () {
+            currentIndex++;
+            $(pages[currentIndex]).fadeIn(2000, function () {
+                $(pages[currentIndex]).fadeOut(750, function () {
+                    currentIndex++;
+                    $(pages[currentIndex]).fadeIn(1500);
                 });
             });
         });
     });
-    $("#formStarterNext").click(function () {
-        $("#formStarter").fadeOut("slow", function () {
-            $("#preferencesStarterInterm").fadeIn(3000, function () {
-                $("#preferencesStarterInterm").fadeOut(1000, function () {
-                    $("#preferencesStarter").fadeIn(2000);
-                });
+
+    /*
+    For navigating to the previous quiz page
+    */
+    $(".prev").click(function() {
+        if(currentIndex != 2){
+            $(pages[currentIndex]).fadeOut("slow", function () {
+                currentIndex -= 2;
+                $(pages[currentIndex]).fadeIn(2000);
             });
-        });
+        }
     });
-    $("#preferencesStarterPrev").click(function () {
-        $("#preferencesStarter").fadeOut("slow", function () {
-            $("#formStarter").fadeIn(2000);
-        });
-    });
+
+    $(".prefContainer").click(function(){
+        let srcIndex = 0;
+        let altIndex = 1;
+        let descIndex = 2;
+        let contClass = $(this).attr("class").split(" ")[1];
+        let contId = $(this).attr("id");
+        let contIndex = contGroups[contClass].indexOf(contId) + 1;
+        if(contIndex == contGroups.length){
+            contIndex = 0;
+        }
+        $(this).fadeOut("slow", function(){
+            $("#img-" + contClass).attr("src", groupAttr[contGroups[contClass][contIndex]][srcIndex]);
+            $(this).fadeIn("slow");
+        })
+    })
+
     $(".prefContainer").click(function () {
         if ($(this).attr("data-isPref") != "") {
             $(this).css({backgroundColor: '#6c757d'}, 250);
@@ -69,13 +104,6 @@
                 $(this).attr("data-isPref", " demographics_white <= .7");
                 $("#inpState").attr("value", " demographics_white <= .7");
             }
-        }
-    });
-    $("#preferencesStarterPrev").click(function () {
-        if($("#preferencesStarter").css("display") != "none"){
-            $("#preferencesStarter").fadeOut("slow", function () {
-                $("#formStarter").fadeIn(2000);
-            });
         }
     });
 });

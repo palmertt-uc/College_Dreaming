@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from .serializers import InstitutionsSerializer
+from django.db.models import Q
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.views.generic import ListView, DetailView
 from .models import Institutions, Admissions, Completionrates, Costs, Institutiontypes, Majors, Programs, Undergraduates
 from .filters import InstitutionFilter, UserFilter
 from users.models import Profile
+from .models import Institutions, Crime, Zipcodes, Cities, Admissions, Completionrates, Costs,\
+    Institutiontypes, Majors, Programs, Undergraduates
 
 
 # Create your views here.
@@ -16,77 +19,29 @@ class QuizView(ListView):
     paginate_by = 50
 
     def get_queryset(self):
+        filters = Q()
         crime = self.request.GET.get('crime')
         restaurants = self.request.GET.get('restaurants')
         outdoors = self.request.GET.get('outdoors')
-        commute = self.request.GET.get('commute')
+        commute = self.request.GET.get('urban')
         state = self.request.GET.get('state')
         diversity = self.request.GET.get('diversity')
         submitted = self.request.GET.get('submitted')
-        concact = False
-        queryValue = ''
-        if crime == None or crime == '':
-            crime = ''
+
+        if crime is not None and crime != '':
+            filters |= Q(ViolentCrimes__level__lt=crime)
+        if restaurants is not None and restaurants != '':
+            filters |= Q(RestaurantRanking__level__gte=restaurants)
+        if state is not None and state != '':
+            filters |= Q(State=state)
+        if diversity is not None and diversity != '':
+            filters |= Q(demographics_white__level__lte=.5)
+
+        if(len(filters) > 0):
+            institutions = self.model.objects.filter(zipcodeid__cityid__state="OH")
+            return institutions
         else:
-            queryValue = crime
-            concact = True
-
-        if restaurants == None or restaurants == '':
-            restaurants = ''
-        else:
-            if concact:
-                queryValue = queryValue + ' AND ' + restaurants
-            else:
-                queryValue = restaurants
-                concact = True
-
-        if outdoors == None or outdoors == '':
-            outdoors = ''
-        else:
-            if concact:
-                queryValue = queryValue + ' AND ' + outdoors
-            else:
-                queryValue = outdoors
-                concact = True
-
-        if commute == None or commute == '':
-            commute = ''
-        else:
-            if concact:
-                queryValue = queryValue + ' AND ' + commute
-            else:
-                queryValue = commute
-                concact = True
-
-        if state == None or state == '':
-            state = ''
-        else:
-            if concact:
-                queryValue = queryValue + ' AND ' + state
-            else:
-                queryValue = state
-                concact = True
-
-        if diversity == None or diversity == '':
-            diversity = ''
-        else:
-            if concact:
-                queryValue = queryValue + ' AND ' + diversity
-            else:
-                queryValue = diversity
-                concact = True
-
-        if queryValue != '':
-            queryValue = 'WHERE ' + queryValue
-
-        return Institutions.objects.raw('SELECT Institutions.* FROM Institutions'
-                                        + ' LEFT JOIN Undergraduates ON Institutions.InstitutionId = Undergraduates.InstitutionId'
-                                        + ' LEFT JOIN ZipCodes ON ZipCodes.ZipCodeId = Institutions.ZipCodeId'
-                                        + ' LEFT JOIN Cities ON Cities.CityId = ZipCodes.CityId'
-                                        + ' LEFT JOIN Crime ON Crime.CrimeId = Cities.CrimeId'
-                                        + ' LEFT JOIN Climate ON Climate.ClimateId = Institutions.ClimateId'
-                                        + ' ' + queryValue)
-
+            return ""
 
 class UniversityListView(ListView):
     model = Institutions
