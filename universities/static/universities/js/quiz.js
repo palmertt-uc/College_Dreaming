@@ -8,11 +8,11 @@
 
     let groupAttr = {
         "contLowCosts": ["src", "low cost stock", "I'm not worried about costs"],
-        "contMedCosts": ["\\universities\\static\\universities\\images\\nightlife_stock.png", "medium cost stock", "I'm worried about costs"],
+        "contMedCosts": ["/static/universities/images/snowy_stock.png", "medium cost stock", "I'm worried about costs"],
         "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
 
     }
-
+    alert('Hello There')
     /*
     For navigating to the next quiz page
     */
