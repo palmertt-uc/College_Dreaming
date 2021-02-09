@@ -188,7 +188,7 @@ let socialSciencesChart = new Chart(social, {
         {
             label: 'Legal (' + (legal * 100).toFixed(2) + '%)',
             data: [(legal * 100).toFixed(2)],
-            backgroundColor: ['rgba(166, 149, 17, 0.79)']
+            backgroundColor: ['rgba(166, 149, 245, 0.79)']
         },
         {
             label: 'Humanities (' + (humanities * 100).toFixed(2) + '%)',
@@ -553,7 +553,7 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
         {
             label: 'Language (' + (language * 100).toFixed(2) + '%)',
             data: [(language * 100).toFixed(2)],
-            backgroundColor: ['rgba(67, 117, 11, 0.79)']
+            backgroundColor: ['rgba(150, 117, 200, 0.79)']
         },
         ]
     },
@@ -607,47 +607,47 @@ let demographicChart = new Chart(demographics, {
         datasets: [{
             label: 'Caucasian (' + (caucasian * 100).toFixed(2) + '%)',
             data: [(caucasian * 100).toFixed(2)],
-            backgroundColor: ['rgba(255, 99, 132, 0.2)',]
+            backgroundColor: ['rgba(255, 99, 132, 0.5)',]
         },
         {
             label: 'African American (' + (africanAmerican * 100).toFixed(2) + '%)',
             data: [(africanAmerican * 100).toFixed(2)],
-            backgroundColor: ['rgba(54, 162, 235, 0.2)']
+            backgroundColor: ['rgba(54, 162, 235, 0.5)']
         },
         {
             label: 'Hispanic (' + (hispanic * 100).toFixed(2) + '%)',
             data: [(hispanic * 100).toFixed(2)],
-            backgroundColor: ['rgba(255, 206, 86, 0.2)']
+            backgroundColor: ['rgba(255, 206, 86, 0.5)']
         },
         {
             label: 'Asian (' + (asian * 100).toFixed(2) + '%)',
             data: [(asian * 100).toFixed(2)],
-            backgroundColor: ['rgba(75, 192, 192, 0.2)']
+            backgroundColor: ['rgba(75, 192, 192, 0.5)']
         },
         {
             label: 'Pacific Islander (' + (pacificIslander * 100).toFixed(2) + '%)',
             data: [(pacificIslander * 100).toFixed(2)],
-            backgroundColor: ['rgba(153, 102, 255, 0.2)']
+            backgroundColor: ['rgba(153, 102, 255, 0.5)']
         },
         {
             label: 'Multi-Racial (' + (multiRacial * 100).toFixed(2) + '%)',
             data: [(multiRacial * 100).toFixed(2)],
-            backgroundColor: ['rgba(255, 159, 64, 0.2)']
+            backgroundColor: ['rgba(255, 159, 64, 0.5)']
         },
         {
             label: 'Non-Resident (' + (nonResident * 100).toFixed(2) + '%)',
             data: [(nonResident * 100).toFixed(2)],
-            backgroundColor: ['rgba(176, 85, 90, 0.2)']
+            backgroundColor: ['rgba(176, 85, 90, 0.5)']
         },
         {
             label: 'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)',
             data: [(aian * 100).toFixed(2)],
-            backgroundColor: ['rgba(46, 0, 0, 0.26)']
+            backgroundColor: ['rgba(46, 120, 20, 0.5)']
         },
             {
             label: 'Other (' + otherDemographic() + '%)',
             data: [otherDemographic()],
-            backgroundColor: ['rgba(0, 27, 204, 0.2)']
+            backgroundColor: ['rgba(0, 27, 204, 0.5)']
         },
         ]
     },
@@ -691,8 +691,8 @@ let myTuitionChart = new Chart(ctx, {
             label: 'Tuition in USD ($)',
             data: [parseInt(inStateTuition), parseInt(outStateTuition)],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(255, 99, 132, .5)',
+                'rgba(54, 162, 235, .5)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -731,7 +731,7 @@ let myActChart = new Chart(act, {
             label: 'ACT Score (out of 36)',
             data: [parseInt(actScore)],
             backgroundColor: [
-                'rgba(255, 206, 86, 0.2)'
+                'rgba(255, 206, 86, .5)'
             ],
             borderColor: [
                 'rgba(255, 206, 86, 1)'
@@ -771,7 +771,7 @@ let mySatChart = new Chart(sat, {
             label: 'SAT Score (out of 1600)',
             data: [parseInt(satScore)],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.2)'
+                'rgba(75, 192, 192, .5)'
             ],
             borderColor: [
                 'rgba(75, 192, 192, 1)'
