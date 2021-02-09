@@ -20,8 +20,8 @@
     <script src="{% static 'universities/js/quiz.js' %}"></script>
     <form id="mainForm" method="GET">
         <div class="container">
-            <div id="quizStarter" class="quizPage text-center">
-                <img id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
+            <div id="quizStarter" class="text-center mt-5">
+                <img class="next" id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
                 <div id="info" class="mt-5 mb-3">
                     We've searched thousands of colleges - so that you don't have to.<br> Our quick, easy, and - most
                     importantly - free quiz let's you find the colleges that best meet your needs. <br>
@@ -75,110 +75,175 @@
                 </div>
                 <div class="row text-center mt-5 mb-3">
                     <div class="col-sm">
-                        <div class="btn btn-lg btn-danger" id="formStarterNext">Next &raquo;</div>
+                        <div class="btn btn-lg btn-danger next" id="preferencesStarterNext">Next &raquo;</div>
                     </div>
                 </div>
             </div>
             <div id="preferencesStarterInterm" class="quizPage interm text-center">
                 <div>Now let's find what you care about</div>
             </div>
-           
-                    <div id="preferencesStarterOne" class="quizPage">
-                        <div class="quizComponent">
-                            <div class="starterHeader">
-                                College/University Preferences:
-                            </div>
-                            <div id="preferencesOne">
-                                <div class="prefContainer costs" data-isPref="" id="contLowCosts">
-                                    <img src="{% static 'universities/images/crime_stock.png' %}" class="imgPref left" id="img-costs" alt="low costs stock"/>
+
+            <div id="preferencesStarterOne" class="quizPage container">
+                <div class="quizComponent">
+                    <div class="starterHeader text-center">
+                        College/University Preferences:
+                    </div>
+                    <hr class="profile-line">
+                    <div id="preferencesOne">
+                        <div class="row">
+                            <div class="col-sm mt-4">
+                                <div class="prefContainer costs text-center" data-isPref="" id="contLowCosts">
+                                    <img src="{% static 'universities/images/crime_stock.png' %}" class="imgPref left"
+                                         id="img-costs" alt="low costs stock"/>
                                     <div class="prefText" id="div-costs">I'm not worried about costs</div>
-                                    <input name="costs" id="inp-costs" value = "{{ request.GET.costs }}" style="display:none;"/>
+                                    <input name="costs" id="inp-costs" value="{{ request.GET.costs }}"
+                                           style="display:none;"/>
                                 </div>
-                                <div class="prefContainer" data-isPref="" id="contRestaurants">
-                                    <img src="{% static 'universities/images/restaurants_stock.png' %}" class="imgPref left" alt="restaurant stock"/>
-                                    <div class="prefText">location and terrain</div>
-                                    <input name="restaurants" id="inpRestaurants" value = "{{ request.GET.restaurants }}" style="display:none;"/>
+                            </div>
+                            <div class="col-sm mt-4">
+                                <div class="prefContainer text-center" data-isPref="" id="contRestaurants">
+                                    <img src="{% static 'universities/images/restaurants_stock.png' %}"
+                                         class="imgPref left" alt="restaurant stock"/>
+                                    <div class="prefText">Location and terrain</div>
+                                    <input name="restaurants" id="inpRestaurants" value="{{ request.GET.restaurants }}"
+                                           style="display:none;"/>
                                 </div>
-                                <div class="prefContainer" data-isPref="" id="contOutdoors">
-                                    <img src="{% static 'universities/images/outdoors_stock.png' %}" class="imgPref right" alt="outdoors stock"/>
-                                    <div class="prefText">activities</div>
-                                    <input name="outdoors" id="inpOutdoors" value = "{{ request.GET.outdoors }}" style="display:none;"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm mt-4">
+                                <div class="prefContainer text-center" data-isPref="" id="contOutdoors">
+                                    <img src="{% static 'universities/images/outdoors_stock.png' %}"
+                                         class="imgPref right" alt="outdoors stock"/>
+                                    <div class="prefText">Activities</div>
+                                    <input name="outdoors" id="inpOutdoors" value="{{ request.GET.outdoors }}"
+                                           style="display:none;"/>
                                 </div>
-                                <div class="prefContainer" data-isPref="" id="contClimate">
-                                    <img src="{% static 'universities/images/warmClimate_stock.png' %}" class="imgPref left" alt="climate stock"/>
+                            </div>
+                            <div class="col-sm mt-4">
+                                <div class="prefContainer text-center" data-isPref="" id="contClimate">
+                                    <img src="{% static 'universities/images/warmClimate_stock.png' %}"
+                                         class="imgPref left" alt="climate stock"/>
                                     <div class="prefText">Climate</div>
-                                    <input name="urban" id="inpClimate" value = "{{ request.GET.climate }}" style="display:none;"/>
+                                    <input name="urban" id="inpClimate" value="{{ request.GET.climate }}"
+                                           style="display:none;"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="prev quizNav left" >&laquo; Previous</div>
-                        <div class="next quizNav right">Next &raquo;</div>
-                    </div>
-                    <div id="preferencesStarterIntermTwo" class="quizPage interm">
-                        <div class="intermText">Now let's find what you care about</div>
-                    </div>
-                    <div id="preferencesStarterTwo" class="quizPage">
-                        <div class="quizComponent">
-                            <div class="starterHeader">
-                                I care about an area with...
-                            </div>
-                            <div id="preferencesTwo">
-                                <div class="prefContainer" data-isPref="" id="contWarmClimate">
-                                    <img src="{% static 'universities/images/warmClimate_stock.png' %}" class="imgPref left" alt="warm climate stock"/>
-                                    <div class="prefText">a warm climate</div>
-                                    <input name="crime" id="inpWarmClimate" value = "{{ request.GET.warmClimate }}" style="display:none;"/>
-                                </div>
-                                <div class="prefContainer" data-isPref="" id="contNightlife">
-                                    <img src="{% static 'universities/images/nightlife_stock.png' %}" class="imgPref left" alt="nightlife stock"/>
-                                    <div class="prefText">nightlife</div>
-                                    <input name="restaurants" id="inpNightlife" value = "{{ request.GET.nightlife }}" style="display:none;"/>
-                                </div>
-                                <div class="prefContainer" data-isPref="" id="contSnowy">
-                                    <img src="{% static 'universities/images/snowy_stock.png' %}" class="imgPref right" alt="snowy stock"/>
-                                    <div class="prefText">a snowy winter</div>
-                                    <input name="outdoors" id="inpSnowy" value = "{{ request.GET.snowy }}" style="display:none;"/>
-                                </div>
-                                <div class="prefContainer" data-isPref="" id="contUrban">
-                                    <img src="{% static 'universities/images/urban_stock.png' %}" class="imgPref left" alt="urban stock"/>
-                                    <div class="prefText">an urban population</div>
-                                    <input name="urban" id="inpUrban" value = "{{ request.GET.urban }}" style="display:none;"/>
-                                </div>
-                                <div class="prefContainer" data-isPref="" id="contState">
-                                    <img src="{% static 'universities/images/instate_stock.png' %}" class="imgPref left" alt="instate stock"/>
-                                    <div class="prefText">a campus in my home state</div>
-                                    <input name="state" id="inpState" value = "{{ request.GET.state }}" style="display:none;"/>
-                                </div>
-                                <div class="prefContainer" data-isPref="" id="contDiversity">
-                                    <img src="{% static 'universities/images/diversity_stock.png' %}" class="imgPref right" alt="diversity stock"/>
-                                    <div class="prefText">strong diversity</div>
-                                    <input name="diversity" id="inpDiversity" value = "{{ request.GET.diversity }}" style="display:none;"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="prev quizNav left" >&laquo; Previous</div>
-                        <div class="next quizNav right">Next &raquo;</div>
                     </div>
                 </div>
-			<input name="submitted" id="inpSubmitted" value="{{ request.GET.submitted }}" style="display:none;" />
-			<button type="submit" id="submitButton" style="display:none;">Submit</button>
-		</main>
-		<script>
-		$("#preferencesStarterNext").click(function(){
-        	if($("#preferencesStarter").css("display") === "block"){
-        		$("#submitButton").click();
-            }
-   		});
-   		$(document).ready(function () {
-   			let searchParams = new URLSearchParams(window.location.search);
-   			if(searchParams.has('submitted')){
-   				$("#divUniversities").css("display", "block");
-   				$("#quizStarter").css("display", "none");
-   			}
-   		})
-		</script>
-</form>
-<div id="divUniversities" style="display:none">
-	<h1 class="universities-page-header">Academic Institutions</h1>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
+                    </div>
+                    <div class="col-sm text-center">
+                        <div class="next btn btn-lg btn-danger mt-4 mb-3">Next &raquo;</div>
+                    </div>
+                </div>
+            </div>
+            <div id="preferencesStarterIntermTwo" class="quizPage interm text-center">
+                <div class="intermText">Now let's find what you care about</div>
+            </div>
+            <div id="preferencesStarterTwo" class="quizPage">
+                <div class="quizComponent">
+                    <div class="starterHeader text-center">
+                        I care about an area with...
+                    </div>
+                    <hr class="profile-line">
+                    <div id="preferencesTwo">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="prefContainer text-center mt-4" data-isPref="" id="contWarmClimate">
+                                    <img src="{% static 'universities/images/warmClimate_stock.png' %}"
+                                         class="imgPref left"
+                                         alt="warm climate stock"/>
+                                    <div class="prefText">A warm climate</div>
+                                    <input name="crime" id="inpWarmClimate" value="{{ request.GET.warmClimate }}"
+                                           style="display:none;"/>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="prefContainer text-center mt-4" data-isPref="" id="contNightlife">
+                                    <img src="{% static 'universities/images/nightlife_stock.png' %}"
+                                         class="imgPref left"
+                                         alt="nightlife stock"/>
+                                    <div class="prefText">Nightlife</div>
+                                    <input name="restaurants" id="inpNightlife" value="{{ request.GET.nightlife }}"
+                                           style="display:none;"/>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="prefContainer text-center mt-4" data-isPref="" id="contSnowy">
+                                    <img src="{% static 'universities/images/snowy_stock.png' %}" class="imgPref right"
+                                         alt="snowy stock"/>
+                                    <div class="prefText">A snowy winter</div>
+                                    <input name="outdoors" id="inpSnowy" value="{{ request.GET.snowy }}"
+                                           style="display:none;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="prefContainer text-center mt-4" data-isPref="" id="contUrban">
+                                    <img src="{% static 'universities/images/urban_stock.png' %}" class="imgPref left"
+                                         alt="urban stock"/>
+                                    <div class="prefText">An urban population</div>
+                                    <input name="urban" id="inpUrban" value="{{ request.GET.urban }}"
+                                           style="display:none;"/>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="prefContainer text-center mt-4" data-isPref="" id="contState">
+                                    <img src="{% static 'universities/images/instate_stock.png' %}" class="imgPref left"
+                                         alt="instate stock"/>
+                                    <div class="prefText">A campus in my home state</div>
+                                    <input name="state" id="inpState" value="{{ request.GET.state }}"
+                                           style="display:none;"/>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="prefContainer text-center mt-4" data-isPref="" id="contDiversity">
+                                    <img src="{% static 'universities/images/diversity_stock.png' %}"
+                                         class="imgPref right"
+                                         alt="diversity stock"/>
+                                    <div class="prefText">Strong diversity</div>
+                                    <input name="diversity" id="inpDiversity" value="{{ request.GET.diversity }}"
+                                           style="display:none;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
+                    </div>
+                    <div class="col-sm text-center">
+                        <div class="next btn btn-lg btn-danger mt-4 mb-3">Next &raquo;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input name="submitted" id="inpSubmitted" value="{{ request.GET.submitted }}" style="display:none;"/>
+        <button type="submit" id="submitButton" style="display:none;">Submit</button>
+        </main>
+        <script>
+            $("#preferencesStarterNext").click(function () {
+                if ($("#preferencesStarter").css("display") === "block") {
+                    $("#submitButton").click();
+                }
+            });
+            $(document).ready(function () {
+                let searchParams = new URLSearchParams(window.location.search);
+                if (searchParams.has('submitted')) {
+                    $("#divUniversities").css("display", "block");
+                    $("#quizStarter").css("display", "none");
+                }
+            })
+        </script>
+    </form>
+    <div id="divUniversities" style="display:none">
+        <h1 class="universities-page-header">Academic Institutions</h1>
         {% for university in universities %}
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -207,6 +272,6 @@
         </div>
 
     </div>
-</div>
+    </div>
 
 {% endblock %}
