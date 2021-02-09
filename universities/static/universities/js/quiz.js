@@ -12,7 +12,6 @@
         "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
 
     }
-    alert('Hello There')
     /*
     For navigating to the next quiz page
     */
