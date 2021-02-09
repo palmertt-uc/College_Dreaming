@@ -1,6 +1,4 @@
 ﻿$(document).ready(function () {
-
-    alert("ok")
     let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo"]
     let currentIndex = 0;
 
@@ -18,7 +16,6 @@
     /*
     For navigating to the next quiz page
     */
-
     $(".next").click(function() {
         $(pages[currentIndex]).fadeOut("slow", function () {
             currentIndex++;
