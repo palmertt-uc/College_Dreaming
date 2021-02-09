@@ -2,11 +2,6 @@
     font-size: 2em;
 }
 
-.quizPage {
-    margin-top: 3em;
-    overflow: hidden;
-}
-
 .interm {
     display: none;
     font-family: 'Chilanka', cursive;
@@ -38,6 +33,7 @@
 
 .prefContainer {
     cursor: pointer;
+    margin: 0 auto;
 }
 
 #info {
