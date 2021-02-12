@@ -193,3 +193,7 @@
 .profile-line {
     border-color: white;
 }
+
+#institution-map {
+    height: 35em;
+}
