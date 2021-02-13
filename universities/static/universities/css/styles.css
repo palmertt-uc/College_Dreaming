@@ -3,7 +3,6 @@
 }
 
 .contact-page-header {
-    padding-bottom: 1em;
     font-size: 4vmax;
     text-align: center;
 }
@@ -192,4 +191,8 @@
 
 .profile-line {
     border-color: white;
+}
+
+#institution-map {
+    height: 35em;
 }
