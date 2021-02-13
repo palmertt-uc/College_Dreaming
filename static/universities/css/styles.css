@@ -3,7 +3,6 @@
 }
 
 .contact-page-header {
-    padding-bottom: 1em;
     font-size: 4vmax;
     text-align: center;
 }
@@ -184,4 +183,16 @@
 .nav-link:hover::after {
   transition-timing-function: cubic-bezier(.19, 1, .22, 1);
   transform: scaleX(1);
+}
+
+.profile-card {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.profile-line {
+    border-color: white;
+}
+
+#institution-map {
+    height: 35em;
 }
