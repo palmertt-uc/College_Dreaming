@@ -50,12 +50,19 @@ def favourite_add(request, pk):
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
+        valid_email = request.POST.get('email')
+        mail_index = valid_email.find('@')+1
+        mail_domain = valid_email[mail_index:]
 
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, 'Account created for ' + username)
-            return redirect('login')
+        if mail_domain == 'yandex.com':
+            messages.error(request, 'Invalid Email Domain')
+            return redirect('home')
+        else:
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                messages.success(request, 'Account created for ' + username)
+                return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
