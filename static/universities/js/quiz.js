@@ -1,6 +1,4 @@
 ﻿$(document).ready(function () {
-
-    alert("ok")
     let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo"]
     let currentIndex = 0;
 
@@ -10,14 +8,10 @@
 
     let groupAttr = {
         "contLowCosts": ["src", "low cost stock", "I'm not worried about costs"],
-        "contMedCosts": ["{% static 'universities/images/crime_stock.png' %}", "medium cost stock", "I'm worried about costs"],
+        "contMedCosts": ["/static/universities/images/snowy_stock.png", "medium cost stock", "I'm worried about costs"],
         "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
 
     }
-
-    /*
-    For navigating to the next quiz page
-    */
 
     $(".next").click(function() {
         $(pages[currentIndex]).fadeOut("slow", function () {

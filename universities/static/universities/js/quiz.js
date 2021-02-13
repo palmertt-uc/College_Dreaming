@@ -12,9 +12,6 @@
         "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
 
     }
-    /*
-    For navigating to the next quiz page
-    */
 
     $(".next").click(function() {
         $(pages[currentIndex]).fadeOut("slow", function () {
