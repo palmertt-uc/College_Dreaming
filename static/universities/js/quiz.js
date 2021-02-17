@@ -3,13 +3,51 @@
     let currentIndex = 0;
 
     let contGroups = {
-        "costs": ["contLowCosts", "contMedCosts", "contHighCosts"]
+        "costs": ["contLowCosts", "contMedCosts", "contHighCosts"],
+        "selectivity": ["contLowSelectivity", "contMedSelectivity", "contHighSelectivity"],
+        "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution"],
+        "type": ["contPublic", "contPrivate", "contNoTypePref"],
+        "size": ["contSmallSize", "contMediumSize", "contLargeSize", "contNoPrefSize"],
+        "graduation_rate":["contNoPrefGradRate", "contAvgGradRate", "contHighGradRate"],
+
+        "housing_costs": ["contLowHousingCosts", "contMedHousingCosts", "contHighHousingCosts"],
+        "job_availability": ["contNoPrefJobs", "contEntryJobs", "contMyFieldJobs"],
+        "crime": ["contNoPrefCrime", "contViolentCrime", "contPropertyCrime", "contBothCrime"],
+        "community": ["contNoPrefCommunity", "contRuralCommunity", "contSuburbanCommunity", "contUrbanCommunity", "contRuralSuburbanCommunity", "contRuralUrbanCommunity", "contSuburbanUrbanCommunity"],
+
+        "summers": ["contNoPrefSummers", "contCoolSummers", "contWarmSummers", "contHotSummers"],
+        "winters": ["contNoPrefWinters", "contColdWinters", "contCoolWinters", "contWarmWinters"],
+        "snowy": ["contNoPrefSnow", "contNoSnow", "contSomeSnow", "contLotsOfSnow"],
+
     };
 
     let groupAttr = {
         "contLowCosts": ["src", "low cost stock", "I'm not worried about costs"],
         "contMedCosts": ["/static/universities/images/snowy_stock.png", "medium cost stock", "I'm worried about costs"],
         "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
+
+        "contLowSelectivity": ["src", "not selective stock", "I want an institution with a high acceptance rate"],
+        "contMedSelectivity": ["src", "selective stock", "I want a selective institution"],
+        "contHighSelectivity": ["src", "very selective stock", "I want a very selective institution"],
+
+        "contNoPrefInstitution": ["src", "no preference stock", "I have no preference towards specialty institutions"],
+        "contNoneInstitution": ["src", "no specialty stock", "I do not want a specialty institution"],
+        "contHBInstitution": ["src", "historically black stock", "I want a historically black institution"],
+        "contNAInstitution": ["src", "Native American institution stock", "I want a Native American institution"],
+
+        "contPublic": ["src", "public school stock", "I'm interested in public schools"],
+        "contPrivate": ["src", "private school stock", "I'm interested in private schools"],
+        "contNoTypePref": ["src", "no preference stock", "I have no preference towards public/private schools"],
+
+        "contSmallSize": ["src", "small school stock", "I prefer smaller schools"],
+        "contMedSize": ["src", "average school size stock", "I prefer average size schools"],
+        "contLargeSize": ["src", "large school stock", "I prefer larger schools"],
+        "contNoPrefSize": ["src", "no preference stock", "I have no preference towards school size"],
+
+        "contNoPrefGradRate": ["src", "no preference stock", "I have no preference with graduation rates"],
+        "contAvgGradRate": ["src", "average graduation rate stock", "I prefer schools with an average graduation rate"],
+        "contHighGradRate": ["src", "high graduation rate stock", "I prefer schools with a high graduation rate"],
+
 
     }
 
