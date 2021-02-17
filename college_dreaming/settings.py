@@ -24,7 +24,7 @@ SECRET_KEY = '1o+h**91+@bor@p^!5+t(xl&r$t31_fcxy&^5b*_#6@@vq$%l)'
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Leqht8ZAAAAAN_gy2jLmvdg4-V3C5q7WOeUz9Hg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
                  'college-dreaming-application-env.eba-ygpnvbdy.us-east-2.elasticbeanstalk.com',
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
 # Application definition
 
 INSTALLED_APPS = [
+    'django_registration',
     'django_filters',
     'rest_framework',
     'crispy_forms',
@@ -135,3 +136,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'ijtjppapwuvcjkul'
+EMAIL_HOST_USER = 'seniordesign908@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+ACCOUNT_ACTIVATION_DAYS = 7

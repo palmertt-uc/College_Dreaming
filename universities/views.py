@@ -81,10 +81,6 @@ class UniversityDetailView(DetailView):
         return context
 
 
-def search(request):
-    return render(request, 'universities/search.html')
-
-
 def about(request):
     return render(request, 'universities/about.html')
 

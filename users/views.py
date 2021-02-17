@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from universities.models import Institutions
 from django.contrib.auth.models import User
@@ -31,8 +31,8 @@ def change_password(request):
 @login_required
 def delete_user(request):
     if request.method == 'POST':
-        user = User.objects.get(username=request.user).delete()
-        user.save()
+        user = request.user
+        user.delete()
         return redirect('login')
     return render(request, 'users/delete.html')
 
@@ -45,27 +45,6 @@ def favourite_add(request, pk):
     else:
         university.favorite.add(request.user)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        valid_email = request.POST.get('email')
-        mail_index = valid_email.find('@')+1
-        mail_domain = valid_email[mail_index:]
-
-        if mail_domain == 'yandex.com':
-            messages.error(request, 'Invalid Email Domain')
-            return redirect('home')
-        else:
-            if form.is_valid():
-                form.save()
-                username = form.cleaned_data.get('username')
-                messages.success(request, 'Account created for ' + username)
-                return redirect('login')
-    else:
-        form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
 
 
 @login_required
