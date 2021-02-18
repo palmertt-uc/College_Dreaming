@@ -16,6 +16,8 @@ class RelationUndergraduates(admin.ModelAdmin):
     search_fields = ('institutionid__instname',)
 
 
+admin.site.site_header = 'College Dreaming Admin Dashboard'
+
 # Register your models here.
 admin.site.register(Institutions, RelationInstitutions)
 admin.site.register(Cities, RelationCities)
