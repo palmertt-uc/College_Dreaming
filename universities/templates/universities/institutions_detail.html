@@ -17,7 +17,6 @@
                             <hr class="profile-line">
                             <h5 class="mt-3">{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
                             <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
-                            <p>Latitude & Longitude: {{ object.latitude }}, {{ object.longitude }}</p>
                             {% if user.is_authenticated %}
                                 {% if favorite %}
                                     <a href="{% url 'favourite_add' institutions.institutionid %}"
