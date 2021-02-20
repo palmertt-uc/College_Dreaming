@@ -17,6 +17,19 @@ const completionRates = JSON.parse(document.getElementById('completion').textCon
 const undergraduates = JSON.parse(document.getElementById('undergrads').textContent);
 const majors = JSON.parse(document.getElementById('majors').textContent);
 
+if (undergraduates.caucasian == null || undergraduates.africanAmerican == null || undergraduates.hispanic == null
+    || undergraduates.pacificIslander == null || undergraduates.multiRacial == null || undergraduates.nonResident == null
+    || undergraduates.asian == null || undergraduates.aian == null) {
+    undergraduates.caucasian = "0.ed.f";
+    undergraduates.africanAmerican = "0.ed.f"
+    undergraduates.hispanic = "0.ed.f"
+    undergraduates.pacificIslander = "0.ed.f"
+    undergraduates.multiRacial = "0.ed.f"
+    undergraduates.nonResident = "0.ed.f"
+    undergraduates.asian = "0.ed.f"
+    undergraduates.aian = "0.ed.f"
+}
+
 new Chart(document.getElementById("nonResidentCompletionRate"), {
     type: 'pie',
     data: {

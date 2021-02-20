@@ -77,19 +77,10 @@
                 <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
                     <h4>Demographic Percentages (%)</h4>
                     <hr class="profile-line">
-                    {% for undergraduate in university_undergrads %}
-                        {% if object.institutionid == undergraduate.undergraduateid %}
-                            <p>Enrollment Degree Seeking: {{ undergraduate.undergraduate_students }}</p>
-                            {% if undergraduate.check_demographics_equals_zero == 0 and undergraduate.check_demographics_is_none == 0 %}
-                                <p>Demographic Percentages: Not Reported</p>
-                            {% else %}
-                                <div id="demographic-chart">
-                                    <canvas id="demographicChart" class="col-lg-12"></canvas>
-                                </div>
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
                     {{ undergraduates|json_script:"undergrads" }}
+                    <div id="demographic-chart">
+                        <canvas id="demographicChart" class="col-lg-12"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
