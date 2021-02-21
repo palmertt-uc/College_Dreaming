@@ -24,7 +24,7 @@ SECRET_KEY = '1o+h**91+@bor@p^!5+t(xl&r$t31_fcxy&^5b*_#6@@vq$%l)'
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Leqht8ZAAAAAN_gy2jLmvdg4-V3C5q7WOeUz9Hg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
                  'college-dreaming-application-env.eba-ygpnvbdy.us-east-2.elasticbeanstalk.com',
@@ -109,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -148,3 +147,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ACCOUNT_ACTIVATION_DAYS = 7
+
+SECURE_HSTS_SECONDS = 300  # set low, but when site is ready for deployment, set to 31536000 seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_BROWSER_XSS_FILTER = True
