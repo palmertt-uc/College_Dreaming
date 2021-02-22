@@ -22,13 +22,13 @@
     };
 
     let groupAttr = {
-        "contLowCosts": ["src", "low cost stock", "I'm not worried about costs"],
-        "contMedCosts": ["/static/universities/images/snowy_stock.png", "medium cost stock", "I'm worried about costs"],
-        "contHighCosts": ["src", "high cost stock", "I'm very worried about costs"],
+        "contLowCosts": ["/static/universities/images/institution/low_costs.png", "low cost stock", "I'm not worried about costs"],
+        "contMedCosts": ["/static/universities/images/institution/medium_costs.png", "medium cost stock", "I'm worried about costs"],
+        "contHighCosts": ["/static/universities/images/institution/high_costs.png", "high cost stock", "I'm very worried about costs"],
 
-        "contLowSelectivity": ["src", "not selective stock", "I want an institution with a high acceptance rate"],
-        "contMedSelectivity": ["src", "selective stock", "I want a selective institution"],
-        "contHighSelectivity": ["src", "very selective stock", "I want a very selective institution"],
+        "contLowSelectivity": ["/static/universities/images/institution/low_selectivity.png", "not selective stock", "I want an institution with a high acceptance rate"],
+        "contMedSelectivity": ["/static/universities/images/institution/medium_selectivity.png", "selective stock", "I want a selective institution"],
+        "contHighSelectivity": ["/static/universities/images/institution/high_selectivity.png", "very selective stock", "I want a very selective institution"],
 
         "contNoPrefInstitution": ["src", "no preference stock", "I have no preference towards specialty institutions"],
         "contNoneInstitution": ["src", "no specialty stock", "I do not want a specialty institution"],
@@ -36,29 +36,29 @@
         "contNAInstitution": ["src", "Native American institution stock", "I want a Native American institution"],
         "contAAPIInstitution": ["src", "Asian American Pacific Islander institution stock", "I want an Asian American Pacific Islander institution"],
         "contMenInstitution": ["/static/universities/images/institution/men_institution.png", "men only institution stock", "I want a men's only institution"],
-        "contWomenInstitution": ["/static/universities/images/institution/women_institution.png", "women only institution stock", "I want a women's only institution"]
+        "contWomenInstitution": ["/static/universities/images/institution/women_institution.png", "women only institution stock", "I want a women's only institution"],
 
         "contPublic": ["/static/universities/images/institution/public_institution.png", "public school stock", "I'm interested in public schools"],
         "contPrivate": ["/static/universities/images/institution/private_institution.png", "private school stock", "I'm interested in private schools"],
         "contNoTypePref": ["src", "no preference stock", "I have no preference towards public/private schools"],
 
         "contSmallSize": ["/static/universities/images/institution/small_institution.ong", "small school stock", "I prefer smaller schools"],
-        "contMedSize": ["src", "average school size stock", "I prefer average size schools"],
+        "contMedSize": ["/static/universities/images/institution/medium_institution.png", "average school size stock", "I prefer average size schools"],
         "contLargeSize": ["/static/universities/images/institution/large_institution.png", "large school stock", "I prefer larger schools"],
         "contNoPrefSize": ["src", "no preference stock", "I have no preference towards school size"],
 
         "contNoPrefGradRate": ["src", "no preference stock", "I have no preference with graduation rates"],
-        "contAvgGradRate": ["src", "average graduation rate stock", "I prefer schools with an average graduation rate"],
-        "contHighGradRate": ["src", "high graduation rate stock", "I prefer schools with a high graduation rate"],
+        "contAvgGradRate": ["/static/universities/images/institution/average_graduation.png", "average graduation rate stock", "I prefer schools with an average graduation rate"],
+        "contHighGradRate": ["/static/universities/images/institution/high_graduation.png", "high graduation rate stock", "I prefer schools with a high graduation rate"],
 
         "contNoPrefHousingCosts": ["src", "no pref housing costs stock", "I have no preference towards housing costs"],
-        "contLowHousingCosts": ["src", "low housing costs stock", "Low housing costs are important to me"],
-        "contMedHousingCosts": ["src", "average housing costs stock", "Average housing costs are okay to me"],
+        "contLowHousingCosts": ["/static/universities/images/living/low_housing_costs.png", "low housing costs stock", "Low housing costs are important to me"],
+        "contMedHousingCosts": ["/static/universities/images/living/medium_housing_costs.png", "average housing costs stock", "Average housing costs are okay to me"],
 
         "contNoPrefJobs": ["src", "no pref local job preference stock", "I have no preference towards local jobs"],
-        "contEntryJobs": ["src", "local entry jobs stock", "I prefer having local entry-level jobs available"],
-        "contMyFieldJobs": ["src", "my field jobs stock", "I prefer local jobs pertaining to my field"]
-        "contBothJobs": "src", "local entry-level and field-related jobs stock", "I want both local entry level and jobs pertaining to my field"
+        "contEntryJobs": ["/static/universities/images/living/entry_level_jobs.png", "local entry jobs stock", "I prefer having local entry-level jobs available"],
+        "contMyFieldJobs": ["/static/universities/images/living/my_field_jobs.png", "my field jobs stock", "I prefer local jobs pertaining to my field"],
+        "contBothJobs": ["/static/universities/images/living/entry_and_field_jobs.png", "local entry-level and field-related jobs stock", "I want both local entry level and jobs pertaining to my field"],
 
         "contNoPrefCrime": ["src", "no preference crime stock", "I am not worried about crime in the area"],
         "contViolentCrime": ["src", "violent crime stock", "I am worried about violent crime in the area"],
@@ -84,8 +84,8 @@
         "contWarmWinters": ["/static/universities/images/climate/warm_winter.png", "warm winters stock", "I prefer warm winters"],
 
         "contNoPrefSnow": ["src", "no preference snow stock", "I have no preference on snow fall amounts"],
-        "contNoSnow": ["src", "no snow stock", "I prefer no snow"],
-        "contSomeSnow": ["src", "some snow stock", "I prefer some snow"],
+        "contNoSnow": ["/static/universities/images/climate/no_snow.png", "no snow stock", "I prefer no snow"],
+        "contSomeSnow": ["/static/universities/images/climate/some_snow.png", "some snow stock", "I prefer some snow"],
         "contLotsOfSnow": ["/static/universities/images/climate/snowy_winter.png", "lots of snow stock", "I prefer lots of snow"]
     }
 
