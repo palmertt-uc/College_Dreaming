@@ -148,6 +148,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
-SECURE_HSTS_SECONDS = 300  # set low, but when site is ready for deployment, set to 31536000 seconds
+SECURE_HSTS_SECONDS = 31536000  # set low, but when site is ready for deployment, set to 31536000 seconds
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 SECURE_BROWSER_XSS_FILTER = True

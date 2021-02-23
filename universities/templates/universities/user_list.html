@@ -24,11 +24,13 @@
                             </li>
                         {% endif %}
                     {% else %}
-                        <li class="list-group-item bg-transparent">
-                            <h5><a href="#"
-                                   onclick="alert('You must have an account to view profiles!')">{{ account.user.username }}</a>
-                            </h5>
-                        </li>
+                        {% if account.user.is_active %}
+                            <li class="list-group-item bg-transparent">
+                                <h5><a href="#"
+                                       onclick="alert('You must have an account to view profiles!')">{{ account.user.username }}</a>
+                                </h5>
+                            </li>
+                        {% endif %}
                     {% endif %}
                 </ul>
             {% endfor %}
