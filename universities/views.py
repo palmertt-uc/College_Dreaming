@@ -70,11 +70,19 @@ class UniversityDetailView(DetailView):
         university_undergraduates = Undergraduates.objects.all()
         university_completion_rate = Completionrates.objects.all()
         university_majors = Majors.objects.all()
+        university_institutions = Institutions.objects.all()
         costs = {}
         admissions = {}
         undergraduates = {}
         completion = {}
         majors = {}
+        institutions = {}
+
+        for institution_dictionary in university_institutions:
+            if university.institutionid == institution_dictionary.institutionid:
+                institutions['latitude'] = str(institution_dictionary.latitude) + '</script>&amp;'
+                institutions['longitude'] = str(institution_dictionary.longitude) + '</script>&amp;'
+                institutions['instname'] = str(institution_dictionary.instname) + '</script>&amp;'
 
         for cost in university_costs:
             if university.institutionid == cost.costsid:
@@ -166,6 +174,7 @@ class UniversityDetailView(DetailView):
         context['university_admissions'] = university_admissions
         context['university_undergrads'] = university_undergraduates
         context['university_majors'] = university_majors
+        context['university_institutions'] = institutions
         return context
 
 
