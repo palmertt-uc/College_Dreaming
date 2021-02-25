@@ -1,10 +1,14 @@
 asgiref==3.2.10
+confusable-homoglyphs==3.2.0
 Django==3.1.2
 django-bootstrap-form==3.4
 django-crispy-forms==1.9.2
 django-fav==0.3
 django-filter==2.4.0
+django-haystack==3.0
 django-recaptcha==2.0.6
+django-registration==3.1.1
+django-utils-six==2.0
 djangorestframework==3.12.1
 Markdown==3.3.3
 mysqlclient==2.0.1

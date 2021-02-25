@@ -9,148 +9,168 @@ let business = document.getElementById('business');
 let scienceAndMath = document.getElementById('science&Math');
 let arts = document.getElementById('arts');
 let social = document.getElementById('socialSciences');
+Chart.defaults.global.defaultFontColor = '#fff';
+
+const cost = JSON.parse(document.getElementById('cost').textContent);
+const admissions = JSON.parse(document.getElementById('admission').textContent);
+const completionRates = JSON.parse(document.getElementById('completion').textContent);
+const undergraduates = JSON.parse(document.getElementById('undergrads').textContent);
+const majors = JSON.parse(document.getElementById('majors').textContent);
+
+if (undergraduates.caucasian == null || undergraduates.africanAmerican == null || undergraduates.hispanic == null
+    || undergraduates.pacificIslander == null || undergraduates.multiRacial == null || undergraduates.nonResident == null
+    || undergraduates.asian == null || undergraduates.aian == null) {
+    undergraduates.caucasian = "0.ed.f";
+    undergraduates.africanAmerican = "0.ed.f"
+    undergraduates.hispanic = "0.ed.f"
+    undergraduates.pacificIslander = "0.ed.f"
+    undergraduates.multiRacial = "0.ed.f"
+    undergraduates.nonResident = "0.ed.f"
+    undergraduates.asian = "0.ed.f"
+    undergraduates.aian = "0.ed.f"
+}
 
 new Chart(document.getElementById("nonResidentCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (nonResidentCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (nonResidentCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "Multi-Racial Graduation Rate",
-        backgroundColor: ["rgba(255, 61, 223, 0.52)", "rgba(61, 255, 81, 0.52)"],
-        data: [(nonResidentCompletionRate * 100).toFixed(2), 100 - (nonResidentCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.nonResidentCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.nonResidentCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "Non-Resident Graduation Rate",
+            backgroundColor: ["rgba(255, 61, 223, 0.52)", "rgba(61, 255, 81, 0.52)"],
+            data: [(completionRates.nonResidentCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.nonResidentCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'Multi-Racial Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'Non-Resident Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("multiRacialCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (multiRacialCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (multiRacialCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "Multi-Racial Graduation Rate",
-        backgroundColor: ["rgba(214, 0, 0, 0.52)", "rgba(28, 31, 160, 0.4)"],
-        data: [(multiRacialCompletionRate * 100).toFixed(2), 100 - (multiRacialCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.multiRacialCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.multiRacialCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "Multi-Racial Graduation Rate",
+            backgroundColor: ["rgba(214, 0, 0, 0.52)", "rgba(28, 31, 160, 0.4)"],
+            data: [(completionRates.multiRacialCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.multiRacialCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'Multi-Racial Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'Multi-Racial Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("pacificIslanderCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (pacificIslanderCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (pacificIslanderCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "Pacific Islander Graduation Rate",
-        backgroundColor: ["rgba(42, 160, 28, 0.4)", "rgba(28, 86, 160, 0.4)"],
-        data: [(pacificIslanderCompletionRate * 100).toFixed(2), 100 - (pacificIslanderCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.pacificIslanderCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.pacificIslanderCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "Pacific Islander Graduation Rate",
+            backgroundColor: ["rgba(42, 160, 28, 0.4)", "rgba(28, 86, 160, 0.4)"],
+            data: [(completionRates.pacificIslanderCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.pacificIslanderCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'Pacific Islander Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'Pacific Islander Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("aianCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (aianCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (aianCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "American Indian / Alaskan Native Graduation Rate",
-        backgroundColor: ["rgba(160, 116, 28, 0.5)", "rgba(160, 28, 97, 0.5)"],
-        data: [(aianCompletionRate * 100).toFixed(2), 100 - (aianCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.aianCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.aianCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "American Indian / Alaskan Native Graduation Rate",
+            backgroundColor: ["rgba(160, 116, 28, 0.5)", "rgba(160, 28, 97, 0.5)"],
+            data: [(completionRates.aianCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.aianCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'American Indian / Alaskan Native Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'American Indian / Alaskan Native Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("asianCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (asianCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (asianCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "Asian Graduation Rate",
-        backgroundColor: ["rgba(28, 160, 42, 0.79)", "rgba(160, 28, 28, 0.64)"],
-        data: [(asianCompletionRate * 100).toFixed(2), (100 - (asianCompletionRate * 100)).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.asianCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.asianCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "Asian Graduation Rate",
+            backgroundColor: ["rgba(28, 160, 42, 0.79)", "rgba(160, 28, 28, 0.64)"],
+            data: [(completionRates.asianCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), (100 - (completionRates.asianCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'Asian Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'Asian Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("hispanicCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (hispanicCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (hispanicCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "Hispanic Graduation Rate",
-        backgroundColor: ["rgba(103, 228, 184, 0.79)", "rgba(226, 228, 103, 0.79)"],
-        data: [(hispanicCompletionRate * 100).toFixed(2), 100 - (hispanicCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.hispanicCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.hispanicCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "Hispanic Graduation Rate",
+            backgroundColor: ["rgba(103, 228, 184, 0.79)", "rgba(226, 228, 103, 0.79)"],
+            data: [(completionRates.hispanicCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.hispanicCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'Hispanic Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'Hispanic Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("whiteCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (whiteCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (whiteCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "Caucasian Graduation Rate",
-        backgroundColor: ["rgba(100, 114, 196, 0.79)", "rgba(196, 100, 100, 0.79)"],
-        data: [(whiteCompletionRate * 100).toFixed(2), 100 - (whiteCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.whiteCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.whiteCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "Caucasian Graduation Rate",
+            backgroundColor: ["rgba(100, 114, 196, 0.79)", "rgba(196, 100, 100, 0.79)"],
+            data: [(completionRates.whiteCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.whiteCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'Caucasian Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'Caucasian Graduate Rate (%)'
+        }
     }
 });
 
 new Chart(document.getElementById("blackCompletionRate"), {
     type: 'pie',
     data: {
-      labels: ["Graduated (" + (blackCompletionRate * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (blackCompletionRate * 100)).toFixed(2) + "%)"],
-      datasets: [{
-        label: "African American Graduation Rate",
-        backgroundColor: ["rgba(196, 170, 100, 0.79)", "rgba(159, 100, 196, 0.79)"],
-        data: [(blackCompletionRate * 100).toFixed(2), 100 - (blackCompletionRate * 100).toFixed(2)]
-      }]
+        labels: ["Graduated (" + (completionRates.blackCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + "%)", "Not Graduated (" + (100 - (completionRates.blackCompletionRate.replace(/[^0-9$.,]/g, '') * 100)).toFixed(2) + "%)"],
+        datasets: [{
+            label: "African American Graduation Rate",
+            backgroundColor: ["rgba(196, 170, 100, 0.79)", "rgba(159, 100, 196, 0.79)"],
+            data: [(completionRates.blackCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2), 100 - (completionRates.blackCompletionRate.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)]
+        }]
     },
     options: {
-      title: {
-        display: true,
-        text: 'African American Graduate Rate (%)'
-      }
+        title: {
+            display: true,
+            text: 'African American Graduate Rate (%)'
+        }
     }
 });
 
@@ -159,58 +179,59 @@ let socialSciencesChart = new Chart(social, {
     data: {
         labels: [],
         datasets: [{
-            label: 'Social Science (' + (socialScience * 100).toFixed(2) + '%)',
-            data: [(socialScience * 100).toFixed(2)],
+            label: 'Social Science (' + (majors.socialScience.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+            data: [(majors.socialScience.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
             backgroundColor: ['rgba(51, 0, 235, 0.53)']
         },
-        {
-            label: 'Public Administration (' + (publicAdministration * 100).toFixed(2) + '%)',
-            data: [(publicAdministration * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+            {
+                label: 'Public Administration (' + (majors.publicAdministration.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.publicAdministration.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 231, 0.53)']
 
-        },
-        {
-            label: 'Ethnic Cultural/Gender Studies (' + (ethnicCulturalGender * 100).toFixed(2) + '%)',
-            data: [(ethnicCulturalGender * 100).toFixed(2)],
-            backgroundColor: ['rgba(117, 11, 11, 0.79)']
-        },
-        {
-            label: 'Psychology (' + (psychology * 100).toFixed(2) + '%)',
-            data: [(psychology * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 223, 0, 0.53)']
-        },
-        {
-            label: 'Education (' + (education * 100).toFixed(2) + '%)',
-            data: [(education * 100).toFixed(2)],
-            backgroundColor: ['rgba(117, 11, 111, 0.79)']
-        },
-        {
-            label: 'Legal (' + (legal * 100).toFixed(2) + '%)',
-            data: [(legal * 100).toFixed(2)],
-            backgroundColor: ['rgba(166, 149, 17, 0.79)']
-        },
-        {
-            label: 'Humanities (' + (humanities * 100).toFixed(2) + '%)',
-            data: [(humanities * 100).toFixed(2)],
-            backgroundColor: ['rgba(231, 107, 24, 0.79)']
-        },
-        {
-            label: 'Security & Law Enforcement (' + (securityLawEnforcement * 100).toFixed(2) + '%)',
-            data: [(securityLawEnforcement * 100).toFixed(2)],
-            backgroundColor: ['rgba(28, 24, 231, 0.79)']
-        },
+            },
+            {
+                label: 'Ethnic Cultural/Gender Studies (' + (majors.ethnicCulturalGender.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.ethnicCulturalGender.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(117, 11, 11, 0.79)']
+            },
+            {
+                label: 'Psychology (' + (majors.psychology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.psychology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 223, 0, 0.53)']
+            },
+            {
+                label: 'Education (' + (majors.education.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.education.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(117, 11, 111, 0.79)']
+            },
+            {
+                label: 'Legal (' + (majors.legal.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.legal.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(166, 149, 245, 0.79)']
+            },
+            {
+                label: 'Humanities (' + (majors.humanities.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.humanities.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(231, 107, 24, 0.79)']
+            },
+            {
+                label: 'Security & Law Enforcement (' + (majors.securityLawEnforcement.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.securityLawEnforcement.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(28, 24, 231, 0.79)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: true,
-          text: 'Social Sciences (%)'
+            display: true,
+            text: 'Social Sciences (%)'
         },
         legend: {
             display: true
@@ -220,10 +241,16 @@ let socialSciencesChart = new Chart(social, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
@@ -234,48 +261,49 @@ let artsChart = new Chart(arts, {
     data: {
         labels: [],
         datasets: [{
-            label: 'Architecture (' + (architecture * 100).toFixed(2) + '%)',
-            data: [(architecture * 100).toFixed(2)],
-             backgroundColor: ['rgba(182, 84, 84, 0.79)']
+            label: 'Architecture (' + (majors.architecture.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+            data: [(majors.architecture.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+            backgroundColor: ['rgba(182, 84, 84, 0.79)']
         },
-        {
-            label: 'Visual Performing (' + (visualPerforming * 100).toFixed(2) + '%)',
-            data: [(visualPerforming * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+            {
+                label: 'Visual Performing (' + (majors.visualPerforming.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.visualPerforming.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 231, 0.53)']
 
-        },
-        {
-            label: 'Personal Culinary (' + (personalCulinary * 100).toFixed(2) + '%)',
-            data: [(personalCulinary * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 0, 0.53)']
-        },
-        {
-            label: 'Multi Discipline (' + (multiDiscipline * 100).toFixed(2) + '%)',
-            data: [(multiDiscipline * 100).toFixed(2)],
-            backgroundColor: ['rgba(27, 17, 166, 0.79)']
-        },
-        {
-            label: 'Military (' + (military * 100).toFixed(2) + '%)',
-            data: [(military * 100).toFixed(2)],
-            backgroundColor: ['rgba(166, 17, 146, 0.79)']
-        },
-        {
-            label: 'Parks & Recreation & Fitness (' + (parksRecreationFitness * 100).toFixed(2) + '%)',
-            data: [(parksRecreationFitness * 100).toFixed(2)],
-            backgroundColor: ['rgba(166, 149, 17, 0.79)']
-        },
+            },
+            {
+                label: 'Personal Culinary (' + (majors.personalCulinary.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.personalCulinary.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 0, 0.53)']
+            },
+            {
+                label: 'Multi Discipline (' + (majors.multiDiscipline.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.multiDiscipline.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(27, 17, 166, 0.79)']
+            },
+            {
+                label: 'Military (' + (majors.military.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.military.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(166, 17, 146, 0.79)']
+            },
+            {
+                label: 'Parks & Recreation & Fitness (' + (majors.parksRecreationFitness.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.parksRecreationFitness.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(166, 149, 17, 0.79)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: true,
-          text: 'Arts & Other (%)'
+            display: true,
+            text: 'Arts & Other (%)'
         },
         legend: {
             display: true
@@ -285,10 +313,16 @@ let artsChart = new Chart(arts, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
@@ -299,48 +333,49 @@ let scienceAndMathChart = new Chart(scienceAndMath, {
     data: {
         labels: [],
         datasets: [{
-            label: 'Health (' + (health * 100).toFixed(2) + '%)',
-            data: [(health * 100).toFixed(2)],
-             backgroundColor: ['rgba(182, 84, 84, 0.79)']
+            label: 'Health (' + (majors.health.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+            data: [(majors.health.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+            backgroundColor: ['rgba(182, 84, 84, 0.79)']
         },
-        {
-            label: 'Mathematics (' + (mathematics * 100).toFixed(2) + '%)',
-            data: [(mathematics * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+            {
+                label: 'Mathematics (' + (majors.mathematics.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.mathematics.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 231, 0.53)']
 
-        },
-        {
-            label: 'Biology (' + (biological * 100).toFixed(2) + '%)',
-            data: [(biological * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 0, 0.53)']
-        },
-        {
-            label: 'Family Consumer Science (' + (familyConsumerScience * 100).toFixed(2) + '%)',
-            data: [(familyConsumerScience * 100).toFixed(2)],
-            backgroundColor: ['rgba(28, 24, 231, 0.79)']
-        },
-        {
-            label: 'Physical Science (' + (physicalScience * 100).toFixed(2) + '%)',
-            data: [(physicalScience * 100).toFixed(2)],
-            backgroundColor: ['rgba(0, 235, 51, 0.53)']
-        },
-        {
-            label: 'Agriculture (' + (agriculture * 100).toFixed(2) + '%)',
-            data: [(agriculture * 100).toFixed(2)],
-            backgroundColor: ['rgba(17, 166, 129, 0.79)']
-        },
+            },
+            {
+                label: 'Biology (' + (majors.biological.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.biological.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 0, 0.53)']
+            },
+            {
+                label: 'Family Consumer Science (' + (majors.familyConsumerScience.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.familyConsumerScience.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(28, 24, 231, 0.79)']
+            },
+            {
+                label: 'Physical Science (' + (majors.physicalScience.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.physicalScience.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(0, 235, 51, 0.53)']
+            },
+            {
+                label: 'Agriculture (' + (majors.agriculture.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.agriculture.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(17, 166, 129, 0.79)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: true,
-          text: 'Science & Math (%)'
+            display: true,
+            text: 'Science & Math (%)'
         },
         legend: {
             display: true
@@ -350,10 +385,16 @@ let scienceAndMathChart = new Chart(scienceAndMath, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
@@ -364,38 +405,39 @@ let businessChart = new Chart(business, {
     data: {
         labels: [],
         datasets: [{
-            label: 'Business Marketing (' + (businessMarketing * 100).toFixed(2) + '%)',
-            data: [(businessMarketing * 100).toFixed(2)],
-             backgroundColor: ['rgba(90, 182, 84, 0.79)']
+            label: 'Business Marketing (' + (majors.businessMarketing.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+            data: [(majors.businessMarketing.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+            backgroundColor: ['rgba(90, 182, 84, 0.79)']
         },
-        {
-            label: 'Resources (' + (resources * 100).toFixed(2) + '%)',
-            data: [(resources * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+            {
+                label: 'Resources (' + (majors.resources.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.resources.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 231, 0.53)']
 
-        },
-        {
-            label: 'Transportation (' + (transportation * 100).toFixed(2) + '%)',
-            data: [(transportation * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 0, 0.53)']
-        },
-        {
-            label: 'Construction Management (' + (construction * 100).toFixed(2) + '%)',
-            data: [(construction * 100).toFixed(2)],
-            backgroundColor: ['rgba(28, 24, 231, 0.79)']
-        },
+            },
+            {
+                label: 'Transportation (' + (majors.transportation.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.transportation.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 0, 0.53)']
+            },
+            {
+                label: 'Construction Management (' + (majors.construction.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.construction.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(28, 24, 231, 0.79)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: true,
-          text: 'Business-Related (%)'
+            display: true,
+            text: 'Business-Related (%)'
         },
         legend: {
             display: true
@@ -405,10 +447,16 @@ let businessChart = new Chart(business, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
@@ -419,53 +467,54 @@ let engineeringTechChart = new Chart(engineeringAndTechnology, {
     data: {
         labels: [],
         datasets: [{
-            label: 'Engineering (' + (engineering * 100).toFixed(2) + '%)',
-            data: [(engineering * 100).toFixed(2)],
-             backgroundColor: ['rgba(51, 0, 235, 0.53)']
+            label: 'Engineering (' + (majors.engineering.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+            data: [(majors.engineering.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+            backgroundColor: ['rgba(51, 0, 235, 0.53)']
         },
-        {
-            label: 'Engineering Technology (' + (engineeringTechnology * 100).toFixed(2) + '%)',
-            data: [(engineeringTechnology * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 231, 0.53)']
+            {
+                label: 'Engineering Technology (' + (majors.engineeringTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.engineeringTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 231, 0.53)']
 
-        },
-        {
-            label: 'Communications Technology (' + (communicationsTechnology * 100).toFixed(2) + '%)',
-            data: [(communicationsTechnology * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 0, 0.53)']
-        },
-        {
-            label: 'Mechanic Repair Technology (' + (mechanicRepairTechnology * 100).toFixed(2) + '%)',
-            data: [(mechanicRepairTechnology * 100).toFixed(2)],
-            backgroundColor: ['rgba(0, 235, 51, 0.53)']
-        },
-        {
-            label: 'Science Technology (' + (scienceTechnology * 100).toFixed(2) + '%)',
-            data: [(scienceTechnology * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 223, 0, 0.53)']
-        },
-        {
-            label: 'Computer Science (' + (computer * 100).toFixed(2) + '%)',
-            data: [(computer * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 141, 0, 0.65)']
-        },
-        {
-            label: 'Precision Production (' + (precisionProduction * 100).toFixed(2) + '%)',
-            data: [(precisionProduction * 100).toFixed(2)],
-            backgroundColor: ['rgba(11, 20, 117, 0.79)']
-        },
+            },
+            {
+                label: 'Communications Technology (' + (majors.communicationsTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.communicationsTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 0, 0.53)']
+            },
+            {
+                label: 'Mechanic Repair Technology (' + (majors.mechanicRepairTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.mechanicRepairTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(0, 235, 51, 0.53)']
+            },
+            {
+                label: 'Science Technology (' + (majors.scienceTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.scienceTechnology.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 223, 0, 0.53)']
+            },
+            {
+                label: 'Computer Science (' + (majors.computer.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.computer.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 141, 0, 0.65)']
+            },
+            {
+                label: 'Precision Production (' + (majors.precisionProduction.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.precisionProduction.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(11, 20, 117, 0.79)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: true,
-          text: 'Engineering & Technology (%)'
+            display: true,
+            text: 'Engineering & Technology (%)'
         },
         legend: {
             display: true
@@ -475,10 +524,16 @@ let engineeringTechChart = new Chart(engineeringAndTechnology, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
@@ -489,53 +544,54 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
     data: {
         labels: [],
         datasets: [
-        {
-            label: 'Religious Philosophy (' + (philosophyReligious * 100).toFixed(2) + '%)',
-            data: [(philosophyReligious * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 0, 0, 0.53)']
-        },
-        {
-            label: 'Theology Religious Vocation (' + (theologyReligiousVocation * 100).toFixed(2) + '%)',
-            data: [(theologyReligiousVocation * 100).toFixed(2)],
-            backgroundColor: ['rgba(0, 235, 51, 0.53)']
-        },
-        {
-            label: 'Library (' + (library * 100).toFixed(2) + '%)',
-            data: [(library * 100).toFixed(2)],
-            backgroundColor: ['rgba(235, 141, 0, 0.65)']
-        },
-        {
-            label: 'History (' + (history * 100).toFixed(2) + '%)',
-            data: [(history * 100).toFixed(2)],
-            backgroundColor: ['rgba(11, 20, 117, 0.79)']
-        },
-        {
-            label: 'English (' + (english * 100).toFixed(2) + '%)',
-            data: [(english * 100).toFixed(2)],
-            backgroundColor: ['rgba(69, 117, 11, 0.79)']
-        },
-        {
-            label: 'Communication (' + (communication * 100).toFixed(2) + '%)',
-            data: [(communication * 100).toFixed(2)],
-            backgroundColor: ['rgba(11, 117, 110, 0.79)']
-        },
-        {
-            label: 'Language (' + (language * 100).toFixed(2) + '%)',
-            data: [(language * 100).toFixed(2)],
-            backgroundColor: ['rgba(67, 117, 11, 0.79)']
-        },
+            {
+                label: 'Religious Philosophy (' + (majors.philosophyReligious.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.philosophyReligious.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 0, 0, 0.53)']
+            },
+            {
+                label: 'Theology Religious Vocation (' + (majors.theologyReligiousVocation.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.theologyReligiousVocation.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(0, 235, 51, 0.53)']
+            },
+            {
+                label: 'Library (' + (majors.library.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.library.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(235, 141, 0, 0.65)']
+            },
+            {
+                label: 'History (' + (majors.history.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.history.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(11, 20, 117, 0.79)']
+            },
+            {
+                label: 'English (' + (majors.english.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.english.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(69, 117, 11, 0.79)']
+            },
+            {
+                label: 'Communication (' + (majors.communication.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.communication.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(11, 117, 110, 0.79)']
+            },
+            {
+                label: 'Language (' + (majors.language.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(majors.language.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(150, 117, 200, 0.79)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: true,
-          text: 'Literature & Language (%)'
+            display: true,
+            text: 'Literature & Language (%)'
         },
         legend: {
             display: true
@@ -545,20 +601,30 @@ let litLanguageChart = new Chart(litLanguageSocialScience, {
                 ticks: {
                     beginAtZero: true
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
 });
 
 function otherDemographic() {
-    let total = (caucasian * 100) + (africanAmerican * 100) + (hispanic * 100) + (asian * 100) + (pacificIslander * 100) + (multiRacial * 100) + (nonResident * 100) + (aian * 100);
+    let total = (undergraduates.caucasian.replace(/[^0-9$.,]/g, '') * 100)
+        + (undergraduates.africanAmerican.replace(/[^0-9$.,]/g, '') * 100)
+        + (undergraduates.hispanic.replace(/[^0-9$.,]/g, '') * 100) + (undergraduates.asian.replace(/[^0-9$.,]/g, '') * 100)
+        + (undergraduates.pacificIslander.replace(/[^0-9$.,]/g, '') * 100) + (undergraduates.multiRacial.replace(/[^0-9$.,]/g, '') * 100)
+        + (undergraduates.nonResident.replace(/[^0-9$.,]/g, '') * 100) + (undergraduates.aian.replace(/[^0-9$.,]/g, '') * 100);
     if ((100 - total).toFixed(2) < 0) {
         return 0;
-    }else {
+    } else {
         return (100 - total).toFixed(2);
     }
 }
@@ -568,62 +634,63 @@ let demographicChart = new Chart(demographics, {
     data: {
         labels: [],
         datasets: [{
-            label: 'Caucasian (' + (caucasian * 100).toFixed(2) + '%)',
-            data: [(caucasian * 100).toFixed(2)],
-            backgroundColor: ['rgba(255, 99, 132, 0.2)',]
-        },
-        {
-            label: 'African American (' + (africanAmerican * 100).toFixed(2) + '%)',
-            data: [(africanAmerican * 100).toFixed(2)],
-            backgroundColor: ['rgba(54, 162, 235, 0.2)']
-        },
-        {
-            label: 'Hispanic (' + (hispanic * 100).toFixed(2) + '%)',
-            data: [(hispanic * 100).toFixed(2)],
-            backgroundColor: ['rgba(255, 206, 86, 0.2)']
-        },
-        {
-            label: 'Asian (' + (asian * 100).toFixed(2) + '%)',
-            data: [(asian * 100).toFixed(2)],
-            backgroundColor: ['rgba(75, 192, 192, 0.2)']
-        },
-        {
-            label: 'Pacific Islander (' + (pacificIslander * 100).toFixed(2) + '%)',
-            data: [(pacificIslander * 100).toFixed(2)],
-            backgroundColor: ['rgba(153, 102, 255, 0.2)']
-        },
-        {
-            label: 'Multi-Racial (' + (multiRacial * 100).toFixed(2) + '%)',
-            data: [(multiRacial * 100).toFixed(2)],
-            backgroundColor: ['rgba(255, 159, 64, 0.2)']
-        },
-        {
-            label: 'Non-Resident (' + (nonResident * 100).toFixed(2) + '%)',
-            data: [(nonResident * 100).toFixed(2)],
-            backgroundColor: ['rgba(176, 85, 90, 0.2)']
-        },
-        {
-            label: 'American Indian/Alaskan native (' + (aian * 100).toFixed(2) + '%)',
-            data: [(aian * 100).toFixed(2)],
-            backgroundColor: ['rgba(46, 0, 0, 0.26)']
+            label: 'Caucasian (' + (undergraduates.caucasian.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+            data: [(undergraduates.caucasian.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+            backgroundColor: ['rgba(255, 99, 132, 0.5)',]
         },
             {
-            label: 'Other (' + otherDemographic() + '%)',
-            data: [otherDemographic()],
-            backgroundColor: ['rgba(0, 27, 204, 0.2)']
-        },
+                label: 'African American (' + (undergraduates.africanAmerican.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.africanAmerican.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(54, 162, 235, 0.5)']
+            },
+            {
+                label: 'Hispanic (' + (undergraduates.hispanic.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.hispanic.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(255, 206, 86, 0.5)']
+            },
+            {
+                label: 'Asian (' + (undergraduates.asian.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.asian.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(75, 192, 192, 0.5)']
+            },
+            {
+                label: 'Pacific Islander (' + (undergraduates.pacificIslander.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.pacificIslander.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(153, 102, 255, 0.5)']
+            },
+            {
+                label: 'Multi-Racial (' + (undergraduates.multiRacial.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.multiRacial.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(255, 159, 64, 0.5)']
+            },
+            {
+                label: 'Non-Resident (' + (undergraduates.nonResident.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.nonResident.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(176, 85, 90, 0.5)']
+            },
+            {
+                label: 'American Indian/Alaskan native (' + (undergraduates.aian.replace(/[^0-9$.,]/g, '') * 100).toFixed(2) + '%)',
+                data: [(undergraduates.aian.replace(/[^0-9$.,]/g, '') * 100).toFixed(2)],
+                backgroundColor: ['rgba(46, 120, 20, 0.5)']
+            },
+            {
+                label: 'Other (' + otherDemographic() + '%)',
+                data: [otherDemographic()],
+                backgroundColor: ['rgba(0, 27, 204, 0.5)']
+            },
         ]
     },
     options: {
         maintainAspectRatio: false,
         tooltips: {
             callbacks: {
-                title: () => {}
+                title: () => {
+                }
             },
         },
         title: {
-          display: false,
-          text: 'Demographic Percentages (%)'
+            display: false,
+            text: 'Demographic Percentages (%)'
         },
         scales: {
             yAxes: [{
@@ -631,10 +698,16 @@ let demographicChart = new Chart(demographics, {
                     beginAtZero: true,
                     max: 100,
                 },
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
             xAxes: [{
-                stacked: true
+                stacked: true,
+                gridLines: {
+                    color: '#383838'
+                }
             }],
         }
     }
@@ -643,13 +716,13 @@ let demographicChart = new Chart(demographics, {
 let myTuitionChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['In-State ($' + (parseInt(inStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')', 'Out-of-State ($' + (parseInt(outStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')'],
+        labels: ['In-State ($' + (parseInt(cost.inStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')', 'Out-of-State ($' + (parseInt(cost.outStateTuition)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ')'],
         datasets: [{
             label: 'Tuition in USD ($)',
-            data: [parseInt(inStateTuition), parseInt(outStateTuition)],
+            data: [parseInt(cost.inStateTuition), parseInt(cost.outStateTuition)],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(255, 99, 132, .5)',
+                'rgba(54, 162, 235, .5)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -661,8 +734,8 @@ let myTuitionChart = new Chart(ctx, {
     options: {
         maintainAspectRatio: false,
         title: {
-          display: true,
-          text: 'Tuition in USD ($)'
+            display: true,
+            text: 'Tuition in USD ($)'
         },
         legend: {
             display: false
@@ -671,21 +744,24 @@ let myTuitionChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
+                },
+                gridLines: {
+                    color: '#383838'
                 }
-            }]
-        }
+            }],
+        },
     }
 });
 
 let myActChart = new Chart(act, {
     type: 'bar',
     data: {
-        labels: ['ACT Score (' + parseInt(actScore) + ')'],
+        labels: ['ACT Score (' + parseInt(admissions.actScore) + ')'],
         datasets: [{
             label: 'ACT Score (out of 36)',
-            data: [parseInt(actScore)],
+            data: [parseInt(admissions.actScore)],
             backgroundColor: [
-                'rgba(255, 206, 86, 0.2)'
+                'rgba(255, 206, 86, .5)'
             ],
             borderColor: [
                 'rgba(255, 206, 86, 1)'
@@ -696,8 +772,8 @@ let myActChart = new Chart(act, {
     options: {
         maintainAspectRatio: false,
         title: {
-          display: true,
-          text: 'Average ACT Score (out of 36)'
+            display: true,
+            text: 'Average ACT Score (out of 36)'
         },
         legend: {
             display: false
@@ -706,8 +782,11 @@ let myActChart = new Chart(act, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    max : 40,
-                    min : 0
+                    max: 40,
+                    min: 0
+                },
+                gridLines: {
+                    color: '#383838'
                 }
             }]
         }
@@ -717,12 +796,12 @@ let myActChart = new Chart(act, {
 let mySatChart = new Chart(sat, {
     type: 'bar',
     data: {
-        labels: ['SAT Score (' + parseInt(satScore) + ')'],
+        labels: ['SAT Score (' + parseInt(admissions.satScore) + ')'],
         datasets: [{
             label: 'SAT Score (out of 1600)',
-            data: [parseInt(satScore)],
+            data: [parseInt(admissions.satScore)],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.2)'
+                'rgba(75, 192, 192, .5)'
             ],
             borderColor: [
                 'rgba(75, 192, 192, 1)'
@@ -733,8 +812,8 @@ let mySatChart = new Chart(sat, {
     options: {
         maintainAspectRatio: false,
         title: {
-          display: true,
-          text: 'Average SAT Score (out of 1600)'
+            display: true,
+            text: 'Average SAT Score (out of 1600)'
         },
         legend: {
             display: false
@@ -743,8 +822,11 @@ let mySatChart = new Chart(sat, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    max : 1600,
-                    min : 0
+                    max: 1600,
+                    min: 0
+                },
+                gridLines: {
+                    color: '#383838'
                 }
             }]
         }

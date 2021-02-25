@@ -14,22 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include 
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('profile/', user_views.profile, name='profile'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('register/', user_views.register, name='register'),
-    path('favorites/', user_views.favorites_list, name='favorites'),
-    path('fav/<int:pk>/', user_views.favourite_add, name='favourite_add'),
-    path('', include('universities.urls')),
-    path('admin/', admin.site.urls),
-]
+                  path('accounts/', include('django_registration.backends.activation.urls')),
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path('profile/', user_views.profile, name='profile'),
+                  path('profile/delete/', user_views.delete_user, name='delete_user'),
+                  path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+                  path('login/', auth_views.LoginView.as_view(template_name='users/login.html',
+                                                              redirect_authenticated_user=True), name='login'),
+                  path('fav/<int:pk>/', user_views.favourite_add, name='favourite_add'),
+                  path('password/', user_views.change_password, name='change_password'),
+                  path('', include('universities.urls')),
+                  path('admin/', admin.site.urls),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

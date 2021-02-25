@@ -1,0 +1,35 @@
+{% extends 'universities/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}{{ object.user.username }}'s Profile{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 col-sm">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded profile-card">
+                    <h2 class="text-center">{{ object.user.username }}</h2>
+                    <hr class="profile-line">
+                    <p>Full Name - &nbsp {{ object.user.profile.first_name }}
+                        {{ object.user.profile.last_name }}</p>
+                    <p>GPA - &nbsp {{ object.user.profile.gpa }} </p>
+                    <p>SAT Score - &nbsp {{ object.user.profile.sat }}</p>
+                    <p>ACT Score - &nbsp {{ object.user.profile.act }}</p>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm">
+                <div class="shadow-lg p-3 mb-4 bg-white rounded profile-card">
+                    <h2>About You</h2>
+                    <hr class="profile-line">
+                    <p>{{ object.user.profile.bio }}</p>
+                    <h2>Your Favorite Universities</h2>
+                    <hr class="profile-line">
+                    {% for university in object.user.favorite.all %}
+                        <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
+                        <p>{{ university.zipcodeid.cityid.city }}, {{ university.zipcodeid.cityid.state }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

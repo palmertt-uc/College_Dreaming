@@ -3,7 +3,6 @@
 }
 
 .contact-page-header {
-    padding-bottom: 1em;
     font-size: 4vmax;
     text-align: center;
 }
@@ -70,45 +69,6 @@
 
 .advanced-search-header {
     font-size: 3vmax !important;
-}
-
-/* All Slider CSS is used in search.html */
-.slidecontainer {
-    width: 100%;
-}
-
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: .9em;
-    border-radius: .3em;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
-.slider:hover {
-    opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
 }
 
 @media screen and (max-width: 575px) {
@@ -1329,3 +1289,15 @@ html {
       margin-bottom: 20px;
     }
   }
+
+.profile-card {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.profile-line {
+    border-color: white;
+}
+
+#institution-map {
+    height: 35em;
+}

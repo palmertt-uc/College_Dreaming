@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = Path(__file__).resolve(strict=False).parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
 # Application definition
 
 INSTALLED_APPS = [
+    'django_registration',
     'django_filters',
     'rest_framework',
     'crispy_forms',
@@ -135,4 +136,19 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'ijtjppapwuvcjkul'
+EMAIL_HOST_USER = 'seniordesign908@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+ACCOUNT_ACTIVATION_DAYS = 7
+
+SECURE_HSTS_SECONDS = 31536000  # set low, but when site is ready for deployment, set to 31536000 seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_BROWSER_XSS_FILTER = True
