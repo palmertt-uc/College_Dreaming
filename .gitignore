@@ -3,5 +3,10 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-
+universities/migrations
+users/migrations
+users/__pycache__
+universities/__pycache__
+college_dreaming/__pycache__
+universities/templatetags/__pycache__
 *pycache
