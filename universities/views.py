@@ -47,7 +47,7 @@ class UniversityListView(ListView):
     model = Institutions
     template_name = 'universities/universities.html'
     context_object_name = 'universities'
-    paginate_by = 50
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -213,3 +213,14 @@ class UsersListView(ListView):
 
 class UserDetailView(DetailView):
     model = Profile
+
+
+class SearchResultsView(ListView):
+    model = Institutions
+    template_name = 'universities/search_results.html'
+    context_object_name = 'universities'
+    paginate_by = 26
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return InstitutionFilter(self.request.GET, queryset=queryset).qs

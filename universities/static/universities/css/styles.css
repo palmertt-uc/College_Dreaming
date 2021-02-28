@@ -389,6 +389,7 @@ html {
     
     .s009 form .inner-form .advance-search .input-field {
       width: 100%;
+      padding: 1em;
       margin-bottom: 20px;
     }
   }
@@ -403,7 +404,7 @@ html {
   }
 
   .carousel-item {
-    height: 32rem;
+    height: 25rem;
     background-color: #777;
   }
   .carousel-item > img {
@@ -411,7 +412,7 @@ html {
     top: 0;
     left: 0;
     min-width: 100%;
-    height: 32rem;
+    height: 25rem;
   }
   
   @media (min-width: 40em) {
@@ -432,4 +433,20 @@ html {
 
 #institution-map {
     height: 35em;
+}
+
+.home-image {
+    height: auto;
+    width: 50%;
+    min-height: 45%;
+}
+
+@media screen and (min-width: 600px) {
+    #email-image {
+        margin-top: 6em;
+    }
+
+    #contact-right-column {
+        margin-right: 3em;
+    }
 }

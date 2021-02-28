@@ -1,0 +1,58 @@
+{% extends 'universities/base.html' %}
+{% load static %}
+{% load my_tags %}
+
+{% block title %}Results{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 pb-4">
+        <h2>Results {{ page_obj.start_index }} - {{ page_obj.end_index }}
+            of {{ page_obj.paginator.count }}</h2>
+        <hr class="profile-line">
+        <div class="row col-md-12">
+            {% for university in universities %}
+                <div class="col-md-6 mt-4">
+                    <div class="card profile-card ">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ university.instname }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ university.zipcodeid.cityid.city }}, {{ university.zipcodeid.cityid.state }}</h6>
+                            <p class="card-text">
+                                {{ university.instname }} has
+                                {% if university.numberofbranches == '1' %}
+                                    {{ university.numberofbranches }}  main campus with an
+                                {% else %}
+                                    {{ university.numberofbranches }} campuses with an
+                                {% endif %}
+                                accreditation from the {{ university.accredagency }}.
+                            </p>
+                            <a href="{% url 'university-detail' university.institutionid %}"
+                               class="card-link">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-3">
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a style="font-size: 1.2em" class="mb-4" href="?{% url_replace page=1 %}">First</a>
+                    <a style="font-size: 1.2em" class="mb-4"
+                       href="?{% url_replace page=objects.previous_page_number %}">Previous</a>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a style="font-size: 1.2em" class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a style="font-size: 1.2em" class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <a style="font-size: 1.2em" class="mb-4" href="?{% url_replace page=page_obj.next_page_number %}">Next</a>
+                    <a style="font-size: 1.2em" class="mb-4"
+                       href="?{% url_replace page=page_obj.paginator.num_pages %}">Last</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

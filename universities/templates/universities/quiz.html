@@ -18,7 +18,7 @@
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
             crossorigin="anonymous"></script>
     <script src="{% static 'universities/js/quiz.js' %}"></script>
-    <form id="mainForm" method="GET">
+    <form id="mainForm" method="GET" action="{% url 'search-results' %}">
         <div class="container">
             <div id="quizStarter" class="text-center mt-5">
                 <img class="next" id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
@@ -93,7 +93,8 @@
                         <div class="row">
                             <div class="col-sm mt-4">
                                 <div class="prefContainer costs text-center" data-isPref="" id="contLowCosts">
-                                    <img src="{% static 'universities/images/institution/low_costs.png' %}" class="imgPref left"
+                                    <img src="{% static 'universities/images/institution/low_costs.png' %}"
+                                         class="imgPref left"
                                          id="img-costs" alt="low costs stock"/>
                                     <div class="prefText" id="div-costs">I'm not worried about costs</div>
                                     <input name="costs" id="inp-costs" value="{{ request.GET.costs }}"
@@ -101,7 +102,8 @@
                                 </div>
                             </div>
                             <div class="col-sm mt-4">
-                                <div class="prefContainer selectivity text-center" data-isPref="" id="contLowSelectivity">
+                                <div class="prefContainer selectivity text-center" data-isPref=""
+                                     id="contLowSelectivity">
                                     <img src="{% static 'universities/images/institution/low_selectivity.png' %}"
                                          id="img-selectivity" class="imgPref left" alt="not selective stock"/>
                                     <div class="prefText" id="div-selectivity">high acceptance rate</div>
@@ -111,7 +113,8 @@
                             </div>
                             <div class="col-sm mt-4">
                                 <div class="prefContainer special text-center" data-isPref="" id="contHBInstitution">
-                                    <img src="{% static 'universities/images/institution/black_institution.png' %}" id="img-special"
+                                    <img src="{% static 'universities/images/institution/black_institution.png' %}"
+                                         id="img-special"
                                          class="imgPref right" alt="historically black stock"/>
                                     <div class="prefText" id="div-special">I want a historically black institution</div>
                                     <input name="special" id="inp-special" value="{{ request.GET.special }}"
@@ -122,16 +125,20 @@
                         <div class="row">
                             <div class="col-sm mt-4">
                                 <div class="prefContainer type text-center" data-isPref="" id="contNoPrefType">
-                                    <img src="{% static 'universities/images/institution/public_private.png' %}" id="img-type"
+                                    <img src="{% static 'universities/images/institution/public_private.png' %}"
+                                         id="img-type"
                                          class="imgPref left" alt="no preference stock"/>
-                                    <div class="prefText" id="div-type">I have no preference towards public/private schools</div>
+                                    <div class="prefText" id="div-type">I have no preference towards public/private
+                                        schools
+                                    </div>
                                     <input name="type" id="inp-type" value="{{ request.GET.type }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
                             <div class="col-sm mt-4">
                                 <div class="prefContainer size text-center" data-isPref="" id="contNoPrefSize">
-                                    <img src="{% static 'universities/images/institution/size_no_pref.png' %}" id="img-size"
+                                    <img src="{% static 'universities/images/institution/size_no_pref.png' %}"
+                                         id="img-size"
                                          class="imgPref left" alt="no preference stock"/>
                                     <div class="prefText" id="div-size">I have no preference towards school size</div>
                                     <input name="size" id="inp-size" value="{{ request.GET.size }}"
@@ -139,10 +146,14 @@
                                 </div>
                             </div>
                             <div class="col-sm mt-4">
-                                <div class="prefContainer graduation_rate text-center" data-isPref="" id="contNoPrefGradRate">
-                                    <img src="{% static 'universities/images/institution/graduation_no_pref.png' %}" id="img-graduation_rate"
+                                <div class="prefContainer graduation_rate text-center" data-isPref=""
+                                     id="contNoPrefGradRate">
+                                    <img src="{% static 'universities/images/institution/graduation_no_pref.png' %}"
+                                         id="img-graduation_rate"
                                          class="imgPref right" alt="no preference stock"/>
-                                    <div class="prefText" id="div-graduation_rate">I have no preference with graduation rates</div>
+                                    <div class="prefText" id="div-graduation_rate">I have no preference with graduation
+                                        rates
+                                    </div>
                                     <input name="gradRate" id="inp-gradRate" value="{{ request.GET.graduation_rate }}"
                                            style="display:none;"/>
                                 </div>
@@ -171,23 +182,31 @@
                     <div id="preferencesTwo">
                         <div class="row">
                             <div class="col-sm">
-                                <div class="prefContainer housing_costs text-center mt-4" data-isPref="" id="contNoPrefHousingCosts">
+                                <div class="prefContainer housing_costs text-center mt-4" data-isPref=""
+                                     id="contNoPrefHousingCosts">
                                     <img src="{% static 'universities/images/living/costs_no_pref.png' %}"
                                          class="imgPref left"
                                          alt="no pref housing costs stock" id="img-housing_costs"/>
-                                    <div class="prefText" id="div-housing_costs">I have no preference towards housing costs</div>
-                                    <input name="housing_costs" id="inp-housing_costs" value="{{ request.GET.housing_costs }}"
+                                    <div class="prefText" id="div-housing_costs">I have no preference towards housing
+                                        costs
+                                    </div>
+                                    <input name="housing_costs" id="inp-housing_costs"
+                                           value="{{ request.GET.housing_costs }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <div class="prefContainer job_availability text-center mt-4" data-isPref="" id="contNoPrefJobs">
+                                <div class="prefContainer job_availability text-center mt-4" data-isPref=""
+                                     id="contNoPrefJobs">
                                     <img src="{% static 'universities/images/living/entry_and_field_jobs.png' %}"
                                          class="imgPref left"
                                          alt="no pref local job preference stock"
-                                         id="img-job_availability" />
-                                    <div class="prefText" id="div-job_availability">I have no preference towards local jobs</div>
-                                    <input name="job_availability" id="inp-job_availability" value="{{ request.GET.job_availability }}"
+                                         id="img-job_availability"/>
+                                    <div class="prefText" id="div-job_availability">I have no preference towards local
+                                        jobs
+                                    </div>
+                                    <input name="job_availability" id="inp-job_availability"
+                                           value="{{ request.GET.job_availability }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -195,7 +214,8 @@
                         <div class="row">
                             <div class="col-sm">
                                 <div class="prefContainer crime text-center mt-4" data-isPref="" id="contNoPrefCrime">
-                                    <img src="{% static 'universities/images/living/crime_both.png' %}" class="imgPref left"
+                                    <img src="{% static 'universities/images/living/crime_both.png' %}"
+                                         class="imgPref left"
                                          alt="no preference crime stock" id="img-crime"/>
                                     <div class="prefText" id="div-crime">I am not worried about crime in the area</div>
                                     <input name="crime" id="inp-crime" value="{{ request.GET.crime }}"
@@ -203,10 +223,14 @@
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <div class="prefContainer community text-center mt-4" data-isPref="" id="contNoPrefCommunity">
-                                    <img src="{% static 'universities/images/living/community_no_pref.png' %}" class="imgPref left"
+                                <div class="prefContainer community text-center mt-4" data-isPref=""
+                                     id="contNoPrefCommunity">
+                                    <img src="{% static 'universities/images/living/community_no_pref.png' %}"
+                                         class="imgPref left"
                                          alt="no preference community stock" id="img-community"/>
-                                    <div class="prefText" id="div-community">I have no preference towards community type</div>
+                                    <div class="prefText" id="div-community">I have no preference towards community
+                                        type
+                                    </div>
                                     <input name="community" id="inp-community" value="{{ request.GET.community }}"
                                            style="display:none;"/>
                                 </div>
@@ -235,22 +259,28 @@
                     <div id="preferencesThree">
                         <div class="row">
                             <div class="col-sm">
-                                <div class="prefContainer summers text-center mt-4" data-isPref="" id="contNoPrefSummers">
+                                <div class="prefContainer summers text-center mt-4" data-isPref=""
+                                     id="contNoPrefSummers">
                                     <img src="{% static 'universities/images/climate/summer_no_pref.png' %}"
                                          class="imgPref left"
                                          alt="no preference summers stock" id="img-summers"/>
-                                    <div class="prefText" id="div-summers">I have no preference towards summer temperatures</div>
+                                    <div class="prefText" id="div-summers">I have no preference towards summer
+                                        temperatures
+                                    </div>
                                     <input name="summers" id="inp-summers" value="{{ request.GET.summers }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <div class="prefContainer winters text-center mt-4" data-isPref="" id="contNoPrefWinters">
+                                <div class="prefContainer winters text-center mt-4" data-isPref=""
+                                     id="contNoPrefWinters">
                                     <img src="{% static 'universities/images/climate/winter_no_pref.png' %}"
                                          class="imgPref left"
                                          alt="no preference winters stock"
-                                         id="img-winters" />
-                                    <div class="prefText" id="div-winters">I have no preference towards winter temperatures</div>
+                                         id="img-winters"/>
+                                    <div class="prefText" id="div-winters">I have no preference towards winter
+                                        temperatures
+                                    </div>
                                     <input name="winters" id="inp-winters" value="{{ request.GET.winters }}"
                                            style="display:none;"/>
                                 </div>
@@ -259,7 +289,8 @@
                         <div class="row">
                             <div class="col-sm">
                                 <div class="prefContainer snowy text-center mt-4" data-isPref="" id="contNoPrefSnow">
-                                    <img src="{% static 'universities/images/climate/snow_no_pref.png' %}" class="imgPref left"
+                                    <img src="{% static 'universities/images/climate/snow_no_pref.png' %}"
+                                         class="imgPref left"
                                          alt="no preference snow stock" id="img-snowy"/>
                                     <div class="prefText" id="div-snowy">I have no preference on snow fall amounts</div>
                                     <input name="snowy" id="inp-snowy" value="{{ request.GET.snowy }}"
@@ -268,9 +299,11 @@
                             </div>
                             <div class="col-sm">
                                 <div class="prefContainer sunny text-center mt-4" data-isPref="" id="contNoPrefSunny">
-                                    <img src="{% static 'universities/images/climate/cloudy.png' %}" class="imgPref left"
+                                    <img src="{% static 'universities/images/climate/cloudy.png' %}"
+                                         class="imgPref left"
                                          alt="no preference sunny stock" id="img-sunny"/>
-                                    <div class="prefText" id="div-sunny">I have no preference towards sunny weather</div>
+                                    <div class="prefText" id="div-sunny">I have no preference towards sunny weather
+                                    </div>
                                     <input name="sunny" id="inp-sunny" value="{{ request.GET.sunny }}"
                                            style="display:none;"/>
                                 </div>
@@ -283,7 +316,7 @@
                         <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
                     </div>
                     <div class="col-sm text-center">
-                        <div class="next btn btn-lg btn-danger mt-4 mb-3">Next &raquo;</div>
+                        <button class="next btn btn-lg btn-danger mt-4 mb-3" type="submit">Next &raquo;</button>
                     </div>
                 </div>
             </div>
@@ -291,51 +324,7 @@
         <input name="submitted" id="inpSubmitted" value="{{ request.GET.submitted }}" style="display:none;"/>
         <button type="submit" id="submitButton" style="display:none;">Submit</button>
         </main>
-        <script>
-            $("#preferencesStarterNext").click(function () {
-                if ($("#preferencesStarter").css("display") === "block") {
-                    $("#submitButton").click();
-                }
-            });
-            $(document).ready(function () {
-                let searchParams = new URLSearchParams(window.location.search);
-                if (searchParams.has('submitted')) {
-                    $("#divUniversities").css("display", "block");
-                    $("#quizStarter").css("display", "none");
-                }
-            })
-        </script>
     </form>
-    <div id="divUniversities" style="display:none">
-        <h1 class="universities-page-header">Academic Institutions</h1>
-        {% for university in universities %}
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <a href="{% url 'university-detail' university.institutionid %}">{{ university.instname }}</a>
-                </li>
-            </ul>
-        {% endfor %}
-        <div class="text-center mt-3">
-            {% if is_paginated %}
-                {% if page_obj.has_previous %}
-                    <a class="mb-4" href="?page=1">First</a>
-                    <a class="mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                {% endif %}
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <a class="mb-4" href="?page={{ num }}">{{ num }}</a>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <a class="mb-4" href="?page={{ num }}">{{ num }}</a>
-                    {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <a class="mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-                    <a class="mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                {% endif %}
-            {% endif %}
-        </div>
-
-    </div>
     </div>
 
 {% endblock %}

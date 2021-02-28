@@ -1,39 +1,50 @@
 {% extends 'universities/base.html' %}
+{% load static %}
 
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container pb-2">
         <div class="shadow-lg p-3 mb-5 mt-5 rounded text-white profile-card">
-            <h1 class="contact-page-header">Questions? Contact Us!</h1>
-            <hr class="profile-line">
-            <form id="contactForm">
-                <div class="form-group">
-                    <div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <label for="emailInput">Email Address</label>
-                                <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
-                                       placeholder="Enter Email..." required>
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                    anyone
-                                    else.</small>
-                            </div>
-                            <div class="col-sm">
-                                <label for="subject">Subject</label>
-                                <input type="email" class="form-control" id="subject" placeholder="Enter Subject...">
-                            </div>
+            <div class="row mt-3">
+                <div class="col-sm text-center">
+                    <img src="{% static 'universities/images/email_us.png' %}" alt="Email Us" class="home-image" id="email-image">
+                </div>
+                <div class="col-sm" id="contact-right-column">
+                    <h3 class="text-center mt-2">Contact Us</h3>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="emailInput">Email Address</label>
+                            <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                                   placeholder="Enter Email..." required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                anyone
+                                else.</small>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm">
+                            <label for="subject">Subject</label>
+                            <input type="email" class="form-control" id="subject" placeholder="Enter Subject...">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm">
+                            <label for="messageContent">Comment or Message</label>
+                            <textarea class="form-control" id="messageContent" placeholder="Message..."
+                                      rows="7"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm text-center">
+                            <button type="button" class="btn btn-primary contact-button" id="contact-page">Submit</button>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="messageContent">Comment or Message</label>
-                    <textarea class="form-control" id="messageContent" placeholder="Type Here..." rows="7"></textarea>
-                </div>
-                <button type="button" class="btn btn-primary btn-lg contact-button" id="contact">Submit</button>
-            </form>
+            </div>
         </div>
     </div>
+
     {% load static %}
-    <script src="{% static 'universities/js/contact.js' %}" type="text/javascript"></script>
+    <script src="{% static 'universities/js/newContact.js' %}" type="text/javascript"></script>
 {% endblock %}
