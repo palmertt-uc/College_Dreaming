@@ -19,7 +19,6 @@ class QuizView(ListView):
     context_object_name = 'universities'
     paginate_by = 50
 
-
     def get_queryset(self):
         query_dict = {
             "contLowCosts":(Q(costsid__tuition_in_state__lte=5000) & Q(zipcodeid__cityid__state='OH')) | (Q(costsid__tuition_out_of_state__lte=5000) & ~Q(zipcodeid__cityid__state='OH')),
@@ -81,28 +80,57 @@ class QuizView(ListView):
         }
         filters = Q(institutionid__in=[])
 
-        filters.add(query_dict[self.request.GET.get('costs')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('selectivity')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('special')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('type')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('size')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('gradRate')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('housing_costs')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('job_availability')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('crime')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('community')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('summers')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('winters')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('snowy')], Q.AND)
-        filters.add(query_dict[self.request.GET.get('sunny')], Q.AND)
+        costs = self.request.GET.get('costs')
+        selectivity = self.request.GET.get('selectivity')
+        special = self.request.GET.get('special')
+        institution_type = self.request.GET.get('type')
+        size = self.request.GET.get('size')
+        grad_rate = self.request.GET.get('gradRate')
+        housing_costs = self.request.GET.get('housing_costs')
+        job_availability = self.request.GET.get('job_availability')
+        crime = self.request.GET.get('crime')
+        community = self.request.GET.get('community')
+        summers = self.request.GET.get('summers')
+        winters = self.request.GET.get('winters')
+        snowy = self.request.GET.get('snowy')
+        sunny = self.request.GET.get('sunny')
+
+        if costs:
+            filters.add(query_dict[costs], Q.AND)
+        elif selectivity:
+            filters.add(query_dict[selectivity], Q.AND)
+        elif special:
+            filters.add(query_dict[special], Q.AND)
+        elif institution_type:
+            filters.add(query_dict[institution_type], Q.AND)
+        elif size:
+            filters.add(query_dict[size], Q.AND)
+        elif grad_rate:
+            filters.add(query_dict[grad_rate], Q.AND)
+        elif housing_costs:
+            filters.add(query_dict[housing_costs], Q.AND)
+        elif job_availability:
+            filters.add(query_dict[job_availability], Q.AND)
+        elif crime:
+            filters.add(query_dict[crime], Q.AND)
+        elif community:
+            filters.add(query_dict[community], Q.AND)
+        elif summers:
+            filters.add(query_dict[summers], Q.AND)
+        elif winters:
+            filters.add(query_dict[winters], Q.AND)
+        elif snowy:
+            filters.add(query_dict[snowy], Q.AND)
+        elif sunny:
+            filters.add(query_dict[sunny], Q.AND)
 
         return self.model.objects.filter(filters)
+
 
 class UniversityListView(ListView):
     model = Institutions
     template_name = 'universities/universities.html'
     context_object_name = 'universities'
-    paginate_by = 50
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -268,6 +296,7 @@ class UsersListView(ListView):
 
 class UserDetailView(DetailView):
     model = Profile
+
 
 class SearchResultsView(ListView):
     model = Institutions
