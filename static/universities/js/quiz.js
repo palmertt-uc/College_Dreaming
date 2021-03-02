@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo"]
+    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
+     "#preferencesStarterIntermThree", "#preferencesStarterThree"]
     let currentIndex = 0;
 
     let contGroups = {
@@ -7,10 +8,10 @@
         "selectivity": ["contLowSelectivity", "contMedSelectivity", "contHighSelectivity"],
         "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution", "contAAPIInstitution", "contMenInstitution", "contWomenInstitution"],
         "type": ["contPublic", "contPrivate", "contNoTypePref"],
-        "size": ["contSmallSize", "contMediumSize", "contLargeSize", "contNoPrefSize"],
+        "size": ["contSmallSize", "contMedSize", "contLargeSize", "contNoPrefSize"],
         "graduation_rate":["contNoPrefGradRate", "contAvgGradRate", "contHighGradRate"],
 
-        "housing_costs": ["contNoPrefCosts", "contLowHousingCosts", "contMedHousingCosts"],
+        "housing_costs": ["contNoPrefHousingCosts", "contLowHousingCosts", "contMedHousingCosts"],
         "job_availability": ["contNoPrefJobs", "contEntryJobs", "contMyFieldJobs", "contBothJobs"],
         "crime": ["contNoPrefCrime", "contViolentCrime", "contPropertyCrime", "contBothCrime"],
         "community": ["contNoPrefCommunity", "contRuralCommunity", "contSuburbanCommunity", "contUrbanCommunity", "contRuralSuburbanCommunity", "contRuralUrbanCommunity", "contSuburbanUrbanCommunity"],
@@ -18,7 +19,7 @@
         "summers": ["contNoPrefSummers", "contCoolSummers", "contWarmSummers", "contHotSummers"],
         "winters": ["contNoPrefWinters", "contColdWinters", "contCoolWinters", "contWarmWinters"],
         "snowy": ["contNoPrefSnow", "contNoSnow", "contSomeSnow", "contLotsOfSnow"],
-
+        "sunny": ["contNoPrefSunny", "contSunny"]
     };
 
     let groupAttr = {
@@ -26,7 +27,7 @@
         "contMedCosts": ["/static/universities/images/institution/medium_costs.png", "medium cost stock", "I'm worried about costs"],
         "contHighCosts": ["/static/universities/images/institution/high_costs.png", "high cost stock", "I'm very worried about costs"],
 
-        "contLowSelectivity": ["/static/universities/images/institution/low_selectivity.png", "not selective stock", "I want an institution with a high acceptance rate"],
+        "contLowSelectivity": ["/static/universities/images/institution/low_selectivity.png", "not selective stock", "I prefer a high acceptance rate"],
         "contMedSelectivity": ["/static/universities/images/institution/medium_selectivity.png", "selective stock", "I want a selective institution"],
         "contHighSelectivity": ["/static/universities/images/institution/high_selectivity.png", "very selective stock", "I want a very selective institution"],
 
@@ -34,7 +35,7 @@
         "contNoneInstitution": ["src", "no specialty stock", "I do not want a specialty institution"],
         "contHBInstitution": ["/static/universities/images/institution/black_institution.png", "historically black stock", "I want a historically black institution"],
         "contNAInstitution": ["src", "Native American institution stock", "I want a Native American institution"],
-        "contAAPIInstitution": ["/static/universities/images/institution/aapi_institution.jpg", "Asian American Pacific Islander institution stock", "I want an Asian American Pacific Islander institution"],
+        "contAAPIInstitution": ["/static/universities/images/institution/aapi_institution.png", "Asian American Pacific Islander institution stock", "I want an Asian American Pacific Islander institution"],
         "contMenInstitution": ["/static/universities/images/institution/men_institution.png", "men only institution stock", "I want a men's only institution"],
         "contWomenInstitution": ["/static/universities/images/institution/women_institution.png", "women only institution stock", "I want a women's only institution"],
 
@@ -42,7 +43,7 @@
         "contPrivate": ["/static/universities/images/institution/private_institution.png", "private school stock", "I'm interested in private schools"],
         "contNoTypePref": ["/static/universities/images/institution/public_private.png", "no preference stock", "I have no preference towards public/private schools"],
 
-        "contSmallSize": ["/static/universities/images/institution/small_institution.ong", "small school stock", "I prefer smaller schools"],
+        "contSmallSize": ["/static/universities/images/institution/small_institution.png", "small school stock", "I prefer smaller schools"],
         "contMedSize": ["/static/universities/images/institution/medium_institution.png", "average school size stock", "I prefer average size schools"],
         "contLargeSize": ["/static/universities/images/institution/large_institution.png", "large school stock", "I prefer larger schools"],
         "contNoPrefSize": ["/static/universities/images/institution/size_no_pref.png", "no preference stock", "I have no preference towards school size"],
@@ -61,8 +62,8 @@
         "contBothJobs": ["/static/universities/images/living/entry_and_field_jobs.png", "local entry-level and field-related jobs stock", "I want both local entry level and jobs pertaining to my field"],
 
         "contNoPrefCrime": ["/static/universities/images/living/crime_both.png", "no preference crime stock", "I am not worried about crime in the area"],
-        "contViolentCrime": ["/static/universities/images/living/property_crime.jpg", "violent crime stock", "I am worried about violent crime in the area"],
-        "contPropertyCrime": ["/static/universities/images/living/violent_crime.jpg", "property crime stock", "I am worried about property crime in the area"],
+        "contViolentCrime": ["/static/universities/images/living/property_crime.png", "violent crime stock", "I am worried about violent crime in the area"],
+        "contPropertyCrime": ["/static/universities/images/living/violent_crime.png", "property crime stock", "I am worried about property crime in the area"],
         "contBothCrime": ["/static/universities/images/living/crime_both.png", "both crime stock", "I am worried about both violent and property crime in the area"],
 
         "contNoPrefCommunity": ["/static/universities/images/living/community_no_pref.png", "no preference community stock", "I have no preference towards community type"],
@@ -80,13 +81,16 @@
 
         "contNoPrefWinters": ["/static/universities/images/climate/winter_no_pref.png", "no preference winters stock", "I have no preference towards winter temperatures"],
         "contColdWinters": ["/static/universities/images/climate/cold_winter.png", "cold winters stock", "I prefer cold winters"],
-        "contCoolWinters": ["/static/universities/images/climate/snowy_stock.png", "cool winters stock", "I prefer cool winters"],
+        "contCoolWinters": ["/static/universities/images/climate/cool_winter.png", "cool winters stock", "I prefer cool winters"],
         "contWarmWinters": ["/static/universities/images/climate/warm_winter.png", "warm winters stock", "I prefer warm winters"],
 
         "contNoPrefSnow": ["/static/universities/images/climate/snow_no_pref.png", "no preference snow stock", "I have no preference on snow fall amounts"],
         "contNoSnow": ["/static/universities/images/climate/no_snow.png", "no snow stock", "I prefer no snow"],
         "contSomeSnow": ["/static/universities/images/climate/some_snow.png", "some snow stock", "I prefer some snow"],
-        "contLotsOfSnow": ["/static/universities/images/climate/snowy_winter.png", "lots of snow stock", "I prefer lots of snow"]
+        "contLotsOfSnow": ["/static/universities/images/climate/snowy_winter.png", "lots of snow stock", "I prefer lots of snow"],
+
+        "contNoPrefSunny": ["/static/universities/images/climate/cloudy.png", "no preference sunny stock", "I have no preference towards sunny weather"],
+        "contSunny": ["/static/universities/images/climate/sunny_weather.png", "sunny stock", "I prefer sunny weather"]
     }
 
     $(".next").click(function() {
@@ -120,63 +124,16 @@
         let contClass = $(this).attr("class").split(" ")[1];
         let contId = $(this).attr("id");
         let contIndex = contGroups[contClass].indexOf(contId) + 1;
-        if(contIndex == contGroups.length){
+        if(contIndex == contGroups[contClass].length){
             contIndex = 0;
         }
         $(this).fadeOut("slow", function(){
             $("#img-" + contClass).attr("src", groupAttr[contGroups[contClass][contIndex]][srcIndex]);
-            alert("#img-" + contClass + " " + $("#img-" + contClass).attr("src"));
+            $("#img-" + contClass).attr("alt", groupAttr[contGroups[contClass][contIndex]][altIndex]);
+            $("#div-" + contClass).text(groupAttr[contGroups[contClass][contIndex]][descIndex]);
+            $("#inp-" + contClass).attr("value", contGroups[contClass][contIndex]);
+            $(this).attr("id", contGroups[contClass][contIndex]);
             $(this).fadeIn("slow");
         })
     })
-
-    $(".prefContainer").click(function () {
-        if ($(this).attr("data-isPref") != "") {
-            $(this).css({backgroundColor: '#6c757d'}, 250);
-            let id = $(this).attr("id");
-            if(id === "contCrime"){
-                $(this).attr("data-isPref", "");
-                $("#inpCrime").attr("value", "");
-            }else if(id === "contRestaurants"){
-                $(this).attr("data-isPref", "");
-                $("#inpRestaurants").attr("value", "");
-            }else if(id === "contOutdoors"){
-                $(this).attr("data-isPref", "");
-                $("#inpOutdoors").attr("value", "");
-            }else if(id === "contCommute"){
-                $(this).attr("data-isPref", "");
-                $("#inpCommute").attr("value", "");
-            }else if(id === "contState"){
-                $(this).attr("data-isPref", "");
-                $("#inpState").attr("value", "");
-            }else if(id === "contDiversity"){
-                $(this).attr("data-isPref", "");
-                $("#inpDiversity").attr("value", "");
-            }
-
-        } else {
-            $(this).css({backgroundColor: '#FFE066'}, 250);
-            let id = $(this).attr("id");
-            $("#inpSubmitted").attr("value", "true");
-            if(id === "contCrime"){
-                $(this).attr("data-isPref", " ViolentCrimes <= 300");
-                $("#inpCrime").attr("value", " ViolentCrimes <= 300");
-            }else if(id === "contRestaurants"){
-                $(this).attr("data-isPref", " RestaurantRanking <= 50");
-                $("#inpRestaurants").attr("value", " RestaurantRanking <= 50");
-            }else if(id === "contOutdoors"){
-                $(this).attr("data-isPref", " AvgTemp >= 60");
-                $("#inpOutdoors").attr("value", " AvgTemp >= 60");
-            }else if(id === "contCommute"){
-                $(this).attr("data-isPref", "");
-                $("#inpCommute").attr("value", "");
-            }else if(id === "contState"){
-                $(this).attr("data-isPref", "");
-                $("#inpState").attr("value", "");
-            }else if(id === "contDiversity"){
-                $(this).attr("data-isPref", " demographics_white <= .7");
-                $("#inpState").attr("value", " demographics_white <= .7");
-            }
-        }
-    });
 });
