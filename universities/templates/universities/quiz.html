@@ -107,7 +107,7 @@
                                     <img src="{% static 'universities/images/institution/low_selectivity.png' %}"
                                          id="img-selectivity" class="imgPref left" alt="not selective stock"/>
                                     <div class="prefText" id="div-selectivity">high acceptance rate</div>
-                                    <input name="selectivity" id="inp-selectivity" value="{{ request.GET.selectivity }}"
+                                    <input name="selectivity" id="inp-selectivity" value="{{ request.get.GET.selectivity }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                          id="img-special"
                                          class="imgPref right" alt="historically black stock"/>
                                     <div class="prefText" id="div-special">I want a historically black institution</div>
-                                    <input name="special" id="inp-special" value="{{ request.GET.special }}"
+                                    <input name="special" id="inp-special" value="{{ request.get.GET.special }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                                     <div class="prefText" id="div-type">I have no preference towards public/private
                                         schools
                                     </div>
-                                    <input name="type" id="inp-type" value="{{ request.GET.type }}"
+                                    <input name="type" id="inp-type" value="{{ request.get.GET.type }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                          id="img-size"
                                          class="imgPref left" alt="no preference stock"/>
                                     <div class="prefText" id="div-size">I have no preference towards school size</div>
-                                    <input name="size" id="inp-size" value="{{ request.GET.size }}"
+                                    <input name="size" id="inp-size" value="{{ request.get.GET.size }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                     <div class="prefText" id="div-graduation_rate">I have no preference with graduation
                                         rates
                                     </div>
-                                    <input name="gradRate" id="inp-gradRate" value="{{ request.GET.graduation_rate }}"
+                                    <input name="gradRate" id="inp-gradRate" value="{{ request.get.GET.graduation_rate }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                                         costs
                                     </div>
                                     <input name="housing_costs" id="inp-housing_costs"
-                                           value="{{ request.GET.housing_costs }}"
+                                           value="{{ request.get.GET.housing_costs }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -206,7 +206,7 @@
                                         jobs
                                     </div>
                                     <input name="job_availability" id="inp-job_availability"
-                                           value="{{ request.GET.job_availability }}"
+                                           value="{{ request.get.GET.job_availability }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
                                          class="imgPref left"
                                          alt="no preference crime stock" id="img-crime"/>
                                     <div class="prefText" id="div-crime">I am not worried about crime in the area</div>
-                                    <input name="crime" id="inp-crime" value="{{ request.GET.crime }}"
+                                    <input name="crime" id="inp-crime" value="{{ request.get.GET.crime }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                                     <div class="prefText" id="div-community">I have no preference towards community
                                         type
                                     </div>
-                                    <input name="community" id="inp-community" value="{{ request.GET.community }}"
+                                    <input name="community" id="inp-community" value="{{ request.get.GET.community }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -267,7 +267,7 @@
                                     <div class="prefText" id="div-summers">I have no preference towards summer
                                         temperatures
                                     </div>
-                                    <input name="summers" id="inp-summers" value="{{ request.GET.summers }}"
+                                    <input name="summers" id="inp-summers" value="{{ request.get.GET.summers }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -281,7 +281,7 @@
                                     <div class="prefText" id="div-winters">I have no preference towards winter
                                         temperatures
                                     </div>
-                                    <input name="winters" id="inp-winters" value="{{ request.GET.winters }}"
+                                    <input name="winters" id="inp-winters" value="{{ request.get.GET.winters }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -293,7 +293,7 @@
                                          class="imgPref left"
                                          alt="no preference snow stock" id="img-snowy"/>
                                     <div class="prefText" id="div-snowy">I have no preference on snow fall amounts</div>
-                                    <input name="snowy" id="inp-snowy" value="{{ request.GET.snowy }}"
+                                    <input name="snowy" id="inp-snowy" value="{{ request.get.GET.snowy }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                                          alt="no preference sunny stock" id="img-sunny"/>
                                     <div class="prefText" id="div-sunny">I have no preference towards sunny weather
                                     </div>
-                                    <input name="sunny" id="inp-sunny" value="{{ request.GET.sunny }}"
+                                    <input name="sunny" id="inp-sunny" value="{{ request.get.GET.sunny }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -321,7 +321,7 @@
                 </div>
             </div>
         </div>
-        <input name="submitted" id="inpSubmitted" value="{{ request.GET.submitted }}" style="display:none;"/>
+        <input name="submitted" id="inpSubmitted" style="display:none;"/>
         <button type="submit" id="submitButton" style="display:none;">Submit</button>
         </main>
     </form>

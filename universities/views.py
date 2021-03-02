@@ -9,6 +9,7 @@ from .filters import InstitutionFilter, UserFilter
 from users.models import Profile
 from .models import Institutions, Crime, Zipcodes, Cities, Admissions, Completionrates, Costs,\
     Institutiontypes, Majors, Programs, Undergraduates
+import logging
 
 
 # Create your views here.
@@ -18,36 +19,90 @@ class QuizView(ListView):
     context_object_name = 'universities'
     paginate_by = 50
 
+
     def get_queryset(self):
-        filters = Q()
-        crime = self.request.GET.get('crime')
-        restaurants = self.request.GET.get('restaurants')
-        outdoors = self.request.GET.get('outdoors')
-        commute = self.request.GET.get('urban')
-        state = self.request.GET.get('state')
-        diversity = self.request.GET.get('diversity')
-        submitted = self.request.GET.get('submitted')
+        query_dict = {
+            "contLowCosts":(Q(costsid__tuition_in_state__lte=5000) & Q(zipcodeid__cityid__state='OH')) | (Q(costsid__tuition_out_of_state__lte=5000) & ~Q(zipcodeid__cityid__state='OH')),
+            "contMedCosts":(Q(costsid__tuition_in_state__lte=10000) & Q(zipcodeid__cityid__state='OH')) | (Q(costsid__tuition_out_of_state__lte=10000) & ~Q(zipcodeid__cityid__state='OH')),
+            "contHighCosts":(Q(costsid__tuition_in_state__gte=0) & Q(zipcodeid__cityid__state='OH')) | (Q(costsid__tuition_out_of_state__gte=0) & ~Q(zipcodeid__cityid__state='OH')),
+            "contLowSelectivity":Q(admissionid__admission_rate_overall__gte=.7),
+            "contMedSelectivity":Q(admissionid__admission_rate_overall__gte=.5),
+            "contHighSelectivity":Q(admissionid__admission_rate_overall__gte=0),
+            "contNoPrefInstitution":Q(institutiontypeid__gte=0),
+            "contNoneInstitution":(Q(institutiontypeid__HBCU=0) & (Q(InstitutionTypeId__PBI=0)) & Q(InstitutionTypeId__ANNHI=0) & Q(InstitutionTypeId__TRIBAL=0) & Q(InstitutionTypeId__AANAPII=0) & Q(InstitutionTypeId__HSI=0) & Q(InstitutionTypeId__NANTI=0)
+                                   & Q(InstitutionTypeId__MENONLY=0) & Q(InstitutionTypeId__WOMENONLY=0) & Q(InstitutionTypeId__RELAFFIL=0)),
+            "contHBInstitution":Q(InstitutionTypeId__HBCU=1),
+            "contNAInstitution":Q(InstitutionTypeId__TRIBAL=1),
+            "contAAPIInstitution":Q(InstitutionTypeId__AANAPII=1),
+            "contMenInstitution":Q(InstitutionTypeId__MENONLY=1),
+            "contWomenInstitution":Q(InstitutionTypeId__WOMENONLY=1),
+            "contPublic":Q(CostsId__avg_net_price_public__gt=0),
+            "contPrivate":Q(CostsId__avg_net_price_private__gt=0),
+            "contNoTypePref":(Q(CostsId__avg_net_price_public__gt=0) | Q(CostsId__avg_net_price_private__gt=0)),
+            "contSmallSize":Q(UndergraduateId__enrollment_degree_seeking__lte=1000),
+            "contMedSize":(Q(UndergraduateId__enrollment_degree_seeking__gte=1000) & Q(UndergraduateId__enrollment_degree_seeking__lte=10000)),
+            "contLargeSize":Q(UndergraduateId__enrollment_degree_seeking__gte=10000),
+            "contNoPrefSize":Q(UndergraduateId__enrollment_degree_seeking__gte=0),
+            "contNoPrefGradRate":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contAvgGradRate":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=.5),
+            "contHighGradRate":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=.8),
+            "contNoPrefHousingCosts":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contLowHousingCosts":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contMedHousingCosts":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contNoPrefJobs":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contEntryJobs":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contMyFieldJobs":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contBothJobs":Q(CompletionRatesId__completion_rate_4yr_150_white__gte=0),
+            "contNoPrefCrime":(Q(zipcodeid__cityid__crimeId=0) | Q(zipcodeid__cityid__crimeId='null')),
+            "contViolentCrime":(Q(zipcodeid__cityid__crimeId__violentCrimes__lte=100) | Q(zipcodeid__cityid__crimeId='null')),
+            "contPropertyCrime":(Q(zipcodeid__cityid__crimeId__propertyCrimes__lte=100) | Q(zipcodeid__cityid__crimeId='null')),
+            "contBothCrime":((Q(zipcodeid__cityid__crimeId__violentCrimes__lte=100) | Q(zipcodeid__cityid__crimeId='null')) & (Q(zipcodeid__cityid__crimeId__propertyCrimes__lte=100) | Q(zipcodeid__cityid__crimeId='null'))),
+            "contNoPrefCommunity":~Q(Locale=-1),
+            "contRuralCommunity":Q(Locale=12),
+            "contSuburbanCommunity":Q(Locale=12),
+            "contUrbanCommunity":Q(Locale=12),
+            "contRuralSuburbanCommunity":(Q(Locale=12) | Q(Locale=12)),
+            "contRuralUrbanCommunity":(Q(Locale=12) | Q(Locale=12)),
+            "contSuburbanUrbanCommunity":(Q(Locale=12) | Q(Locale=12)),
+            "contNoPrefSummers":Q(ClimateId__maxTemp__gte=0),
+            "contCoolSummers":Q(ClimateId__maxTemp__lte=60),
+            "contWarmSummers":(Q(ClimateId__maxTemp__lte=80) & Q(ClimateId__maxTemp__gte=60)),
+            "contHotSummers":Q(ClimateId__maxTemp__gte=80),
+            "contNoPrefWinters":Q(ClimateId__minTemp__lte=100),
+            "contColdWinters":Q(ClimateId__minTemp__lte=0),
+            "contCoolWinters":(Q(ClimateId__minTemp__lte=60) & Q(ClimateId__minTemp__gte=40)),
+            "contWarmWinters":Q(ClimateId__minTemp__gte=60),
+            "contNoPrefSnow":Q(ClimateId__maxTemp__gte=0),
+            "contNoSnow":Q(ClimateId__maxTemp__gte=0),
+            "contSomeSnow":Q(ClimateId__maxTemp__gte=0),
+            "contLotsOfSnow":Q(ClimateId__maxTemp__gte=0),
+            "contNoPrefSunny":Q(ClimateId__maxTemp__gte=0),
+            "contSunny":Q(ClimateId__maxTemp__gte=0)
+        }
+        filters = Q(institutionid__in=[])
 
-        if crime is not None and crime != '':
-            filters |= Q(ViolentCrimes__level__lt=crime)
-        if restaurants is not None and restaurants != '':
-            filters |= Q(RestaurantRanking__level__gte=restaurants)
-        if state is not None and state != '':
-            filters |= Q(State=state)
-        if diversity is not None and diversity != '':
-            filters |= Q(demographics_white__level__lte=.5)
+        filters.add(query_dict[self.request.GET.get('costs')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('selectivity')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('special')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('type')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('size')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('gradRate')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('housing_costs')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('job_availability')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('crime')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('community')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('summers')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('winters')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('snowy')], Q.AND)
+        filters.add(query_dict[self.request.GET.get('sunny')], Q.AND)
 
-        if(len(filters) > 0):
-            institutions = self.model.objects.filter(zipcodeid__cityid__state="OH")
-            return institutions
-        else:
-            return ""
+        return self.model.objects.filter(filters)
 
 class UniversityListView(ListView):
     model = Institutions
     template_name = 'universities/universities.html'
     context_object_name = 'universities'
-
+    paginate_by = 50
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -213,7 +268,6 @@ class UsersListView(ListView):
 
 class UserDetailView(DetailView):
     model = Profile
-
 
 class SearchResultsView(ListView):
     model = Institutions
