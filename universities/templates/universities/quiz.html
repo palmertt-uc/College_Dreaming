@@ -18,7 +18,7 @@
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
             crossorigin="anonymous"></script>
     <script src="{% static 'universities/js/quiz.js' %}"></script>
-    <form id="mainForm" method="GET" >
+    <form id="mainForm" method="GET" action="{% url 'search-results' %}">
         <div class="container">
             <div id="quizStarter" class="text-center mt-5">
                 <img class="next" id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
@@ -316,7 +316,7 @@
                         <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
                     </div>
                     <div class="col-sm text-center">
-                        <button class="next btn btn-lg btn-danger mt-4 mb-3" type="submit" id="buttonSubmit" formmethod="get">Submit</button>
+                        <button class="next btn btn-lg btn-danger mt-4 mb-3" type="submit" id="buttonSubmit">Submit</button>
                     </div>
                 </div>
             </div>
