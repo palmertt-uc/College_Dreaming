@@ -131,8 +131,17 @@
             $("#img-" + contClass).attr("src", groupAttr[contGroups[contClass][contIndex]][srcIndex]);
             $("#img-" + contClass).attr("alt", groupAttr[contGroups[contClass][contIndex]][altIndex]);
             $("#div-" + contClass).text(groupAttr[contGroups[contClass][contIndex]][descIndex]);
+            $("#inp-" + contClass).attr("value", contGroups[contClass][contIndex]);
             $(this).attr("id", contGroups[contClass][contIndex]);
             $(this).fadeIn("slow");
         })
     })
+
+    $("#buttonSubmit").click(function(){
+        $("input").each(function(){
+            if($(this).attr("value") == ""){
+                $(this).attr("value", $(this).parent().attr("id"));
+            }
+        });
+    });
 });

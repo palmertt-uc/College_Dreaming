@@ -18,7 +18,7 @@
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
             crossorigin="anonymous"></script>
     <script src="{% static 'universities/js/quiz.js' %}"></script>
-    <form id="mainForm" method="GET" action="{% url 'search-results' %}">
+    <form id="mainForm" method="GET" >
         <div class="container">
             <div id="quizStarter" class="text-center mt-5">
                 <img class="next" id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
@@ -97,7 +97,7 @@
                                          class="imgPref left"
                                          id="img-costs" alt="low costs stock"/>
                                     <div class="prefText" id="div-costs">I'm not worried about costs</div>
-                                    <input name="costs" id="inp-costs" value="{{ request.GET.costs }}"
+                                    <input name="costs" id="inp-costs" value="{{ request.get.GET.costs }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
@@ -316,13 +316,11 @@
                         <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
                     </div>
                     <div class="col-sm text-center">
-                        <button class="next btn btn-lg btn-danger mt-4 mb-3" type="submit">Next &raquo;</button>
+                        <button class="next btn btn-lg btn-danger mt-4 mb-3" type="submit" id="buttonSubmit" formmethod="get">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-        <input name="submitted" id="inpSubmitted" style="display:none;"/>
-        <button type="submit" id="submitButton" style="display:none;">Submit</button>
         </main>
     </form>
     </div>

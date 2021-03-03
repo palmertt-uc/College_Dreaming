@@ -136,4 +136,12 @@
             $(this).fadeIn("slow");
         })
     })
+
+    $("#buttonSubmit").click(function(){
+        $("input").each(function(){
+            if($(this).attr("value") == ""){
+                $(this).attr("value", $(this).parent().attr("id"));
+            }
+        });
+    });
 });
