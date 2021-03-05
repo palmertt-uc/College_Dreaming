@@ -1,0 +1,88 @@
+{% extends 'universities/base.html' %}
+{% load static %}
+{% load my_tags %}
+
+{% block title %}Results{% endblock %}
+
+{% block body %}
+    <style>
+        #universities-search-results {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .6)), url("{% static 'universities/images/backgrounds/search_results.png' %}") no-repeat center fixed !important;
+            height: 100%;
+            color: #eee;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-size: 10px;
+            font-family: 'Roboto Cn', sans-serif;
+            overflow: hidden;
+        }
+    </style>
+
+    <body id="universities-search-results">
+    <main id="universities-search-results-content">
+
+        <div class="container">
+
+        <div id="result-count-text">
+            <h1>Results {{ page_obj.start_index }} - {{ page_obj.end_index }}
+            of {{ page_obj.paginator.count }}</h1>
+            <hr class="profile-line">
+        </div>
+
+        <div id="university-results-content">
+            <div class="row col-md-12">
+            {% for university in universities %}
+                <div class="col-md-6 mt-4">
+                    <div class="card profile-card ">
+                        <div class="card-body">
+                            <h1 class="card-title">{{ university.instname }}</h1>
+                            <p class="card-subtitle mb-2 text-muted">{{ university.zipcodeid.cityid.city }}, {{ university.zipcodeid.cityid.state }}</p>
+                            <p class="card-text">
+                                {{ university.instname }} has
+                                {% if university.numberofbranches == '1' %}
+                                    {{ university.numberofbranches }}  main campus with an
+                                {% else %}
+                                    {{ university.numberofbranches }} campuses with an
+                                {% endif %}
+                                accreditation from the {{ university.accredagency }}.
+                            </p>
+                            <a href="{% url 'university-detail' university.institutionid %}"
+                               class="card-link" style="color: dodgerblue; letter-spacing: 1px">Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-3">
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a style="font-size: 1.2em; color: dodgerblue; letter-spacing: 1px" class="mb-4" href="?{% url_replace page=1 %}"><i class="fas fa-angle-double-left"></i></a>
+                    <a style="font-size: 1.2em; color: dodgerblue; letter-spacing: 1px" class="mb-4"
+                       href="?{% url_replace page=objects.previous_page_number %}"><i class="fas fa-angle-left"></i></a>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a style="font-size: 1.2em; color: dodgerblue; letter-spacing: 1px" class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a style="font-size: 1.2em; color: dodgerblue; letter-spacing: 1px" class="mb-4" href="?{% url_replace page=num %}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <a style="font-size: 1.2em; color: dodgerblue; letter-spacing: 1px" class="mb-4" href="?{% url_replace page=page_obj.next_page_number %}"><i class="fas fa-angle-right"></i></a>
+                    <a style="font-size: 1.2em; color: dodgerblue; letter-spacing: 1px" class="mb-4"
+                       href="?{% url_replace page=page_obj.paginator.num_pages %}"><i class="fas fa-angle-double-right"></i></a>
+                {% endif %}
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+    </main>
+    </body>
+
+    {% load static %}
+    <script src="{% static 'universities/js/universitySearchResults.js' %}" type="text/javascript"></script>
+{% endblock %}

@@ -1,3 +1,269 @@
+/* New Design Goes Below This Line */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    font-family: 'Roboto Cn', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+    color: #eee;
+}
+
+header {
+    width: 100%;
+}
+
+.header-container {
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+nav {
+    padding-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+}
+
+.brand {
+    font-size: 3rem !important;
+    font-weight: 300;
+}
+
+nav ul {
+    margin-top: .7rem;
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    padding: 1rem 0;
+    margin: 5rem 3rem;
+    position: relative;
+    letter-spacing: 2px;
+}
+
+nav ul li a:last-child {
+    margin-right: 0;
+}
+
+nav ul li a::before,
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    background-color: #eee;
+    transform: scaleX(0);
+    transition: all .5s;
+}
+
+nav ul li a::before {
+    bottom: 0;
+    transform-origin: center;
+}
+
+nav ul li a::after {
+    bottom: 0;
+    transform-origin: center;
+}
+
+nav ul li a:hover::before,
+nav ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 2.5rem;
+    right: 2.5rem;
+    color: #eeeeee;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+}
+
+#welcome-text {
+    margin-top: 20vh;
+}
+
+#result-count-text {
+    margin-top: 8vh;
+}
+
+#college-dreaming-welcome {
+    font-size: 4rem !important;
+}
+
+#search-icon {
+    display: none;
+}
+
+.full-nav-bar-search {
+    width: 50vw;
+    height: 4rem;
+    background-color: white;
+    border-radius: 30px;
+    align-items: center;
+    padding: 1rem;
+}
+
+.nav-bar-search {
+    width: 25rem;
+    height: 4rem;
+    background-color: white;
+    border-radius: 30px;
+    display: none;
+    align-items: center;
+    padding: 1rem;
+}
+
+.nav-bar-search > i {
+    font-size: 20px !important;
+    display: none;
+}
+
+.nav-bar-search > input {
+    flex: 1;
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 18px !important;
+}
+
+#full-bar-search {
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+#home-page-content, #university-results-content {
+    overflow-y: auto;
+    height: 50rem;
+    font-size: 18px;
+}
+
+#dropdown-text {
+    font-size: 16px;
+}
+
+.custom-homepage-button {
+    padding: 8px;
+    background-color: #00bbec;
+    color: #eee;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 2px;
+}
+
+.home-image {
+    filter: brightness(85%);
+}
+
+#after-content {
+    margin-top: 35vh;
+}
+
+.fa-chevron-down {
+    font-size: 32px;
+    margin-top: 8vh;
+    animation: updown 2s ease infinite;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(-50%);
+    }
+
+    50% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    #full-bar-search {
+        display: none;
+    }
+
+    #search-icon {
+        color: black;
+        display: flex;
+        margin-top: .5rem;
+    }
+
+    #home-page-content {
+        margin-top: 7vh;
+    }
+
+    .nav-bar-search {
+        margin-top: 3rem;
+        display: flex;
+        width: 20rem;
+    }
+
+    #welcome-text {
+        margin-top: 20vh;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+    }
+
+    nav {
+        padding-top: 0;
+        display: none;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        margin-top: 8rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-top: 2rem;
+    }
+
+    nav ul li a {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    .brand-name {
+        font-size: 4rem;
+    }
+
+    .overlay.menu-open,
+    nav.menu-open {
+        display: flex;
+        transform: scale(1);
+    }
+}
+
+
+/* Older Design */
 .contact-page-form {
     margin-top: 2em;
 }
@@ -21,10 +287,6 @@
     font-size: 3vmax !important;
 }
 
-#nav-search-bar {
-    position: relative;
-}
-
 #search-results {
     display: none;
     color: black;
@@ -36,6 +298,8 @@
     overflow-y: auto;
     border: 1px solid gray;
     box-shadow: 2px 2px 2px rgb(141, 141, 141);
+    margin-top: 29.5rem;
+    z-index: 100;
 }
 
 #search-results-list {
@@ -150,7 +414,7 @@ button,
 select {
     text-transform: none;
 }
-  
+
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
@@ -158,11 +422,11 @@ button::-moz-focus-inner,
     border-style: none;
     padding: 0;
 }
-  
+
 html {
     height: 100%;
 }
-  
+
 .s009 {
     display: -ms-flexbox;
     display: flex;
@@ -173,21 +437,21 @@ html {
     padding: 15px;
     font-family: 'Lato', sans-serif;
 }
-  
+
 .s009 form {
     width: 100%;
     max-width: 990px;
     margin: 0;
 }
-  
+
 .s009 form .inner-form {
     width: 100%;
 }
-  
+
 .s009 form .inner-form .input-field {
     position: relative;
 }
-  
+
 .s009 form .inner-form .input-field input {
     height: 100%;
     border: 0;
@@ -203,30 +467,30 @@ html {
     color: #555;
     font-family: 'Lato', sans-serif;
 }
-  
+
 .s009 form .inner-form .input-field input.placeholder {
     color: #999;
     font-size: 18px;
     font-weight: 600;
 }
-  
+
 .s009 form .inner-form .input-field input:-moz-placeholder {
     color: #999;
     font-size: 18px;
     font-weight: 600;
 }
-  
+
 .s009 form .inner-form .input-field input::-webkit-input-placeholder {
     color: #999;
     font-size: 18px;
     font-weight: 600;
 }
-  
+
 .s009 form .inner-form .input-field input:hover, .s009 form .inner-form .input-field input:focus {
     box-shadow: none;
     outline: 0;
 }
-  
+
 .s009 form .inner-form .input-field .btn-search {
     min-width: 100px;
     height: 40px;
@@ -242,11 +506,11 @@ html {
     font-weight: bold;
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
 }
-  
+
 .s009 form .inner-form .input-field .btn-search:hover, .s009 form .inner-form .input-field .btn-search:focus {
     background: #00a7d3;
 }
-  
+
 .s009 form .inner-form .input-field .btn-delete {
     min-width: 100px;
     height: 40px;
@@ -261,27 +525,27 @@ html {
     cursor: pointer;
     font-weight: bold;
 }
-  
+
 .s009 form .inner-form .input-field .btn-delete:hover, .s009 form .inner-form .input-field .btn-delete:focus {
     color: #FFF;
     outline: 0;
     box-shadow: none;
 }
-  
+
 .s009 form .inner-form .basic-search {
     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
     border-bottom: 2px solid #36738d;
 }
-  
+
 .s009 form .inner-form .basic-search .input-field {
     width: 100%;
 }
-  
+
 .s009 form .inner-form .basic-search .input-field input {
     padding: 10px 80px 10px 40px;
     color: #FFF
 }
-  
+
 .s009 form .inner-form .basic-search .input-field .icon-wrap {
     position: absolute;
     top: 0;
@@ -293,19 +557,19 @@ html {
     width: 60px;
     height: 100%;
 }
-  
+
 .s009 form .inner-form .basic-search .input-field .icon-wrap svg {
     width: 34px;
     height: 34px;
     fill: #ccc;
 }
-  
+
 .s009 form .inner-form .advance-search {
     background:rgba(0,0,0,0.7);
     padding: 40px;
     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 }
-  
+
 .s009 form .inner-form .advance-search .desc {
     font-size: 14px;
     color: #999;
@@ -313,7 +577,7 @@ html {
     margin-bottom: 26px;
     font-weight: bold;
 }
-  
+
 .s009 form .inner-form .advance-search .row {
     display: -ms-flexbox;
     display: flex;
@@ -323,15 +587,15 @@ html {
         align-items: center;
     margin-bottom: 20px;
 }
-  
+
 .s009 form .inner-form .advance-search .row.second {
     margin-bottom: 46px;
 }
-  
+
 .s009 form .inner-form .advance-search .row.third {
     margin-bottom: 0;
 }
-  
+
 .s009 form .inner-form .advance-search .row.third .input-field {
     width: 100%;
     display: -ms-flexbox;
@@ -341,7 +605,7 @@ html {
     -ms-flex-align: center;
         align-items: center;
 }
-  
+
 .s009 form .inner-form .advance-search .row.third .input-field .result-count {
     display: -ms-flexbox;
     display: flex;
@@ -353,16 +617,16 @@ html {
     color: #666;
     font-size: 14px;
 }
-  
+
 .s009 form .inner-form .advance-search .row.third .input-field .result-count span {
     color: #00bbec;
     padding-right: 5px;
 }
-  
+
 .s009 form .inner-form .advance-search .input-field {
     width: calc((100% - 40px) / 3);
 }
-  
+
 @media screen and (max-width: 767px) {
     .s009 form .inner-form .basic-search .input-field input {
         padding: 10px 80px 10px 15px;
@@ -386,7 +650,7 @@ html {
     .s009 form .inner-form .advance-search .row {
       display: block;
     }
-    
+
     .s009 form .inner-form .advance-search .input-field {
       width: 100%;
       padding: 1em;
@@ -397,7 +661,7 @@ html {
   #myCarousel {
     background-color: transparent;
   }
-  
+
   .carousel-caption {
     bottom: 3rem;
     z-index: 10;
@@ -414,7 +678,7 @@ html {
     min-width: 100%;
     height: 25rem;
   }
-  
+
   @media (min-width: 40em) {
     .carousel-caption p {
       margin-bottom: 1.25rem;
@@ -422,7 +686,7 @@ html {
       line-height: 1.4;
     }
   }
-  
+
 .profile-card {
     background-color: rgba(0, 0, 0, 0.7) !important;
 }
@@ -433,12 +697,6 @@ html {
 
 #institution-map {
     height: 35em;
-}
-
-.home-image {
-    height: auto;
-    width: 50%;
-    min-height: 45%;
 }
 
 @media screen and (min-width: 600px) {

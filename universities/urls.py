@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import UniversityListView, UniversityDetailView, QuizView, UsersListView, UserDetailView, SearchResultsView, QuizResultsView
+from .views import UniversityListView, UniversityDetailView, QuizView, UsersListView, UserDetailView, SearchResultsView, UniversitySearchResultView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -13,5 +13,5 @@ urlpatterns = [
     path('users/', UsersListView.as_view(), name='users'),
     path('users/<int:pk>/', login_required(UserDetailView.as_view()), name='user-detail'),
     path('search/', SearchResultsView.as_view(), name='search-results'),
-    path('quiz-results/', QuizResultsView.as_view(), name='quiz-results')
+    path('university-search', UniversitySearchResultView.as_view(), name='university-search')
 ]
