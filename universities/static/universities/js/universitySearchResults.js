@@ -14,7 +14,7 @@ open.addEventListener("click", function(){
     nav.classList.toggle("menu-open");
     mainContent.classList.add("d-none");
 
-    if (windowSize > 700) {
+    if (windowSize > 800) {
         mainContent.classList.remove("d-none");
     }
 

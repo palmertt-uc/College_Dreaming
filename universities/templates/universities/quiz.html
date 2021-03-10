@@ -1,8 +1,22 @@
 {% extends 'universities/base.html' %}
+{% load static %}
 
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
+    <style>
+        #quiz-page-main {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .6)), url("{% static 'universities/images/backgrounds/quiz_background.png' %}") no-repeat center fixed;
+            height: 100%;
+            color: #eee;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'Roboto Cn', sans-serif;
+            overflow: hidden;
+        }
+    </style>
 
 
     {% load static %}
@@ -17,8 +31,10 @@
             src="https://{{ 'code.jquery.com/ui/1.12.1/jquery-ui.js' }}"
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
             crossorigin="anonymous"></script>
-    <script src="{% static 'universities/js/quiz.js' %}"></script>
-    <form id="mainForm" method="GET" action="{% url 'search-results' %}">
+
+    <body id="quiz-page-main">
+
+        <form id="mainForm" method="GET" action="{% url 'search-results' %}" class="quiz-form-content">
         <div class="container">
             <div id="quizStarter" class="text-center mt-5">
                 <img class="next" id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
@@ -321,8 +337,10 @@
                 </div>
             </div>
         </div>
-        </main>
     </form>
-    </div>
+
+    </body>
+
+    <script src="{% static 'universities/js/quiz.js' %}"></script>
 
 {% endblock %}

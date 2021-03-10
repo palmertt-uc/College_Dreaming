@@ -14,7 +14,6 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            font-size: 10px;
             font-family: 'Roboto Cn', sans-serif;
             overflow: hidden;
         }
@@ -26,8 +25,8 @@
         <div class="container">
 
         <div id="result-count-text">
-            <h1>Results {{ page_obj.start_index }} - {{ page_obj.end_index }}
-            of {{ page_obj.paginator.count }}</h1>
+            <h3>Results {{ page_obj.start_index }} - {{ page_obj.end_index }}
+            of {{ page_obj.paginator.count }}</h3>
             <hr class="profile-line">
         </div>
 
@@ -37,7 +36,7 @@
                 <div class="col-md-6 mt-4">
                     <div class="card profile-card ">
                         <div class="card-body">
-                            <h1 class="card-title">{{ university.instname }}</h1>
+                            <h5 class="card-title">{{ university.instname }}</h5>
                             <p class="card-subtitle mb-2 text-muted">{{ university.zipcodeid.cityid.city }}, {{ university.zipcodeid.cityid.state }}</p>
                             <p class="card-text">
                                 {{ university.instname }} has

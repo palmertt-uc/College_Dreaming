@@ -30,7 +30,7 @@
         <form autocomplete="off" class="nav-bar-search">
             <i class="fas fa-search fa-3x" id="search-icon"></i>
             <input class="form-control mr-sm-2" id="nav-search-bar" onkeyup="searchColleges()" type="search"
-                   placeholder="Search University..." aria-label="Search">
+                   placeholder="Search..." aria-label="Search">
             <div id="search-results">
                 <ul id="search-results-list" class="list-unstyled">
 
@@ -38,11 +38,10 @@
             </div>
         </form>
         <nav id="search">
-            <h1 class="brand-name"><a class="link" href="{% url 'home' %}">College Dreaming</a></h1>
+            <h1 class="brand-name"><a href="{% url 'home' %}">College Dreaming</a></h1>
             <ul>
-                <li><a class="link" href="{% url 'home' %}">Home</a></li>
-                <li><a class="link" href="{% url 'quiz' %}">Quiz</a></li>
-                <li><a class="link" href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'quiz' %}">Quiz</a></li>
                 {% if user.is_authenticated %}
                     <div class="dropdown-show">
                         <li class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"
@@ -53,6 +52,7 @@
                         </li>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdown-text">
                             <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'users' %}">Users</a>
                             <a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
                             <a class="dropdown-item" href="{% url 'delete_user' %}">Delete Profile</a>
                             <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
@@ -76,6 +76,28 @@
 {% endif %}
 {% block body %}
 {% endblock %}
+
+<footer id="sticky-footer">
+
+    <div class="dropdown">
+        <p class="dropdown-toggle" id="footer-dropdown" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
+            College Dreaming
+        </p>
+        <div class="dropdown-menu" aria-labelledby="footer-dropdown">
+            <a class="dropdown-item" href="{% url 'contact' %}">Contact</a>
+            <a class="dropdown-item" href="{% url 'about' %}">About</a>
+        </div>
+    </div>
+
+    <p>
+        College Dreaming
+        <br>
+        <a href="{% url 'contact' %}">Contact</a>
+        -
+        <a href="{% url 'about' %}">About</a>
+    </p>
+</footer>
 
 {% load static %}
 <script src="https://{{ 'code.jquery.com/jquery-3.2.1.slim.min.js' }}"

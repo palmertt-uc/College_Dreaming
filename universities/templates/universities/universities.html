@@ -28,7 +28,7 @@
         <div class="text-center" id="home-page-content">
             <div class="container text-center" id="welcome-text">
                 <h1 id="college-dreaming-welcome">College Dreaming</h1>
-                <h5 id="catch-phrase">Find Your Best Fit.</h5>
+                <p id="catch-phrase">Find Your Best Fit.</p>
                 <i class="fas fa-chevron-down"></i>
             </div>
             <div class="container">
@@ -80,50 +80,48 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container" id="about-row">
                 <div class="row mt-5">
                     <div class="col-sm col-sm-12 col-md-4 mt-3">
                         <img src="{% static 'universities/images/backgrounds/about.png' %}" alt="College Image"
                              class="home-image">
-                        <h1 class="mt-2">About</h1>
+                        <h3 class="mt-2">About</h3>
                         <p>
                             College Dreaming provides a more personalized and holistic approach to the college search.
                             Sign up today to save your favorite universities!
                         </p>
-                        <button class="custom-homepage-button" href="{% url 'django_registration_register' %}">Sign Up
-                        </button>
+                        <a class="btn btn-primary" href="{% url 'django_registration_register' %}">Sign Up</a>
                     </div>
                     <div class="col-sm col-sm-12 col-md-4 mt-3">
                         <img src="{% static 'universities/images/backgrounds/contact.png' %}" alt="Contact Image"
                              class="home-image">
-                        <h1 class="mt-2">Contact Us</h1>
+                        <h3 class="mt-2">Contact Us</h3>
                         <p>
                             Questions? Click the button below and send us an email! We'll get back to you as soon as
                             possible.
                         </p>
-                        <button class="custom-homepage-button" id="contact">Contact</button>
+                        <button class="btn btn-primary" id="contact">Contact</button>
                     </div>
                     <div class="col-sm col-sm-12 col-md-4 mt-3">
                         <img src="{% static 'universities/images/backgrounds/quiz.png' %}" alt="Quiz Image"
                              class="home-image">
-                        <h1 class="mt-2">Quiz</h1>
+                        <h3 class="mt-2">Quiz</h3>
                         <p>
                             Take our quiz for a more engaging and interactive college search that will result in a list
                             of
                             recommended academic institutions.
                         </p>
-                        <button class="custom-homepage-button" href="{% url 'quiz' %}">Quiz</button>
+                        <a href="{% url 'quiz' %}" class="btn btn-primary">Quiz</a>
                     </div>
                 </div>
             </div>
 
             <div class="container">
-                <hr class="profile-line mt-5">
-                <div class="row mt-5">
+                <div class="row mt-5" id="map-service">
                     <div class="col-md-7">
-                        <h1>Open Source Map Service. <span
+                        <h3>Open Source Map Service. <span
                                 class="text-muted">Explore the area.</span>
-                        </h1>
+                        </h3>
                         <p>Virtually explore the
                             surrounding area of an academic institution and get an
                             understanding of the type of environment surrounding it.
@@ -134,11 +132,10 @@
                              alt="Image of Map" src="{% static 'universities/images/backgrounds/map_of_globe.png' %}">
                     </div>
                 </div>
-                <hr class="profile-line mt-5">
-                <div class="row mt-5">
+                <div class="row mt-5" id="quiz-service">
                     <div class="col-md-7 order-md-2">
-                        <h1>Take our quiz. <span
-                                class="text-muted">Let us do the work.</span></h1>
+                        <h3>Take our quiz. <span
+                                class="text-muted">Let us do the work.</span></h3>
                         <p>Provides a more engaging search experience. Just answer the
                             questions truthfully and you'll get to see a list of academic institutions that
                             match your preferences.
@@ -150,11 +147,10 @@
                              src="{% static 'universities/images/backgrounds/take_quiz.png' %}">
                     </div>
                 </div>
-                <hr class="profile-line mt-5">
-                <div class="row mt-5">
+                <div class="row mt-5" id="details-service">
                     <div class="col-md-7">
-                        <h1>Search and explore. <span class="text-muted">So many options.</span>
-                        </h1>
+                        <h3>Search and explore. <span class="text-muted">So many options.</span>
+                        </h3>
                         <p>Our database holds over 5,000 academic institutions and their related details.
                             So if
                             you
