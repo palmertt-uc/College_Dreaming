@@ -4,200 +4,219 @@
 {% block title %}{{ object.instname }} - Details{% endblock %}
 
 {% block body %}
-    <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm">
-                <div class="shadow-lg p-3 mb-2 mt-5 text-white rounded profile-card">
-                    <div class="row">
-                        <div class="col-sm">
-                            <img src="https://logo.clearbit.com/{{ object.insturl }}" alt="Institution Logo"
-                                 class="float-right"
-                                 style="width: 25%; height: 25%"
-                                 onerror=this.src="{% static 'universities/images/institution/black_institution.png' %}">
-                            <h3>{{ object.instname }}</h3>
-                            <hr class="profile-line">
-                            <h5 class="mt-3">{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
-                            <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
-                            {% if user.is_authenticated %}
-                                {% if favorite %}
-                                    <a href="{% url 'favourite_add' institutions.institutionid %}"
-                                       class="btn btn-primary">Remove
-                                        Favorite</a>
+    <style>
+        #detail-page-main {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .6)), url("{% static 'universities/images/backgrounds/detail_background.png' %}") no-repeat center fixed;
+            height: 100%;
+            color: #eee;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'Roboto Cn', sans-serif;
+            overflow: hidden;
+        }
+    </style>
+
+
+    <body id="detail-page-main">
+    <main id="detail-page-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm">
+                    <div class="shadow-lg p-3 mb-2 mt-5 text-white rounded profile-card">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img src="https://logo.clearbit.com/{{ object.insturl }}" alt="Institution Logo"
+                                     class="float-right"
+                                     style="width: 25%; height: 25%"
+                                     onerror=this.src="{% static 'universities/images/institution/black_institution.png' %}">
+                                <h3>{{ object.instname }}</h3>
+                                <hr class="profile-line">
+                                <h5 class="mt-3">{{ object.zipcodeid.cityid.city }}, {{ object.zipcodeid.cityid.state }}</h5>
+                                <p>Zipcode: {{ object.zipcodeid.zipcode }}</p>
+                                {% if user.is_authenticated %}
+                                    {% if favorite %}
+                                        <a href="{% url 'favourite_add' institutions.institutionid %}"
+                                           class="btn btn-primary">Remove Favorite</a>
+                                    {% else %}
+                                        <a href="{% url 'favourite_add' institutions.institutionid %}"
+                                           class="btn btn-primary">Favorite <i class="far fa-heart"></i></a>
+                                    {% endif %}
                                 {% else %}
-                                    <a href="{% url 'favourite_add' institutions.institutionid %}"
-                                       class="btn btn-primary">Favorite</a>
+                                    <a href="{% url 'django_registration_register' %}" class="btn btn-primary">
+                                        Favorite <i class="far fa-heart"></i></a>
                                 {% endif %}
-                            {% else %}
-                                <a href="{% url 'django_registration_register' %}" class="btn btn-primary">Favorite</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shadow-lg p-3 mb-3 mt-3 text-white rounded profile-card">
+                        <h4>Institution Information</h4>
+                        <hr class="profile-line">
+                        <p>Institution Link: {{ object.institution_url }}</p>
+                        <p>Accreditation: {{ object.accredagency }}</p>
+                        <p>Main Campus: {{ object.main_campus }}</p>
+                        <p>Number of Campuses: {{ object.numberofbranches }}</p>
+                        <p>{{ object.highest_degree }}</p>
+                        <p>{{ object.predominant_degree }}</p>
+                        {% for type in institution_type %}
+                            {% if object.institutionid == type.institutiontypeid %}
+                                <p>Institution Type: {{ type.institution_type }}</p>
                             {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm">
+                    <div class="shadow-lg p-3 mb-3 mt-5 text-white rounded profile-card">
+                        <h4>Tuition Information</h4>
+                        {{ costs|json_script:"cost" }}
+                        <hr class="profile-line">
+                        <div id="tuition-chart">
+                            <canvas id="myTuitionChart" height="250px" width="250px"></canvas>
                         </div>
                     </div>
-                </div>
-                <div class="shadow-lg p-3 mb-3 mt-3 text-white rounded profile-card">
-                    <h4>Institution Information</h4>
-                    <hr class="profile-line">
-                    <p>Institution Link: {{ object.institution_url }}</p>
-                    <p>Accreditation: {{ object.accredagency }}</p>
-                    <p>Main Campus: {{ object.main_campus }}</p>
-                    <p>Number of Campuses: {{ object.numberofbranches }}</p>
-                    <p>{{ object.highest_degree }}</p>
-                    <p>{{ object.predominant_degree }}</p>
-                    {% for type in institution_type %}
-                        {% if object.institutionid == type.institutiontypeid %}
-                            <p>Institution Type: {{ type.institution_type }}</p>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col-md-8 col-sm">
-                <div class="shadow-lg p-3 mb-3 mt-5 text-white rounded profile-card">
-                    <h4>Tuition Information</h4>
-                    {{ costs|json_script:"cost" }}
-                    <hr class="profile-line">
-                    <div id="tuition-chart">
-                        <canvas id="myTuitionChart" height="250px" width="250px"></canvas>
-                    </div>
-                </div>
-                <div class="shadow-lg p-3 mb-3 mt-3 text-white rounded profile-card">
-                    <h4>Admission Information</h4>
-                    <hr class="profile-line">
-                    {{ admissions|json_script:"admission" }}
-                    <div>
-                        <div class="row">
-                            <div class="col-sm" id="act-chart">
-                                <canvas id="myActChart" class="col-lg-12"></canvas>
-                            </div>
-                            <div class="col-sm" id="sat-chart">
-                                <canvas id="mySatChart" class="col-lg-12"></canvas>
+                    <div class="shadow-lg p-3 mb-3 mt-3 text-white rounded profile-card">
+                        <h4>Admission Information</h4>
+                        <hr class="profile-line">
+                        {{ admissions|json_script:"admission" }}
+                        <div>
+                            <div class="row">
+                                <div class="col-sm" id="act-chart">
+                                    <canvas id="myActChart" class="col-lg-12"></canvas>
+                                </div>
+                                <div class="col-sm" id="sat-chart">
+                                    <canvas id="mySatChart" class="col-lg-12"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
-                    <h4>Demographic Percentages (%)</h4>
-                    <hr class="profile-line">
-                    {{ undergraduates|json_script:"undergrads" }}
-                    <div id="demographic-chart">
-                        <canvas id="demographicChart" class="col-lg-12"></canvas>
+                    <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
+                        <h4>Demographic Percentages (%)</h4>
+                        <hr class="profile-line">
+                        {{ undergraduates|json_script:"undergrads" }}
+                        <div id="demographic-chart">
+                            <canvas id="demographicChart" class="col-lg-12"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm">
-                <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
-                    <h4>Major Percentages (%)</h4>
-                    <hr class="profile-line">
-                    {{ majors|json_script:"majors" }}
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#collapseMajorsLeft"
-                                aria-expanded="false" aria-controls="collapseMajorsLeft">
-                            Major Percentages
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm">
+                    <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
+                        <h4>Major Percentages (%)</h4>
+                        <hr class="profile-line">
+                        {{ majors|json_script:"majors" }}
+                        <p>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                    data-target="#collapseMajorsLeft"
+                                    aria-expanded="false" aria-controls="collapseMajorsLeft">
+                        Major Percentages
                         </button>
-                    </p>
-                    <div class="collapse" id="collapseMajorsLeft">
-                        <div class="row" id="first-majors-row">
-                            <div class="col-sm" id="engineering-technology-chart">
-                                <canvas id="engineering&Technology" class="col-lg-12" height="100px"
-                                        width="100px"></canvas>
+                        </p>
+                        <div class="collapse" id="collapseMajorsLeft">
+                            <div class="row" id="first-majors-row">
+                                <div class="col-sm" id="engineering-technology-chart">
+                                    <canvas id="engineering&Technology" class="col-lg-12" height="100px"
+                                            width="100px"></canvas>
+                                </div>
+                                <div class="col-sm" id="literature-language-social-science-chart">
+                                    <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px"
+                                            width="100px"></canvas>
+                                </div>
                             </div>
-                            <div class="col-sm" id="literature-language-social-science-chart">
-                                <canvas id="litLanguageSocialScience" class="col-lg-12" height="100px"
-                                        width="100px"></canvas>
+                            <div class="row" id="second-majors-row">
+                                <div class="col-sm" id="business-chart">
+                                    <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
+                                </div>
+                                <div class="col-sm" id="science-math-chart">
+                                    <canvas id="science&Math" class="col-lg-12" height="100px"
+                                            width="100px"></canvas>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row" id="second-majors-row">
-                            <div class="col-sm" id="business-chart">
-                                <canvas id="business" class="col-lg-12" height="100px" width="100px"></canvas>
-                            </div>
-                            <div class="col-sm" id="science-math-chart">
-                                <canvas id="science&Math" class="col-lg-12" height="100px"
-                                        width="100px"></canvas>
-                            </div>
-                        </div>
-                        <div class="row" id="third-majors-row">
-                            <div class="col-sm" id="arts-chart">
-                                <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
-                            </div>
-                            <div class="col-sm" id="social-sciences-chart">
-                                <canvas id="socialSciences" class="col-lg-12" height="100px"
-                                        width="100px"></canvas>
+                            <div class="row" id="third-majors-row">
+                                <div class="col-sm" id="arts-chart">
+                                    <canvas id="arts" class="col-lg-12" height="100px" width="100px"></canvas>
+                                </div>
+                                <div class="col-sm" id="social-sciences-chart">
+                                    <canvas id="socialSciences" class="col-lg-12" height="100px"
+                                            width="100px"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm">
-                <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
-                    <h4>Completion Rates</h4>
-                    <hr class="profile-line">
-                    {{ completion_rates|json_script:"completion" }}
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#collapseGradRates"
-                                aria-expanded="false" aria-controls="collapseGradRates">
-                            Graduation Rates
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm">
+                    <div class="shadow-lg p-3 mb-3 text-white rounded profile-card">
+                        <h4>Completion Rates</h4>
+                        <hr class="profile-line">
+                        {{ completion_rates|json_script:"completion" }}
+                        <p>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                    data-target="#collapseGradRates"
+                                    aria-expanded="false" aria-controls="collapseGradRates">
+                        Graduation Rates
                         </button>
-                    </p>
-                    <div class="collapse" id="collapseGradRates">
-                        <div class="row">
-                            <div class="col-sm">
-                                <canvas id="whiteCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
+                        </p>
+                        <div class="collapse" id="collapseGradRates">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <canvas id="whiteCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
+                                <div class="col-sm">
+                                    <canvas id="blackCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
                             </div>
-                            <div class="col-sm">
-                                <canvas id="blackCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <canvas id="hispanicCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
+                                <div class="col-sm">
+                                    <canvas id="asianCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <canvas id="hispanicCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <canvas id="aianCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
+                                <div class="col-sm">
+                                    <canvas id="pacificIslanderCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
                             </div>
-                            <div class="col-sm">
-                                <canvas id="asianCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <canvas id="aianCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
-                            </div>
-                            <div class="col-sm">
-                                <canvas id="pacificIslanderCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <canvas id="multiRacialCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
-                            </div>
-                            <div class="col-sm">
-                                <canvas id="nonResidentCompletionRate" class="col-lg-12" height="25px"
-                                        width="35px"></canvas>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <canvas id="multiRacialCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
+                                <div class="col-sm">
+                                    <canvas id="nonResidentCompletionRate" class="col-lg-12" height="25px"
+                                            width="35px"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="mb-5 shadow-lg p-3 mb-3 text-white rounded profile-card">
+                <h4>Institution Map</h4>
+                <hr class="profile-line">
+                <div id="institution-map"></div>
+            </div>
         </div>
-        <div class="mb-5 shadow-lg p-3 mb-3 text-white rounded profile-card">
-            <h4>Institution Map</h4>
-            <hr class="profile-line">
-            <div id="institution-map"></div>
-        </div>
-    </div>
+
+    </main>
+
     </body>
     {% load static %}
     {{ university_institutions|json_script:"institution" }}
     <script src="{% static 'universities/js/charts.js' %}" type="text/javascript"></script>
     <script src="{% static 'universities/js/map.js' %}" type="text/javascript"></script>
-
 {% endblock %}
