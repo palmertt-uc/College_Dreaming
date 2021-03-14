@@ -43,9 +43,9 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'quiz' %}">Quiz</a></li>
                 {% if user.is_authenticated %}
-                    <div class="dropdown-show">
+                    <div class="dropdown">
                         <li class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                            aria-expanded="false">
                             <a>
                                 {{ user.username }}
                             </a>
