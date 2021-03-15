@@ -336,8 +336,7 @@ nav ul li a:hover::after {
     }
 
     #universities-search-results-content, #university-results-content {
-        margin-top: 10vh;
-        height: 65vh !important;
+        height: 58vh !important;
     }
 
     #full-bar-search {
