@@ -336,7 +336,7 @@ nav ul li a:hover::after {
     }
 
     #universities-search-results-content, #university-results-content {
-        height: 58vh !important;
+        height: 56vh !important;
     }
 
     #full-bar-search {
@@ -440,7 +440,7 @@ nav ul li a:hover::after {
     overflow-y: auto;
     border: 1px solid gray;
     box-shadow: 2px 2px 2px rgb(141, 141, 141);
-    margin-top: 21rem;
+    top: 5rem;
     z-index: 100;
 }
 
