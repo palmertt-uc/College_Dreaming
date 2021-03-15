@@ -139,7 +139,7 @@ nav ul li a:hover::after {
 
 #home-page-content {
     overflow-y: auto;
-    height: 33rem;
+    height: 77vh;
     font-size: 18px;
 }
 
