@@ -45,3 +45,11 @@ function searchSuccess(data, textStatus, jqXHR) {
         document.getElementById("search-results-list").appendChild(listItem);
     }
 }
+
+let searchResultList = document.getElementById('search-results');
+
+document.addEventListener('click', function (e) {
+    if (!searchResultList.contains(e.target)) {
+        searchResultList.style.display = 'none';
+    }
+});
