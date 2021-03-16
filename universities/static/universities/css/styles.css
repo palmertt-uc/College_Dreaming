@@ -270,10 +270,6 @@ nav ul li a:hover::after {
     overflow-y: auto;
 }
 
-.full-nav-bar-search {
-    margin-top: -.6rem;
-}
-
 #user-list {
     height: 80vh;
     overflow-y: auto;
@@ -282,6 +278,46 @@ nav ul li a:hover::after {
 #profile-detail-content {
     overflow-y: auto;
     height: 80vh;
+}
+
+#search-full-icon {
+    cursor: pointer;
+}
+
+.search-popup {
+    display: none;
+}
+
+#search-input {
+    width: 20vw;
+    position: absolute;
+    margin-top: 6vh;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+#large-close-button {
+    position: absolute;
+    margin-top: 7.2vh;
+    margin-left: 18vw;
+    color: black;
+    z-index: 100;
+}
+
+#large-search-results {
+    display: none;
+    color: black;
+    position: absolute;
+    width: auto;
+    background: white;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    overflow-y: auto;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 2px rgb(141, 141, 141);
+    top: 4.5rem;
+    z-index: 100;
+    font-size: 12px !important;
 }
 
 @keyframes updown {
@@ -299,6 +335,10 @@ nav ul li a:hover::after {
 }
 
 @media screen and (max-width: 700px) {
+
+    #search-full-icon, .search-popup, #search-input {
+        display: none;
+    }
 
     .quiz-form-content {
         height: 65vh;
@@ -445,32 +485,32 @@ nav ul li a:hover::after {
     z-index: 100;
 }
 
-#search-results-list {
+#search-results-list, #large-search-results-list {
     width: auto;
 }
 
-#search-results-list li {
+#search-results-list li, #large-search-results-list li {
     width: 100%;
     padding: 5px;
 }
 
-#search-results-list li:hover {
+#search-results-list li:hover, #large-search-results-list li:hover {
     background-color: lightgray;
 }
 
-#search-results-list li a {
+#search-results-list li a, #large-search-results-list li a {
     display: block;
     width: 100%;
     color: black;
     outline: none;
 }
 
-#search-results-list li span {
+#search-results-list li span, #large-search-results-list li span {
     color: darkgray;
     font-size: medium;
 }
 
-#search-results-list li a:hover {
+#search-results-list li a:hover, #large-search-results-list li a:hover {
     text-decoration: none;
 }
 
