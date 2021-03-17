@@ -97,6 +97,7 @@ function largeSearchSuccess(data, textStatus, jqXHR) {
 let searchResultList = document.getElementById('search-results');
 let searchPopup = document.querySelector('.search-popup');
 let brandName = document.querySelector('.brand-name');
+let closeSearchInput = document.querySelector('.close-search-container');
 
 document.addEventListener('click', function (e) {
     let largeSearchResultList = $('#large-search-results');
@@ -113,9 +114,14 @@ document.addEventListener('click', function (e) {
 function openSearchForm() {
     if (searchPopup.style.display === 'block') {
         searchPopup.style.display = 'none';
-        brandName.style.visibility = 'visible'
+        brandName.style.visibility = 'visible';
     } else {
         searchPopup.style.display = 'block';
-        brandName.style.visibility = 'hidden'
+        brandName.style.visibility = 'hidden';
     }
 }
+
+closeSearchInput.addEventListener('click', function () {
+    searchResultList.style.display = 'none';
+    brandName.style.visibility = 'visible'
+});
