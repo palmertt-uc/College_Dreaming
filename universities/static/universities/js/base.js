@@ -29,9 +29,9 @@ function searchSuccess(data, textStatus, jqXHR) {
         var listItemLink = document.createElement("a");
         var listItemCityState = document.createElement("span")
         var br = document.createElement("br");
-                  
+
         // Create the text & link for anchor element. 
-        var link = document.createTextNode(data[i]["instname"]); 
+        var link = document.createTextNode(data[i]["instname"]);
         listItemLink.appendChild(link);
         listItemLink.href = "/universities/" + data[i]["institutionid"];
 
@@ -123,5 +123,5 @@ function openSearchForm() {
 
 closeSearchInput.addEventListener('click', function () {
     searchResultList.style.display = 'none';
-    brandName.style.visibility = 'visible'
+    brandName.style.visibility = 'visible';
 });

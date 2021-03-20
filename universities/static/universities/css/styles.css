@@ -295,6 +295,7 @@ nav ul li a:hover::after {
     margin-top: 6vh;
     border-radius: 30px;
     font-size: 14px;
+    animation: search-expand 1s ease;
 }
 
 #large-close-button {
@@ -326,6 +327,17 @@ nav ul li a:hover::after {
     margin-left: 18vw;
     z-index: 100;
     color: black;
+    animation: close-icon-move 1s ease;
+}
+
+@keyframes close-icon-move {
+    from {margin-left: 0;}
+    to {margin-left: 18vw;}
+}
+
+@keyframes search-expand {
+    from {width: 0;}
+    to {width: 20vw;}
 }
 
 @keyframes updown {
