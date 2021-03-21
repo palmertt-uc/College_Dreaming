@@ -266,7 +266,7 @@ nav ul li a:hover::after {
 
 .about-page-content {
     line-height: 1.7;
-    height: 85vh;
+    height: 80vh;
     overflow-y: auto;
 }
 
