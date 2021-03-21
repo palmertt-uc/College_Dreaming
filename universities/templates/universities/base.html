@@ -16,6 +16,7 @@
     <script src="https://{{ 'unpkg.com/leaflet@1.7.1/dist/leaflet.js' }}"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
+    <script src="https://{{ 'ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' }}"></script>
     <link rel="stylesheet" type="text/css" href="{% static '/universities/css/styles.css' %}">
     <link rel="icon" href="{% static '/favicon/favicon.ico' %}">
 </head>
@@ -33,6 +34,16 @@
                    placeholder="Search..." aria-label="Search">
             <div id="search-results">
                 <ul id="search-results-list" class="list-unstyled">
+
+                </ul>
+            </div>
+        </form>
+        <form autocomplete="off" class="search-popup">
+            <div class="close-search-container"><i class="fas fa-times"></i></div>
+            <input class="form-control mr-sm-2" id="search-input" onkeyup="largeSearchColleges()" type="search"
+                   placeholder="Search University..." aria-label="Search">
+            <div id="large-search-results">
+                <ul id="large-search-results-list" class="list-unstyled">
 
                 </ul>
             </div>
@@ -62,6 +73,9 @@
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'django_registration_register' %}">Sign Up</a></li>
                 {% endif %}
+                <li>
+                    <a onclick="openSearchForm()" id="search-full-icon"><i class="fas fa-search"></i></a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -99,7 +113,6 @@
     </p>
 </footer>
 
-{% load static %}
 <script src="https://{{ 'code.jquery.com/jquery-3.2.1.slim.min.js' }}"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

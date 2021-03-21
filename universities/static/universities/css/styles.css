@@ -145,18 +145,18 @@ nav ul li a:hover::after {
 
 #university-results-content {
     overflow-y: auto;
-    height: 24rem;
+    height: 60vh;
 }
 
 #register-page-content {
     margin-top: 5vh;
     overflow-y: auto;
-    height: 31rem;
+    height: 80vh;
 }
 
 #detail-page-content {
     overflow-y: auto;
-    height: 32rem;
+    height: 80vh;
     font-size: 18px !important;
 }
 
@@ -168,6 +168,7 @@ nav ul li a:hover::after {
     margin: 10vh auto 0;
     padding: 0;
     width: 40vw;
+    height: 80vh;
 }
 
 .main-register-section {
@@ -265,22 +266,78 @@ nav ul li a:hover::after {
 
 .about-page-content {
     line-height: 1.7;
-    height: 85vh;
+    height: 80vh;
     overflow-y: auto;
 }
 
-.full-nav-bar-search {
-    margin-top: -.6rem;
-}
-
 #user-list {
-    height: 80vh;
+    height: 82vh;
     overflow-y: auto;
 }
 
 #profile-detail-content {
     overflow-y: auto;
     height: 80vh;
+}
+
+#search-full-icon {
+    cursor: pointer;
+}
+
+.search-popup {
+    display: none;
+    font-size: 16px !important;
+}
+
+#search-input {
+    width: 20vw;
+    position: absolute;
+    margin-top: 6vh;
+    border-radius: 30px;
+    font-size: 14px;
+    animation: search-expand 1s ease;
+}
+
+#large-close-button {
+    position: absolute;
+    margin-top: 7.2vh;
+    margin-left: 18vw;
+    color: black;
+    z-index: 100;
+}
+
+#large-search-results {
+    display: none;
+    color: black;
+    position: absolute;
+    width: auto;
+    background: white;
+    overflow-y: auto;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 2px rgb(141, 141, 141);
+    top: 4.5rem;
+    z-index: 100;
+    font-size: 12px !important;
+}
+
+.close-search-container {
+    cursor: pointer;
+    position: absolute;
+    margin-top: 7vh;
+    margin-left: 18vw;
+    z-index: 100;
+    color: black;
+    animation: close-icon-move 1s ease;
+}
+
+@keyframes close-icon-move {
+    from {margin-left: 0;}
+    to {margin-left: 18vw;}
+}
+
+@keyframes search-expand {
+    from {width: 0;}
+    to {width: 20vw;}
 }
 
 @keyframes updown {
@@ -297,7 +354,13 @@ nav ul li a:hover::after {
     }
 }
 
-@media screen and (max-width: 700px) {
+@media only screen
+  and (min-width: 768px)
+  and (max-width: 1024px) {
+
+    #search-full-icon, .search-popup, #search-input, .close-search-container{
+        display: none;
+    }
 
     .quiz-form-content {
         height: 65vh;
@@ -404,6 +467,137 @@ nav ul li a:hover::after {
     }
 }
 
+@media screen and (max-width: 700px) {
+
+    #search-full-icon, .search-popup, #search-input, .close-search-container {
+        display: none;
+    }
+
+    .quiz-form-content {
+        margin-top: 5vh;
+        height: 73vh;
+    }
+
+    #search-link-icon {
+        display: none;
+    }
+
+    #sticky-footer {
+        visibility: hidden;
+    }
+
+    #sticky-footer .dropdown {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        margin-left: .5rem;
+        visibility: visible;
+        font-size: 10px !important;
+    }
+
+    .main-login-section, .main-register-section {
+        margin-top: 5vh;
+        width: 85vw;
+    }
+
+    #register-page-content {
+        margin-top: 3vh;
+        height: 65vh;
+    }
+
+    #detail-page-content {
+        margin-top: 3vh;
+        height: 75vh;
+    }
+
+    #universities-search-results-content, #university-results-content {
+        height: 58vh !important;
+    }
+
+    #full-bar-search {
+        display: none;
+    }
+
+    #search-icon {
+        color: black;
+        display: flex;
+        margin-top: .3rem;
+    }
+
+    #home-page-content {
+        margin-top: 7vh;
+        height: 70vh !important;
+    }
+
+    #register-page-content {
+        height: 73vh;
+    }
+
+    #profile-content {
+        margin-top: 5vh;
+        height: 74vh;
+    }
+
+    #user-list {
+        margin-top: 10vh;
+        height: 70vh;
+    }
+
+    .contact-page-content {
+        margin-top: 5vh;
+        height: 70vh;
+    }
+
+    .nav-bar-search {
+        margin-top: 3rem;
+        display: flex;
+        width: 12rem;
+    }
+
+    #welcome-text {
+        margin-top: 20vh;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+    }
+
+    nav {
+        padding-top: 0;
+        display: none;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        margin-top: 8rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-top: 2rem;
+    }
+
+    nav ul li a {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .brand-name {
+        margin-top: -5rem;
+        font-size: 2rem !important;
+    }
+
+    .overlay.menu-open,
+    nav.menu-open {
+        display: flex;
+        transform: scale(1);
+    }
+}
+
 
 /* Older Design */
 .contact-page-form {
@@ -444,32 +638,32 @@ nav ul li a:hover::after {
     z-index: 100;
 }
 
-#search-results-list {
+#search-results-list, #large-search-results-list {
     width: auto;
 }
 
-#search-results-list li {
+#search-results-list li, #large-search-results-list li {
     width: 100%;
     padding: 5px;
 }
 
-#search-results-list li:hover {
+#search-results-list li:hover, #large-search-results-list li:hover {
     background-color: lightgray;
 }
 
-#search-results-list li a {
+#search-results-list li a, #large-search-results-list li a {
     display: block;
     width: 100%;
     color: black;
     outline: none;
 }
 
-#search-results-list li span {
+#search-results-list li span, #large-search-results-list li span {
     color: darkgray;
     font-size: medium;
 }
 
-#search-results-list li a:hover {
+#search-results-list li a:hover, #large-search-results-list li a:hover {
     text-decoration: none;
 }
 
