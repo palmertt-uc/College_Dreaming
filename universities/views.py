@@ -110,6 +110,50 @@ class QuizView(ListView):
             snowy = self.request.GET.get('snowy')
             sunny = self.request.GET.get('sunny')
 
+            business_program = self.request.GET.get('business_major')
+            science_math_program = self.request.GET.get('science_math')
+            engineering_technology = self.request.GET.get('engineering_technology')
+            literature_language = self.request.GET.get('literature_language')
+            arts_other = self.request.GET.get('arts_other')
+            social_science = self.request.GET.get('social_science')
+
+            business_filters = (Q(majors__business_marketing__gte=business_program) |
+                                Q(majors__resources__gte=business_program) |
+                                Q(majors__transportation__gte=business_program) |
+                                Q(majors__construction__gte=business_program))
+            science_math_filters = (Q(majors__health__gte=science_math_program) |
+                                    Q(majors__mathematics__gte=science_math_program) |
+                                    Q(majors__biological__gte=science_math_program) |
+                                    Q(majors__family_consumer_science__gte=science_math_program) |
+                                    Q(majors__physical_science__gte=science_math_program) |
+                                    Q(majors__agriculture__gte=science_math_program))
+            engineering_technology_filters = (Q(majors__engineering__gte=engineering_technology) |
+                                              Q(majors__engineering_technology__gte=engineering_technology) |
+                                              Q(majors__communications_technology__gte=engineering_technology) |
+                                              Q(majors__mechanic_repair_technology__gte=engineering_technology) |
+                                              Q(majors__science_technology__gte=engineering_technology))
+            literature_language_filters = (Q(majors__philosophy_religious__gte=literature_language) |
+                                           Q(majors__theology_religious_vocation__gte=literature_language) |
+                                           Q(majors__library__gte=literature_language) |
+                                           Q(majors__history__gte=literature_language) |
+                                           Q(majors__english__gte=literature_language) |
+                                           Q(majors__communication__gte=literature_language) |
+                                           Q(majors__language__gte=literature_language))
+            arts_other_filters = (Q(majors__architecture__gte=arts_other) |
+                                  Q(majors__visual_performing__gte=arts_other) |
+                                  Q(majors__personal_culinary__gte=arts_other) |
+                                  Q(majors__multidiscipline__gte=arts_other) |
+                                  Q(majors__military__gte=arts_other) |
+                                  Q(majors__parks_recreation_fitness__gte=arts_other))
+            social_science_filters = (Q(majors__social_science__gte=social_science) |
+                                      Q(majors__public_administration_social_service__gte=social_science) |
+                                      Q(majors__ethnic_cultural_gender__gte=social_science) |
+                                      Q(majors__psychology__gte=social_science) |
+                                      Q(majors__education__gte=social_science) |
+                                      Q(majors__legal__gte=social_science) |
+                                      Q(majors__humanities__gte=social_science) |
+                                      Q(majors__security_law_enforcement__gte=social_science))
+
             filters |= query_dict[costs]
             filters |= query_dict[selectivity]
             filters |= query_dict[special]
@@ -125,6 +169,13 @@ class QuizView(ListView):
             filters |= query_dict[snowy]
             filters |= query_dict[sunny]
             filters |= query_dict[costs]
+
+            filters |= business_filters
+            filters |= science_math_filters
+            filters |= engineering_technology_filters
+            filters |= literature_language_filters
+            filters |= arts_other_filters
+            filters |= social_science_filters
 
         return self.model.objects.filter(filters)
 

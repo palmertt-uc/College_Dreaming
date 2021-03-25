@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
+    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#quizMajorInterm", "#majorStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
      "#preferencesStarterIntermThree", "#preferencesStarterThree"]
     let currentIndex = 0;
 
@@ -181,4 +181,6 @@ open.addEventListener("click", function () {
         mainContent.classList.remove("d-none");
         changeIcon = true;
     }
+
+    $('select').selectpicker();
 });

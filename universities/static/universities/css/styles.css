@@ -244,7 +244,7 @@ nav ul li a:hover::after {
 }
 
 .quiz-form-content {
-    height: 85vh;
+    height: 80vh;
     overflow-y: auto;
 }
 
@@ -321,7 +321,6 @@ nav ul li a:hover::after {
 }
 
 .close-search-container {
-    cursor: pointer;
     position: absolute;
     margin-top: 7vh;
     margin-left: 18vw;

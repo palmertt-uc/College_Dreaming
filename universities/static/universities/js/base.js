@@ -97,7 +97,6 @@ function largeSearchSuccess(data, textStatus, jqXHR) {
 let searchResultList = document.getElementById('search-results');
 let searchPopup = document.querySelector('.search-popup');
 let brandName = document.querySelector('.brand-name');
-let closeSearchInput = document.querySelector('.close-search-container');
 
 document.addEventListener('click', function (e) {
     let largeSearchResultList = $('#large-search-results');
@@ -120,8 +119,3 @@ function openSearchForm() {
         brandName.style.visibility = 'hidden';
     }
 }
-
-closeSearchInput.addEventListener('click', function () {
-    searchResultList.style.display = 'none';
-    brandName.style.visibility = 'visible';
-});
