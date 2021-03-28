@@ -164,6 +164,62 @@
                 </div>
             </div>
 
+            <div id="quizACTInterm" class="quizPage interm text-center">
+                <div>Let's get some data on your academics</div>
+            </div>
+
+            <div id="testStarter" class="quizPage text-center">
+                <div class="starterHeader text-center">ACT</div>
+                <div class="row mt-3">
+                    <div class="col-sm mt-4">
+                        <label for="scienceACT">Science ACT Score (Blank if N/A)</label>
+                        <input id="scienceACT" class="tests" maxlength="2" name="scienceACT"/>
+                    </div>
+                    <div class="col-sm mt-4">
+                        <label for="mathACT">Math ACT Score (Blank if N/A)</label>
+                        <input id="mathACT" class="tests" maxlength="2" name="mathACT"/>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm mt-4">
+                        <label for="readingACT">Reading ACT Score (Blank if N/A)</label>
+                        <input id="readingACT" class="tests" maxlength="2" name="readingACT"/>
+                    </div>
+                    <div class="col-sm mt-4">
+                        <label for="writingACT">Writing ACT Score (Blank if N/A)</label>
+                        <input id="writingACT" class="tests" maxlength="2" name="writingACT"/>
+                    </div>
+                </div>
+                <div class="row mt-3"></div>
+                <div class="starterHeader text-center">SAT</div>
+                <div class="row mt-3">
+                    <div class="col-sm mt-4">
+                        <label for="scienceSAT">Science SAT Score (Blank if N/A)</label>
+                        <input id="scienceSAT" class="tests" maxlength="3" name="scienceSAT"/>
+                    </div>
+                    <div class="col-sm mt-4">
+                        <label for="mathSAT">Math SAT Score (Blank if N/A)</label>
+                        <input id="mathSAT" class="tests"  maxlength="3" name="mathSAT"/>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm mt-4">
+                        <label for="readingSAT">Reading SAT Score (Blank if N/A)</label>
+                        <input id="readingSAT" class="tests"  maxlength="3" name="readingSAT"/>
+                    </div>
+                    <div class="col-sm mt-4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
+                    </div>
+                    <div class="col-sm text-center">
+                        <div class="next btn btn-lg btn-danger mt-4 mb-3">Next &raquo;</div>
+                    </div>
+                </div>
+            </div>
+
             <div id="quizMajorInterm" class="quizPage interm text-center">
                 <div>Let's find what majors you're interested in</div>
             </div>
@@ -247,9 +303,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row text-center mt-5 mb-3">
-                    <div class="col-sm">
-                        <div class="btn btn-lg btn-danger next" id="preferencesStarterNext">Next &raquo;</div>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <div class="prev btn btn-lg btn-danger mt-4 mb-3">&laquo; Previous</div>
+                    </div>
+                    <div class="col-sm text-center">
+                        <div class="next btn btn-lg btn-danger mt-4 mb-3">Next &raquo;</div>
                     </div>
                 </div>
             </div>
@@ -370,17 +429,15 @@
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <div class="prefContainer job_availability text-center mt-4" data-isPref=""
-                                     id="contNoPrefJobs">
+                                <div class="prefContainer earnings text-center mt-4" data-isPref=""
+                                     id="contNoPrefEarnings">
                                     <img src="{% static 'universities/images/living/entry_and_field_jobs.png' %}"
                                          class="imgPref left"
-                                         alt="no pref local job preference stock"
-                                         id="img-job_availability"/>
-                                    <div class="prefText" id="div-job_availability">I have no preference towards local
-                                        jobs
-                                    </div>
-                                    <input name="job_availability" id="inp-job_availability"
-                                           value="{{ request.get.GET.job_availability }}"
+                                         alt="no preference earnings"
+                                         id="img-earnings"/>
+                                    <div class="prefText" id="div-job_availability">I have no preference towards earnings</div>
+                                    <input name="earnings" id="inp-earnings"
+                                           value="{{ request.get.GET.earnings }}"
                                            style="display:none;"/>
                                 </div>
                             </div>
