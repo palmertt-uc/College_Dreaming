@@ -97,6 +97,7 @@
 
     $(".next").click(function() {
         $(this).css("pointer-events", "none")
+        $(".prev").css("pointer-events", "auto");
         $(pages[currentIndex]).fadeOut("slow", function () {
             currentIndex++;
             $(pages[currentIndex]).fadeIn(2000, function () {
@@ -114,6 +115,7 @@
     */
     $(".prev").click(function() {
         $(this).css("pointer-events", "none")
+        $(".next").css("pointer-events", "auto");
         if(currentIndex != 2){
             $(pages[currentIndex]).fadeOut("slow", function () {
                 currentIndex -= 2;

@@ -77,7 +77,15 @@ class QuizView(ListView):
             "contLowHousingCosts":(Q(zipcodeid__hpi__lte=300) | Q(zipcodeid__hpi='null')),
             "contMedHousingCosts":(Q(zipcodeid__hpi__lte=-450) | Q(zipcodeid__hpi='null')),
             "contNoPrefEarnings":Q(completionrates__completion_rate_4yr_150_white__gte=0),
-            "contEarnings":(Q(earnings__fiveyear50pct__gte=41340) & Q(earnings__degree_level = 5)),
+            "contEarnings":((Q(earnings__fiveyear50pct__gte=27352) & Q(earnings__degree_level = 1)) |
+                            (Q(earnings__fiveyear50pct__gte=28747) & Q(earnings__degree_level=2)) |
+                            (Q(earnings__fiveyear50pct__gte=31362) & Q(earnings__degree_level=3)) |
+                            (Q(earnings__fiveyear50pct__gte=25881) & Q(earnings__degree_level=4)) |
+                            (Q(earnings__fiveyear50pct__gte=41340) & Q(earnings__degree_level=5)) |
+                            (Q(earnings__fiveyear50pct__gte=29768) & Q(earnings__degree_level=6)) |
+                            (Q(earnings__fiveyear50pct__gte=45736) & Q(earnings__degree_level=7)) |
+                            (Q(earnings__fiveyear50pct__gte=54914) & Q(earnings__degree_level=17)) |
+                            Q(earnings__fiveyear50pct__gte=74459) & Q(earnings__degree_level=18) ),
             "contNoPrefCrime":(~Q(zipcodeid__cityid__crimeid=-1)),
             "contViolentCrime":(Q(zipcodeid__cityid__crimeid__violentcrimes__lte=325) | Q(zipcodeid__cityid__crimeid='null')),
             "contPropertyCrime":(Q(zipcodeid__cityid__crimeid__propertycrimes__lte=2225) | Q(zipcodeid__cityid__crimeid='null')),
@@ -399,9 +407,9 @@ class SearchResultsView(ListView):
 
     def get_queryset(self):
         query_dict = {
-            "contLowCosts":(Q(costs__tuition_in_state__lte=5000) & Q(zipcodeid__cityid__state='OH')) | (Q(costs__tuition_out_of_state__lte=5000) & ~Q(zipcodeid__cityid__state='OH')),
-            "contMedCosts":(Q(costs__tuition_in_state__lte=10000) & Q(zipcodeid__cityid__state='OH')) | (Q(costs__tuition_out_of_state__lte=10000) & ~Q(zipcodeid__cityid__state='OH')),
-            "contHighCosts":(Q(costs__tuition_in_state__gte=0) & Q(zipcodeid__cityid__state='OH')) | (Q(costs__tuition_out_of_state__gte=0) & ~Q(zipcodeid__cityid__state='OH')),
+            "contLowCosts":(Q(costs__tuition_in_state__lte=5000) & Q(zipcodeid__cityid__state='AK')) | (Q(costs__tuition_out_of_state__lte=5000) & ~Q(zipcodeid__cityid__state='AK')),
+            "contMedCosts":(Q(costs__tuition_in_state__lte=10000) & Q(zipcodeid__cityid__state='AK')) | (Q(costs__tuition_out_of_state__lte=10000) & ~Q(zipcodeid__cityid__state='AK')),
+            "contHighCosts":(Q(costs__tuition_in_state__gte=0) & Q(zipcodeid__cityid__state='AK')) | (Q(costs__tuition_out_of_state__gte=0) & ~Q(zipcodeid__cityid__state='AK')),
             "contLowSelectivity":Q(admissions__admission_rate_overall__gte=.7),
             "contMedSelectivity":Q(admissions__admission_rate_overall__gte=.5),
             "contHighSelectivity":Q(admissions__admission_rate_overall__gte=0),
