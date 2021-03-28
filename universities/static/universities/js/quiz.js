@@ -1,12 +1,13 @@
 ﻿$(document).ready(function () {
-    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
+    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#quizMajorInterm", "#majorStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
      "#preferencesStarterIntermThree", "#preferencesStarterThree"]
     let currentIndex = 0;
 
     let contGroups = {
         "costs": ["contLowCosts", "contMedCosts", "contHighCosts"],
         "selectivity": ["contLowSelectivity", "contMedSelectivity", "contHighSelectivity"],
-        "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution", "contAAPIInstitution", "contMenInstitution", "contWomenInstitution"],
+        "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution", "contAAPIInstitution", "contMenInstitution", "contWomenInstitution",
+                    "contReligiousInstitution", "contHispanicInstitution", "contTribalInstitution"],
         "type": ["contPublic", "contPrivate", "contNoTypePref"],
         "size": ["contSmallSize", "contMedSize", "contLargeSize", "contNoPrefSize"],
         "graduation_rate":["contNoPrefGradRate", "contAvgGradRate", "contHighGradRate"],
@@ -38,6 +39,9 @@
         "contAAPIInstitution": ["/static/universities/images/institution/aapi_institution.png", "Asian American Pacific Islander institution stock", "I want an Asian American Pacific Islander institution"],
         "contMenInstitution": ["/static/universities/images/institution/men_institution.png", "men only institution stock", "I want a men's only institution"],
         "contWomenInstitution": ["/static/universities/images/institution/women_institution.png", "women only institution stock", "I want a women's only institution"],
+        "contReligiousInstitution": ["src", "Religious Affiliation Stock", "I want a religious affiliated institution"],
+        "contHispanicInstitution": ["src", 'Hispanic Serving Stock', "I want a Hispanic Serving institution"],
+        "contTribalInstitution": ["src", "Tribal Colleges and Universities", "I want a Tribal institution"],
 
         "contPublic": ["/static/universities/images/institution/public_institution.png", "public school stock", "I'm interested in public schools"],
         "contPrivate": ["/static/universities/images/institution/private_institution.png", "private school stock", "I'm interested in private schools"],
@@ -144,4 +148,39 @@
             }
         });
     });
+});
+
+// New Design Code
+let open = document.getElementById('hamburger');
+let mainContent = document.querySelector('.quiz-form-content');
+let changeIcon = true;
+let windowSize = window.innerWidth
+
+open.addEventListener("click", function () {
+
+    let overlay = document.querySelector('.overlay');
+    let nav = document.querySelector('nav');
+    let icon = document.querySelector('.menu-toggle i');
+
+    overlay.classList.toggle("menu-open");
+    nav.classList.toggle("menu-open");
+    mainContent.classList.add("d-none");
+
+    if (windowSize > 800) {
+        mainContent.classList.remove("d-none");
+    }
+
+    if (changeIcon) {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-times");
+
+        changeIcon = false;
+    } else {
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+        mainContent.classList.remove("d-none");
+        changeIcon = true;
+    }
+
+    $('select').selectpicker();
 });

@@ -1,8 +1,22 @@
 {% extends 'universities/base.html' %}
+{% load static %}
 
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
+    <style>
+        #quiz-page-main {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .9), rgba(0, 0, 0, .6)), url("{% static 'universities/images/backgrounds/quiz_background.png' %}") no-repeat center fixed;
+            height: 100%;
+            color: #eee;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            font-family: 'Roboto Cn', sans-serif;
+            overflow: hidden;
+        }
+    </style>
 
 
     {% load static %}
@@ -17,8 +31,10 @@
             src="https://{{ 'code.jquery.com/ui/1.12.1/jquery-ui.js' }}"
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
             crossorigin="anonymous"></script>
-    <script src="{% static 'universities/js/quiz.js' %}"></script>
-    <form id="mainForm" method="GET" action="{% url 'search-results' %}">
+
+    <body id="quiz-page-main">
+
+        <form id="mainForm" method="GET" action="{% url 'search-results' %}" class="quiz-form-content">
         <div class="container">
             <div id="quizStarter" class="text-center mt-5">
                 <img class="next" id="quiz" src="{% static 'universities/images/banner_quiz.png' %}" alt="banner quiz"/>
@@ -33,7 +49,8 @@
             <div id="quizStarterInterm" class="quizPage interm text-center">
                 <div>Let's start with some basic information</div>
             </div>
-            <div id="formStarter" class="quizPage">
+
+             <div id="formStarter" class="quizPage">
                 <div class="starterHeader text-center">
                     My Basic Information
                 </div>
@@ -139,6 +156,96 @@
                                 <option value="3">not concerned at all</option>
                             </select>
                         </div>
+                </div>
+                <div class="row text-center mt-5 mb-3">
+                    <div class="col-sm">
+                        <div class="btn btn-lg btn-danger next" id="basicInfoStarterNext">Next &raquo;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quizMajorInterm" class="quizPage interm text-center">
+                <div>Let's find what majors you're interested in</div>
+            </div>
+
+            <div id="majorStarter" class="quizPage">
+                <div class="starterHeader text-center">
+                    What Type of Programs Am I Interested In?
+                </div>
+                <hr class="profile-line">
+                <div>
+                    <div class="row" id="form">
+                        <div class="col-sm mt-4">
+                            <label for="business">Business Related Program</label>
+                            <select id="business" class="selectpicker form-control" name="business_program" multiple data-selected-text-format="count">
+                                <option value=".10">Business Marketing</option>
+                                <option value=".10">Resources</option>
+                                <option value=".10">Transportation</option>
+                                <option value=".10">Construction Management</option>
+                            </select>
+                        </div>
+                        <div class="col-sm mt-4">
+                            <label for="engineering-technology">Engineering and Technology Related Program</label>
+                            <select id="engineering-technology" class="selectpicker form-control" name="engineering_technology" multiple data-selected-text-format="count">
+                                <option value=".10">Engineering</option>
+                                <option value=".10">Engineering Technology</option>
+                                <option value=".10">Communication Technology</option>
+                                <option value=".10">Mechanic Repair Technology</option>
+                                <option value=".10">Science Technology</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm mt-4">
+                            <label for="arts-other">Art and Other Programs</label>
+                            <select id="arts-other" class="selectpicker form-control" name="arts_other" multiple data-selected-text-format="count">
+                                <option value=".10">Architecture</option>
+                                <option value=".10">Visual Performing</option>
+                                <option value=".10">Personal Culinary</option>
+                                <option value=".10">Multi-Discipline</option>
+                                <option value=".10">Military</option>
+                                <option value=".10">Parks & Recreation & Fitness</option>
+                            </select>
+                        </div>
+                        <div class="col-sm mt-4">
+                            <label for="social-science">Social Science Programs</label>
+                            <select id="social-science" class="selectpicker form-control" name="social_science" multiple data-selected-text-format="count">
+                                <option value=".10">Social Science</option>
+                                <option value=".10">Public Administration</option>
+                                <option value=".10">Ethnic Culture & Gender Studies</option>
+                                <option value=".10">Psychology</option>
+                                <option value=".10">Education</option>
+                                <option value=".10">Legal</option>
+                                <option value=".10">Humanities</option>
+                                <option value=".10">Security & Law Enforcement</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm mt-4">
+                            <label for="science-math">Science and Math Related Program</label>
+                            <select id="science-math" class="selectpicker form-control" name="science_math" multiple data-selected-text-format="count">
+                                <option value=".10">Health</option>
+                                <option value=".10">Mathematics</option>
+                                <option value=".10">Biology</option>
+                                <option value=".10">Family Consumer Science</option>
+                                <option value=".10">Physical Science</option>
+                                <option value=".10">Agriculture</option>
+                            </select>
+                        </div>
+                        <div class="col-sm mt-4">
+                            <label for="literature-language">Literature and Language Related Program</label>
+                            <select id="literature-language" class="selectpicker form-control" name="literature_language" multiple data-selected-text-format="count">
+                                <option value=".10">Religious Philosophy</option>
+                                <option value=".10">Theology Religious Vocation</option>
+                                <option value=".10">Library</option>
+                                <option value=".10">History</option>
+                                <option value=".10">English</option>
+                                <option value=".10">Communication</option>
+                                <option value=".10">Language</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="row text-center mt-5 mb-3">
                     <div class="col-sm">
@@ -388,8 +495,10 @@
                 </div>
             </div>
         </div>
-        </main>
     </form>
-    </div>
+
+    </body>
+
+    <script src="{% static 'universities/js/quiz.js' %}"></script>
 
 {% endblock %}
