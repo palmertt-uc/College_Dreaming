@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#quizMajorInterm", "#majorStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
+    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#quizACTInterm","#testStarter", "#quizMajorInterm", "#majorStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
      "#preferencesStarterIntermThree", "#preferencesStarterThree"]
     let currentIndex = 0;
 
@@ -13,7 +13,7 @@
         "graduation_rate":["contNoPrefGradRate", "contAvgGradRate", "contHighGradRate"],
 
         "housing_costs": ["contNoPrefHousingCosts", "contLowHousingCosts", "contMedHousingCosts"],
-        "job_availability": ["contNoPrefJobs", "contEntryJobs", "contMyFieldJobs", "contBothJobs"],
+        "earnings": ["contNoPrefEarnings", "contEarnings"],
         "crime": ["contNoPrefCrime", "contViolentCrime", "contPropertyCrime", "contBothCrime"],
         "community": ["contNoPrefCommunity", "contRuralCommunity", "contSuburbanCommunity", "contUrbanCommunity", "contRuralSuburbanCommunity", "contRuralUrbanCommunity", "contSuburbanUrbanCommunity"],
 
@@ -60,10 +60,8 @@
         "contLowHousingCosts": ["/static/universities/images/living/low_housing_costs.png", "low housing costs stock", "Low housing costs are important to me"],
         "contMedHousingCosts": ["/static/universities/images/living/medium_housing_costs.png", "average housing costs stock", "Average housing costs are okay to me"],
 
-        "contNoPrefJobs": ["/static/universities/images/living/entry_and_field_jobs.png", "no pref local job preference stock", "I have no preference towards local jobs"],
-        "contEntryJobs": ["/static/universities/images/living/entry_level_jobs.png", "local entry jobs stock", "I prefer having local entry-level jobs available"],
-        "contMyFieldJobs": ["/static/universities/images/living/my_field_jobs.png", "my field jobs stock", "I prefer local jobs pertaining to my field"],
-        "contBothJobs": ["/static/universities/images/living/entry_and_field_jobs.png", "local entry-level and field-related jobs stock", "I want both local entry level and jobs pertaining to my field"],
+        "contNoPrefEarnings": ["/static/universities/images/living/entry_and_field_jobs.png", "no preference earnings", "I have no preference towards earnings"],
+        "contEarnings": ["/static/universities/images/living/my_field_jobs.png", "higher earnings stock", "I want higher than average earnings after graduation"],
 
         "contNoPrefCrime": ["/static/universities/images/living/crime_both.png", "no preference crime stock", "I am not worried about crime in the area"],
         "contViolentCrime": ["/static/universities/images/living/property_crime.png", "violent crime stock", "I am worried about violent crime in the area"],
@@ -98,12 +96,15 @@
     }
 
     $(".next").click(function() {
+        $(this).css("pointer-events", "none")
+        $(".prev").css("pointer-events", "auto");
         $(pages[currentIndex]).fadeOut("slow", function () {
             currentIndex++;
             $(pages[currentIndex]).fadeIn(2000, function () {
                 $(pages[currentIndex]).fadeOut(750, function () {
                     currentIndex++;
                     $(pages[currentIndex]).fadeIn(1500);
+                    $(this).css("pointer-events", "auto")
                 });
             });
         });
@@ -113,12 +114,16 @@
     For navigating to the previous quiz page
     */
     $(".prev").click(function() {
+        $(this).css("pointer-events", "none")
+        $(".next").css("pointer-events", "auto");
         if(currentIndex != 2){
             $(pages[currentIndex]).fadeOut("slow", function () {
                 currentIndex -= 2;
                 $(pages[currentIndex]).fadeIn(2000);
+                $(this).css("pointer-events", "auto")
             });
         }
+
     });
 
     $(".prefContainer").click(function(){
@@ -148,7 +153,20 @@
             }
         });
     });
+
+    $(".tests").on('input', function() {
+    let text = $(this).val()
+    if(text != ""){
+        let newChar = text.charAt(text.length-1);
+        let isNum = newChar >= '0' && newChar <= '9';
+        if(!isNum){
+            $(this).val(text.substring(0, text.length-1));
+        }
+    }
 });
+});
+
+
 
 // New Design Code
 let open = document.getElementById('hamburger');
