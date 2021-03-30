@@ -4,7 +4,7 @@
     let currentIndex = 0;
 
     let contGroups = {
-        "costs": ["contLowCosts", "contMedCosts", "contHighCosts"],
+        "costs": ["contHighCosts", "contMedCosts", "contLowCosts"],
         "selectivity": ["contLowSelectivity", "contMedSelectivity", "contHighSelectivity"],
         "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution", "contAAPIInstitution", "contMenInstitution", "contWomenInstitution",
                     "contReligiousInstitution", "contHispanicInstitution", "contTribalInstitution"],
@@ -24,9 +24,9 @@
     };
 
     let groupAttr = {
-        "contLowCosts": ["/static/universities/images/institution/low_costs.png", "low cost stock", "I'm not worried about costs"],
+        "contHighCosts": ["/static/universities/images/institution/high_costs.png", "high cost stock", "I'm not worried about costs"],
         "contMedCosts": ["/static/universities/images/institution/medium_costs.png", "medium cost stock", "I'm worried about costs"],
-        "contHighCosts": ["/static/universities/images/institution/high_costs.png", "high cost stock", "I'm very worried about costs"],
+        "contLowCosts": ["/static/universities/images/institution/low_costs.png", "low cost stock", "I'm very worried about costs"],
 
         "contLowSelectivity": ["/static/universities/images/institution/low_selectivity.png", "not selective stock", "I prefer a high acceptance rate"],
         "contMedSelectivity": ["/static/universities/images/institution/medium_selectivity.png", "selective stock", "I want a selective institution"],

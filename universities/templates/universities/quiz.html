@@ -59,7 +59,7 @@
                     <div class="row" id="form">
                         <div class="col-sm mt-4">
                             <label for="relationship">I Am The...</label>
-                            <select id="relationship" class="form-control">
+                            <select id="relationship" class="form-control" name="relationship">
                                 <option value="1">Student</option>
                                 <option value="2">Student's Parent</option>
                                 <option value="3">Other</option>
@@ -69,7 +69,7 @@
                     <div class="row mt-3">
                         <div class="col-sm mt-4">
                             <label for="ethnicity">My ethnicity is ... </label>
-                            <select id="ethnicity" class="form-control">
+                            <select id="ethnicity" class="form-control" name="ethnicity">
                                 <option value="_white">White</option>
                                 <option value="_black">Black</option>
                                 <option value="_asian">Asian</option>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-sm mt-4">
                             <label for="state">I live in ...</label>
-                            <select id="state" class="form-control">
+                            <select id="state" class="form-control" name="state">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -141,7 +141,7 @@
                     <div class="row mt-3">
                          <div class="col-sm mt-4">
                             <label for="income">My Annual Household Income is...</label>
-                            <select id="income" class="form-control">
+                            <select id="income" class="form-control" name="income">
                                 <option value="1">less than $40,000</option>
                                 <option value="2">between $40,000 - $100,000</option>
                                 <option value="3">more than $100,000</option>
@@ -149,7 +149,7 @@
                         </div>
                         <div class="col-sm mt-4">
                             <label for="debtConcern">How Concerned I Am About Debt...</label>
-                            <select id="debtConcern" class="form-control">
+                            <select id="debtConcern" class="form-control" name="debtConcern">
                                 <option value="1">very concerned</option>
                                 <option value="2">concerned</option>
                                 <option value="3">not concerned</option>
@@ -194,18 +194,18 @@
                 <div class="starterHeader text-center">SAT</div>
                 <div class="row mt-3">
                     <div class="col-sm mt-4">
-                        <label for="scienceSAT">Science SAT Score (Blank if N/A)</label>
-                        <input id="scienceSAT" class="tests" maxlength="3" name="scienceSAT"/>
+                        <label for="scienceSAT">Math SAT Score (Blank if N/A)</label>
+                        <input id="scienceSAT" class="tests" maxlength="3" name="mathSAT"/>
                     </div>
                     <div class="col-sm mt-4">
-                        <label for="mathSAT">Math SAT Score (Blank if N/A)</label>
-                        <input id="mathSAT" class="tests"  maxlength="3" name="mathSAT"/>
+                        <label for="mathSAT">Reading SAT Score (Blank if N/A)</label>
+                        <input id="mathSAT" class="tests"  maxlength="3" name="readingSAT"/>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm mt-4">
-                        <label for="readingSAT">Reading SAT Score (Blank if N/A)</label>
-                        <input id="readingSAT" class="tests"  maxlength="3" name="readingSAT"/>
+                        <label for="readingSAT">Writing SAT Score (Blank if N/A)</label>
+                        <input id="readingSAT" class="tests"  maxlength="3" name="writingSAT"/>
                     </div>
                     <div class="col-sm mt-4">
                     </div>
@@ -230,7 +230,7 @@
                 </div>
                 <hr class="profile-line">
                 <div>
-                    <div class="row" id="form">
+                    <div class="row">
                         <div class="col-sm mt-4">
                             <label for="business">Business Related Program</label>
                             <select id="business" class="selectpicker form-control" name="business_program" multiple data-selected-text-format="count">
@@ -325,10 +325,10 @@
                     <div id="preferencesOne">
                         <div class="row">
                             <div class="col-sm mt-4">
-                                <div class="prefContainer costs text-center" data-isPref="" id="contLowCosts">
-                                    <img src="{% static 'universities/images/institution/low_costs.png' %}"
+                                <div class="prefContainer costs text-center" data-isPref="" id="contHighCosts">
+                                    <img src="{% static 'universities/images/institution/high_costs.png' %}"
                                          class="imgPref left"
-                                         id="img-costs" alt="low costs stock"/>
+                                         id="img-costs" alt="high costs stock"/>
                                     <div class="prefText" id="div-costs">I'm not worried about costs</div>
                                     <input name="costs" id="inp-costs" value="{{ request.get.GET.costs }}"
                                            style="display:none;"/>
