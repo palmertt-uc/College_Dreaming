@@ -10,6 +10,7 @@ class Earnings(models.Model):
     oneyear50pct = models.FloatField(db_column='OneYear50Pct', blank=True, null=True)  # Field name made lowercase.
     fiveyear50pct = models.FloatField(db_column='FiveYear50Pct', blank=True, null=True)  # Field name made lowercase.
     tenyear50pct = models.FloatField(db_column='TenYear50Pct', blank=True, null=True)  # Field name made lowercase.
+    institutionid = models.ForeignKey('Institutions', models.DO_NOTHING, db_column='InstitutionId', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -41,6 +42,8 @@ class Climate(models.Model):
     avgtemp = models.FloatField(db_column='AvgTemp')  # Field name made lowercase.
     maxtemp = models.FloatField(db_column='MaxTemp')  # Field name made lowercase.
     zipcode = models.CharField(db_column='ZipCode', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    sunlight = models.TextField(db_column='Sunlight', null=True)
+    snow = models.TextField(db_column='Snow', null=True)
 
     class Meta:
         managed = False
@@ -70,6 +73,7 @@ class Zipcodes(models.Model):
     zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
     cityid = models.ForeignKey(Cities, models.DO_NOTHING, db_column='CityId')  # Field name made lowercase.
     zipcode = models.CharField(db_column='ZipCode', max_length=10)  # Field name made lowercase.
+    hpi = models.TextField(db_column='HPI', blank=True, null=True)
 
     class Meta:
         managed = False
