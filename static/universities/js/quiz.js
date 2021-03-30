@@ -1,18 +1,19 @@
 ﻿$(document).ready(function () {
-    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "quizACTInterm", "testStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
+    let pages = ["#quizStarter", "#quizStarterInterm", "#formStarter", "#quizACTInterm","#testStarter", "#quizMajorInterm", "#majorStarter", "#preferencesStarterInterm", "#preferencesStarterOne", "#preferencesStarterIntermTwo", "#preferencesStarterTwo",
      "#preferencesStarterIntermThree", "#preferencesStarterThree"]
     let currentIndex = 0;
 
     let contGroups = {
-        "costs": ["contLowCosts", "contMedCosts", "contHighCosts"],
+        "costs": ["contHighCosts", "contMedCosts", "contLowCosts"],
         "selectivity": ["contLowSelectivity", "contMedSelectivity", "contHighSelectivity"],
-        "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution", "contAAPIInstitution", "contMenInstitution", "contWomenInstitution"],
+        "special": ["contNoPrefInstitution", "contNoneInstitution", "contHBInstitution", "contNAInstitution", "contAAPIInstitution", "contMenInstitution", "contWomenInstitution",
+                    "contReligiousInstitution", "contHispanicInstitution", "contTribalInstitution"],
         "type": ["contPublic", "contPrivate", "contNoTypePref"],
         "size": ["contSmallSize", "contMedSize", "contLargeSize", "contNoPrefSize"],
         "graduation_rate":["contNoPrefGradRate", "contAvgGradRate", "contHighGradRate"],
 
         "housing_costs": ["contNoPrefHousingCosts", "contLowHousingCosts", "contMedHousingCosts"],
-        "job_availability": ["contNoPrefJobs", "contEntryJobs", "contMyFieldJobs", "contBothJobs"],
+        "earnings": ["contNoPrefEarnings", "contEarnings"],
         "crime": ["contNoPrefCrime", "contViolentCrime", "contPropertyCrime", "contBothCrime"],
         "community": ["contNoPrefCommunity", "contRuralCommunity", "contSuburbanCommunity", "contUrbanCommunity", "contRuralSuburbanCommunity", "contRuralUrbanCommunity", "contSuburbanUrbanCommunity"],
 
@@ -23,21 +24,24 @@
     };
 
     let groupAttr = {
-        "contLowCosts": ["/static/universities/images/institution/low_costs.png", "low cost stock", "I'm not worried about costs"],
+        "contHighCosts": ["/static/universities/images/institution/high_costs.png", "high cost stock", "I'm not worried about costs"],
         "contMedCosts": ["/static/universities/images/institution/medium_costs.png", "medium cost stock", "I'm worried about costs"],
-        "contHighCosts": ["/static/universities/images/institution/high_costs.png", "high cost stock", "I'm very worried about costs"],
+        "contLowCosts": ["/static/universities/images/institution/low_costs.png", "low cost stock", "I'm very worried about costs"],
 
         "contLowSelectivity": ["/static/universities/images/institution/low_selectivity.png", "not selective stock", "I prefer a high acceptance rate"],
         "contMedSelectivity": ["/static/universities/images/institution/medium_selectivity.png", "selective stock", "I want a selective institution"],
         "contHighSelectivity": ["/static/universities/images/institution/high_selectivity.png", "very selective stock", "I want a very selective institution"],
 
-        "contNoPrefInstitution": ["src", "no preference stock", "I have no preference towards specialty institutions"],
-        "contNoneInstitution": ["src", "no specialty stock", "I do not want a specialty institution"],
+        "contNoPrefInstitution": ["/static/universities/images/institution/no_preference_institution.png", "no preference stock", "I have no preference towards specialty institutions"],
+        "contNoneInstitution": ["/static/universities/images/institution/no_specialty.png", "no specialty stock", "I do not want a specialty institution"],
         "contHBInstitution": ["/static/universities/images/institution/black_institution.png", "historically black stock", "I want a historically black institution"],
-        "contNAInstitution": ["src", "Native American institution stock", "I want a Native American institution"],
+        "contNAInstitution": ["/static/universities/images/institution/native_american.png", "Native American institution stock", "I want a Native American institution"],
         "contAAPIInstitution": ["/static/universities/images/institution/aapi_institution.png", "Asian American Pacific Islander institution stock", "I want an Asian American Pacific Islander institution"],
         "contMenInstitution": ["/static/universities/images/institution/men_institution.png", "men only institution stock", "I want a men's only institution"],
         "contWomenInstitution": ["/static/universities/images/institution/women_institution.png", "women only institution stock", "I want a women's only institution"],
+        "contReligiousInstitution": ["/static/universities/images/institution/religious_affiliated.png", "Religious Affiliation Stock", "I want a religious affiliated institution"],
+        "contHispanicInstitution": ["/static/universities/images/institution/hispanic_serving.png", 'Hispanic Serving Stock', "I want a Hispanic Serving institution"],
+        "contTribalInstitution": ["/static/universities/images/institution/tribal_institution.png", "Tribal Colleges and Universities", "I want a Tribal institution"],
 
         "contPublic": ["/static/universities/images/institution/public_institution.png", "public school stock", "I'm interested in public schools"],
         "contPrivate": ["/static/universities/images/institution/private_institution.png", "private school stock", "I'm interested in private schools"],
@@ -56,10 +60,8 @@
         "contLowHousingCosts": ["/static/universities/images/living/low_housing_costs.png", "low housing costs stock", "Low housing costs are important to me"],
         "contMedHousingCosts": ["/static/universities/images/living/medium_housing_costs.png", "average housing costs stock", "Average housing costs are okay to me"],
 
-        "contNoPrefJobs": ["/static/universities/images/living/entry_and_field_jobs.png", "no pref local job preference stock", "I have no preference towards local jobs"],
-        "contEntryJobs": ["/static/universities/images/living/entry_level_jobs.png", "local entry jobs stock", "I prefer having local entry-level jobs available"],
-        "contMyFieldJobs": ["/static/universities/images/living/my_field_jobs.png", "my field jobs stock", "I prefer local jobs pertaining to my field"],
-        "contBothJobs": ["/static/universities/images/living/entry_and_field_jobs.png", "local entry-level and field-related jobs stock", "I want both local entry level and jobs pertaining to my field"],
+        "contNoPrefEarnings": ["/static/universities/images/living/entry_and_field_jobs.png", "no preference earnings", "I have no preference towards earnings"],
+        "contEarnings": ["/static/universities/images/living/my_field_jobs.png", "higher earnings stock", "I want higher than average earnings after graduation"],
 
         "contNoPrefCrime": ["/static/universities/images/living/crime_both.png", "no preference crime stock", "I am not worried about crime in the area"],
         "contViolentCrime": ["/static/universities/images/living/property_crime.png", "violent crime stock", "I am worried about violent crime in the area"],
@@ -94,12 +96,15 @@
     }
 
     $(".next").click(function() {
+        $(this).css("pointer-events", "none")
+        $(".prev").css("pointer-events", "auto");
         $(pages[currentIndex]).fadeOut("slow", function () {
             currentIndex++;
             $(pages[currentIndex]).fadeIn(2000, function () {
                 $(pages[currentIndex]).fadeOut(750, function () {
                     currentIndex++;
                     $(pages[currentIndex]).fadeIn(1500);
+                    $(this).css("pointer-events", "auto")
                 });
             });
         });
@@ -109,12 +114,16 @@
     For navigating to the previous quiz page
     */
     $(".prev").click(function() {
+        $(this).css("pointer-events", "none")
+        $(".next").css("pointer-events", "auto");
         if(currentIndex != 2){
             $(pages[currentIndex]).fadeOut("slow", function () {
                 currentIndex -= 2;
                 $(pages[currentIndex]).fadeIn(2000);
+                $(this).css("pointer-events", "auto")
             });
         }
+
     });
 
     $(".prefContainer").click(function(){
@@ -144,7 +153,20 @@
             }
         });
     });
+
+    $(".tests").on('input', function() {
+    let text = $(this).val()
+    if(text != ""){
+        let newChar = text.charAt(text.length-1);
+        let isNum = newChar >= '0' && newChar <= '9';
+        if(!isNum){
+            $(this).val(text.substring(0, text.length-1));
+        }
+    }
 });
+});
+
+
 
 // New Design Code
 let open = document.getElementById('hamburger');
@@ -177,4 +199,6 @@ open.addEventListener("click", function () {
         mainContent.classList.remove("d-none");
         changeIcon = true;
     }
+
+    $('select').selectpicker();
 });
