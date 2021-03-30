@@ -41,6 +41,8 @@ class Climate(models.Model):
     avgtemp = models.FloatField(db_column='AvgTemp')  # Field name made lowercase.
     maxtemp = models.FloatField(db_column='MaxTemp')  # Field name made lowercase.
     zipcode = models.CharField(db_column='ZipCode', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    sunlight = models.IntegerField(db_column='Sunlight', blank=True, null=True)  # Field name made lowercase.
+    snow = models.IntegerField(db_column='Snow', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -56,7 +58,10 @@ class Cities(models.Model):
     state = models.CharField(db_column='State', max_length=2)  # Field name made lowercase.
     region = models.CharField(db_column='Region', max_length=2)  # Field name made lowercase.
     bars = models.IntegerField(db_column='Bars', blank=True, null=True)  # Field name made lowercase.
-    crimeid = models.ForeignKey('Crime', models.DO_NOTHING, db_column='CrimeId', blank=True, null=True)  # Field name made lowercase.
+    crimeid = models.ForeignKey('Crime', models.DO_NOTHING, db_column='CrimeId', blank=True,
+                                null=True)  # Field name made lowercase.
+    restaurantranking = models.IntegerField(db_column='RestaurantRanking', blank=True,
+                                            null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -70,6 +75,8 @@ class Zipcodes(models.Model):
     zipcodeid = models.AutoField(db_column='ZipCodeId', primary_key=True)  # Field name made lowercase.
     cityid = models.ForeignKey(Cities, models.DO_NOTHING, db_column='CityId')  # Field name made lowercase.
     zipcode = models.CharField(db_column='ZipCode', max_length=10)  # Field name made lowercase.
+    hpi = models.DecimalField(db_column='HPI', max_digits=8, decimal_places=4, blank=True,
+                              null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

@@ -39,7 +39,7 @@
         "contAAPIInstitution": ["/static/universities/images/institution/aapi_institution.png", "Asian American Pacific Islander institution stock", "I want an Asian American Pacific Islander institution"],
         "contMenInstitution": ["/static/universities/images/institution/men_institution.png", "men only institution stock", "I want a men's only institution"],
         "contWomenInstitution": ["/static/universities/images/institution/women_institution.png", "women only institution stock", "I want a women's only institution"],
-        "contReligiousInstitution": ["src", "Religious Affiliation Stock", "I want a religious affiliated institution"],
+        "contReligiousInstitution": ["/static/universities/images/institution/religious_affiliated.png", "Religious Affiliation Stock", "I want a religious affiliated institution"],
         "contHispanicInstitution": ["/static/universities/images/institution/hispanic_serving.png", 'Hispanic Serving Stock', "I want a Hispanic Serving institution"],
         "contTribalInstitution": ["/static/universities/images/institution/tribal_institution.png", "Tribal Colleges and Universities", "I want a Tribal institution"],
 
