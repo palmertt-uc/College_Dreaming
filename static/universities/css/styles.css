@@ -334,6 +334,11 @@ nav ul li a:hover::after {
     to {margin-left: 18vw;}
 }
 
+@keyframes large-close-icon-move {
+    from {margin-left: 0}
+    to {margin-left: 18.4vw}
+}
+
 @keyframes search-expand {
     from {width: 0;}
     to {width: 20vw;}
@@ -350,6 +355,34 @@ nav ul li a:hover::after {
 
     100% {
         transform: translateY(-50%);
+    }
+}
+
+@media screen and (min-width: 1025px){
+    #search-input {
+        margin-top: 3vh;
+    }
+
+    .close-search-container {
+        margin-top: 3.5vh;
+        margin-left: 18.4vw;
+        animation: large-close-icon-move 1s ease;
+    }
+
+    #home-page-content {
+        height: 85vh;
+    }
+
+    #after-content {
+        margin-top: 50vh;
+    }
+
+    #university-results-content {
+        height: 73vh;
+    }
+
+    #detail-page-content {
+        height: 85vh;
     }
 }
 
