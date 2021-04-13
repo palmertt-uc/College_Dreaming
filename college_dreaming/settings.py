@@ -20,15 +20,13 @@ BASE_DIR = Path(__file__).resolve(strict=False).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1o+h**91+@bor@p^!5+t(xl&r$t31_fcxy&^5b*_#6@@vq$%l)'
-GOOGLE_RECAPTCHA_SECRET_KEY = '6Leqht8ZAAAAAN_gy2jLmvdg4-V3C5q7WOeUz9Hg'
+SECRET_KEY =
+GOOGLE_RECAPTCHA_SECRET_KEY =
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['collegedreaming.com', 'www.collegedreaming.com', '127.0.0.1',
-                 'college-dreaming-application-env.eba-ygpnvbdy.us-east-2.elasticbeanstalk.com',
-                 '172.31.18.169']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -75,20 +73,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'college_dreaming.wsgi.application'
+WSGI_APPLICATION =
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'collegeDB',
-        'USER': 'admin',
-        'PASSWORD': 'SeniorDesign2020',
-        'HOST': 'collegedreaming.cjoiqlx7cnzx.us-east-2.rds.amazonaws.com',
-        'PORT': '3306',
-    }
+
 }
 
 # Password validation
@@ -138,9 +129,9 @@ LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 MAILER_EMAIL_BACKEND = EMAIL_BACKEND
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = 'ijtjppapwuvcjkul'
-EMAIL_HOST_USER = 'seniordesign908@gmail.com'
+EMAIL_HOST =
+EMAIL_HOST_PASSWORD =
+EMAIL_HOST_USER =
 EMAIL_PORT = 587
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
